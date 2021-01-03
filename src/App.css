@@ -1,0 +1,23 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@font-face {
+  font-family: "GESSTwo";
+  src: url("./assets/fonts/GESSTwo/GESSTwoLight-Light.woff");
+}
+
+* {
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "GESSTwo", "PT Sans", sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
