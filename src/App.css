@@ -21,3 +21,37 @@ body,
   display: flex;
   flex-direction: column;
 }
+
+a {
+  color: unset;
+}
+/* Paginate */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.pagination a {
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+  border: 1px solid #74b844;
+  color: #74b844;
+}
+
+.pagination__link {
+  font-weight: bold;
+}
+
+.pagination__link--active a {
+  color: #fff;
+  background: #74b844;
+}
+
+.pagination__link--disabled a {
+  color: rgb(198, 197, 202);
+  border: 1px solid rgb(198, 197, 202);
+}
