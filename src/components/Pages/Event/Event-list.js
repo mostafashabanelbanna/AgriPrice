@@ -31,7 +31,7 @@ const EventsList = () => {
   const getEvents = async () => {
     //fetch Events data
     const response = await axios
-      .get("/news")
+      .get("/event")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setEvents(response.data); // set Events data to state
