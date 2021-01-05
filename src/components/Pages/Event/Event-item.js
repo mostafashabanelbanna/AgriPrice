@@ -3,7 +3,6 @@ import NewsImageGallery from "./Event-image-gallery";
 
 const eventItem = (props) => {
   const eventItem = props.location.state.eventItem;
-  console.log(evenItem);
   return (
     <div>
       <div>

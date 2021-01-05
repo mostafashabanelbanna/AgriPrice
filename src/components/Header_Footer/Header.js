@@ -92,6 +92,13 @@ const Header = () => {
                 >
                   فعاليات
                 </Link>
+                <Link
+                  to="/document-library-list"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  الإصدارات
+                </Link>
               </NavDropdown>
             </li>
             <li className="nav-item"></li>
