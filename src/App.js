@@ -4,8 +4,9 @@ import Header from "./components/Header_Footer/Header";
 
 import Home from "./components/Pages/Home/Home";
 import AboutUs from "./components/Pages/About-us/About-us";
-import NewsList from "./components/Pages/news/News-list";
-import newsItem from "./components/Pages/news/News-item";
+import NewsList from "./components/Pages/News/News-list";
+import newsItem from "./components/Pages/News/News-item";
+import EventsList from "./components/Pages/Event/Event-list";
 
 import "./App.css";
 import { Container } from "react-bootstrap";
@@ -20,6 +21,7 @@ function App() {
           <Switch>
             <Route path="/news-list/:NewsId" exact component={newsItem} />
             <Route path="/about-us" exact component={AboutUs} />
+            <Route path="/events-list" exact component={EventsList} />
             <Route path="/news-list" exact component={NewsList} />
             <Route path="/" exact component={Home} />
           </Switch>

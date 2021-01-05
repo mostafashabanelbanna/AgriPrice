@@ -1,5 +1,5 @@
 import React from "react";
-import NewsImageGallery from "./NewsImageGallery";
+import NewsImageGallery from "./News-image-gallery";
 
 const newsItem = (props) => {
   const newsItem = props.location.state.newsItem;

@@ -57,6 +57,10 @@ a:hover {
   text-align: center;
 }
 
+.dropdown-menu .nav-links {
+  color: #242424;
+}
+
 .nav-item {
   height: unset !important;
 }

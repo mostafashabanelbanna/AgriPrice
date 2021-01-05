@@ -74,14 +74,27 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                to="/news-list"
+              <NavDropdown
                 className="nav-links"
-                onClick={closeMobileMenu}
+                title={<span> المركز الإعلامي</span>}
               >
-                المركز الإعلامي
-              </Link>
+                <Link
+                  to="/news-list"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  الأخبار
+                </Link>
+                <Link
+                  to="/events-list"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  فعاليات
+                </Link>
+              </NavDropdown>
             </li>
+            <li className="nav-item"></li>
           </ul>
         </div>
       </nav>
