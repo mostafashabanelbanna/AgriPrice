@@ -2,12 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\Axios",
-    "\\src\\components\\Pages",
-    "\\src\\components\\Pages\\Event",
-    "\\src\\components\\UI"
+    "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\Pages\\Event\\Event-item.js",
+  "SelectedNode": "\\src\\components\\Pages",
   "PreviewInSolutionExplorer": false
 }

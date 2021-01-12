@@ -14,13 +14,14 @@ import eventItem from "./components/Pages/Event/Event-item";
 import DocumentLibraryItem from "./components/Pages/Document-library/Document-library-item";
 
 import "./App.css";
+import ContactUs from "./components/Pages/Contact-us/Contact-us";
 
 function App() {
   return (
     <>
       <Router>
         <Header />
-        <Container fluid className="my-3">
+        <Container fluid>
           <Switch>
             <Route
               path="/document-library-list/:DocumentLibraryId"
@@ -34,6 +35,7 @@ function App() {
               exact
               component={DocumentLibraryList}
             />
+            <Route path="/contact-us" exact component={ContactUs} />
             <Route path="/events-list" exact component={EventsList} />
             <Route path="/news-list" exact component={NewsList} />
             <Route path="/about-us" exact component={AboutUs} />
