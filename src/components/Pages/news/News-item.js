@@ -1,5 +1,5 @@
 import React from "react";
-import NewsImageGallery from "./News-image-gallery";
+import ImageGallery from "../../UI/Image-gallary";
 
 const newsItem = (props) => {
   const newsItem = props.location.state.newsItem;
@@ -10,7 +10,7 @@ const newsItem = (props) => {
         <h3>{newsItem.titleA}</h3>
         {newsItem.contentA}
       </div>
-      <NewsImageGallery />
+      <ImageGallery objectname="News" objectId={newsItem.id} />
     </div>
   );
 };
