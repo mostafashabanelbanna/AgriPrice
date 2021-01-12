@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import NavDropdown from "react-bootstrap/NavDropdown";
+
+import siteLogo from "../../assets/images/logo@2x.png";
+import idscLogo from "../../assets/images/idsc.png";
 
 import "./Header.css";
 
@@ -15,16 +18,14 @@ const Header = () => {
 
   return (
     <>
-      <Container fluid="lg">
-        <Row className="justify-content-center align-items-center">
-          <img
-            src="./images/idsc_logo.png"
-            style={{ height: "100px" }}
-            alt="idsc_logo"
-          />
+      <Container fluid className="panner">
+        <Row className="align-items-center justify-content-between px-5 row">
+          <div></div>
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            <h1 className="pr-5 text-dark">الأسعار المحلية والعالمية</h1>
+            <img src={siteLogo} style={{ height: "100px" }} alt="siteLogo" />
           </Link>
+
+          <img src={idscLogo} style={{ height: "100px" }} alt="siteLogo" />
         </Row>
       </Container>
 
@@ -35,18 +36,25 @@ const Header = () => {
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <NavLink
+                to="/"
+                exact
+                activeClassName="active"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 الرئيسية
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link
+              <NavLink
                 to="/about-us"
+                activeClassName="active"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
                 من نحن
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
               <NavDropdown
@@ -60,45 +68,56 @@ const Header = () => {
               </NavDropdown>
             </li>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <NavLink
+                to="/"
+                exact
+                activeClassName="active"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 الأسعار العالمية
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link
-                to="/services"
+              <NavLink
+                to="/"
+                exact
+                activeClassName="active"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
                 أسواق ومنافذ
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
               <NavDropdown
                 className="nav-links"
                 title={<span> المركز الإعلامي</span>}
               >
-                <Link
+                <NavLink
                   to="/news-list"
+                  activeClassName="active"
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
                   الأخبار
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                   to="/events-list"
                   className="nav-links"
+                  activeClassName="active"
                   onClick={closeMobileMenu}
                 >
                   فعاليات
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                   to="/document-library-list"
+                  activeClassName="active"
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
                   الإصدارات
-                </Link>
+                </NavLink>
               </NavDropdown>
             </li>
             <li className="nav-item"></li>

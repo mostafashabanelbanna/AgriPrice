@@ -6,3 +6,11 @@
 .card:hover .card-body {
   background-color: #f6f6f6;
 }
+
+.card img {
+  transition: transform 200ms ease-in-out 0s;
+}
+
+.card:hover img {
+  transform: scale(0.9);
+}

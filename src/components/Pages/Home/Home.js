@@ -1,7 +1,8 @@
 import React from "react";
+import NewsCarrousel from "./News-carrousel";
 
 const Home = () => {
-  return <div>Home</div>;
+  return <NewsCarrousel />;
 };
 
 export default Home;

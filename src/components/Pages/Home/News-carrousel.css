@@ -1,0 +1,12 @@
+.carrousel_wrapper {
+  /* height: 300px; */
+  overflow: hidden;
+}
+.carrousel_image {
+  height: 300px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-size: cover !important;
+}
+.slick-center {
+}
