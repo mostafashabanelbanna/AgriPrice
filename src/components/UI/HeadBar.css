@@ -1,0 +1,10 @@
+.bar_container {
+  background-color: var(--main-gray);
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
+}
+h5 {
+  color: var(--main-green);
+  font-weight: 700;
+}

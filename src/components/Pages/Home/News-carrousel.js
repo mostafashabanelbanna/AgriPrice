@@ -1,7 +1,6 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import Slider from "react-slick";
-
+import { SampleNextArrow, SamplePrevArrow } from "../../slick-carousel/Arrows";
 import "./News-carrousel.css";
 
 import slide_one from "../../../assets/images/stock.jpg";
@@ -9,12 +8,15 @@ import slide_one from "../../../assets/images/stock.jpg";
 const NewsCarrousel = () => {
   const settings = {
     className: "center",
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     centerMode: true,
     infinite: true,
     // autoplay: true,
     centerPadding: "400px",
     slidesToShow: 1,
     speed: 500,
+    rtl: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -31,13 +33,13 @@ const NewsCarrousel = () => {
       {
         breakpoint: 480,
         settings: {
-          centerPadding: "60px",
+          centerPadding: "0px",
         },
       },
     ],
   };
   return (
-    <Container fluid className="carrousel_wrapper">
+    <div className="carrousel_wrapper news px-0">
       <Slider {...settings}>
         <div className="px-2">
           <div
@@ -46,9 +48,12 @@ const NewsCarrousel = () => {
               background: `url(${slide_one})`,
             }}
           ></div>
-          <div>
-            <h2>عنوان الخبر</h2>
-            <p>عنوان داخلي</p>
+          <div className="carrousel_caption d-flex justify-content-between flex-row-reverse">
+            <div>
+              <h2>عنوان الخبر</h2>
+              <p>عنوان داخلي</p>
+            </div>
+            <div>الاحد ٢ نوفمبر 2021</div>
           </div>
         </div>
         <div className="px-2">
@@ -58,8 +63,14 @@ const NewsCarrousel = () => {
               background: `url(${slide_one})`,
             }}
           ></div>
+          <div className="carrousel_caption d-flex justify-content-between flex-row-reverse">
+            <div>
+              <h2>عنوان الخبر</h2>
+              <p>عنوان داخلي</p>
+            </div>
+            <div>الاحد ٢ نوفمبر 2021</div>
+          </div>
         </div>
-
         <div className="px-2">
           <div
             className="carrousel_image"
@@ -67,8 +78,14 @@ const NewsCarrousel = () => {
               background: `url(${slide_one})`,
             }}
           ></div>
+          <div className="carrousel_caption d-flex justify-content-between flex-row-reverse">
+            <div>
+              <h2>عنوان الخبر</h2>
+              <p>عنوان داخلي</p>
+            </div>
+            <div>الاحد ٢ نوفمبر 2021</div>
+          </div>
         </div>
-
         <div className="px-2">
           <div
             className="carrousel_image"
@@ -76,9 +93,16 @@ const NewsCarrousel = () => {
               background: `url(${slide_one})`,
             }}
           ></div>
+          <div className="carrousel_caption d-flex justify-content-between flex-row-reverse">
+            <div>
+              <h2>عنوان الخبر</h2>
+              <p>عنوان داخلي</p>
+            </div>
+            <div>الاحد ٢ نوفمبر 2021</div>
+          </div>
         </div>
       </Slider>
-    </Container>
+    </div>
   );
 };
 

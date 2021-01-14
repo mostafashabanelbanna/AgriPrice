@@ -6,6 +6,11 @@
   font-family: "GESSTwo";
   src: url("./assets/fonts/GESSTwo/GESSTwoLight-Light.woff");
 }
+:root {
+  --main-green: #0d924c;
+  --secondary-green: #54a646;
+  --main-gray: #f9f9f9;
+}
 
 * {
   text-align: right;
