@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import NewsCarrousel from "./News-carrousel";
 import Outlets from "./Outlets";
 import SiteServices from "./SiteServices";
+import Suggestions from "./Suggestions";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <NewsCarrousel />
         <SiteServices />
         <Outlets />
+        <Suggestions />
       </Container>
     </>
   );

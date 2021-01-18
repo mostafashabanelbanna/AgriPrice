@@ -1,11 +1,11 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import HeadBar from "../../UI/HeadBar";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
 import { SampleNextArrow, SamplePrevArrow } from "../../slick-carousel/Arrows";
 
+import HeadBar from "../../UI/HeadBar";
 import slide_one from "../../../assets/images/png/Mask_Group_14.png";
 import slide_two from "../../../assets/images/png/NSPO.png";
 
@@ -49,7 +49,7 @@ const Outlets = () => {
   return (
     <Row
       className="justify-content-center py-5"
-      style={{ backgroundColor: "green" }}
+      style={{ backgroundColor: "var(--main-green)" }}
     >
       <Col xs={12}>
         <HeadBar>منافذ و اسواق</HeadBar>

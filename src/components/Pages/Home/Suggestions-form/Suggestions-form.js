@@ -5,27 +5,25 @@ import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { axios } from "../../Axios/Axios";
+import { axios } from "../../../Axios/Axios";
 
-const ContactUs = () => {
+const SuggestionsForm = () => {
   // RegEx for phone number validation
   // const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
   // Schema for yup
   const validationSchema = yup.object({
     // ContactTypeId: yup.number.required("ContactType is required"),
-    Name: yup.string("Enter your name").required("name is required"),
+    Name: yup.string("أدخل الأسم").required("أدخل الأسم"),
     Email: yup
-      .string("Enter your email")
-      .email("Enter a valid email")
-      .required("Email is required"),
-    PhoneNumber: yup
-      .string("Enter your phone number")
-      .required("phone number is required"),
+      .string("أدخل البريد الإلكتروني")
+      .email("بريد إلكتروني غير صالح")
+      .required("أدخل البريد الإلكتروني"),
+    PhoneNumber: yup.string("أدخل رقم الهاتف").required("أدخل رقم الهاتف"),
     Subject: yup
-      .string("Enter subject")
-      .min(8, "subject should be of minimum 8 characters length")
-      .required("subject is required"),
+      .string("أدخل الموضوع")
+      .min(8, "الموضوع يجب ان يتكون من 8 حروف على الأقل")
+      .required("أدخل الموضوع"),
   });
 
   const [contactType, setContactType] = useState([]);
@@ -68,9 +66,53 @@ const ContactUs = () => {
     <div>
       <form onSubmit={formik.handleSubmit}>
         <TextField
-          fullWidth
+          style={{ width: "50%" }}
+          className="px-2 my-2"
+          variant="outlined"
+          id="Name"
+          name="Name"
+          label="الاسم"
+          value={formik.values.Name}
+          onChange={formik.handleChange}
+          error={formik.touched.Name && Boolean(formik.errors.Name)}
+          helperText={formik.touched.Name && formik.errors.Name}
+        />
+        <TextField
+          style={{ width: "50%" }}
+          className="px-2 my-2"
+          variant="outlined"
+          id="Email"
+          name="Email"
+          label="البريد الإلكتروني"
+          type="Email"
+          value={formik.values.Email}
+          onChange={formik.handleChange}
+          error={formik.touched.Email && Boolean(formik.errors.Email)}
+          helperText={formik.touched.Email && formik.errors.Email}
+        />
+
+        <TextField
+          style={{ width: "50%" }}
+          className="px-2 my-2"
+          variant="outlined"
+          id="PhoneNumber"
+          name="PhoneNumber"
+          label="رقم الهاتف"
+          type="PhoneNumber"
+          value={formik.values.PhoneNumber}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.PhoneNumber && Boolean(formik.errors.PhoneNumber)
+          }
+          helperText={formik.touched.PhoneNumber && formik.errors.PhoneNumber}
+        />
+
+        <TextField
+          style={{ width: "50%" }}
+          className="px-2 my-2"
+          variant="outlined"
           name="ContactTypeId"
-          id="ContactTypeId"
+          id="نوع الإستفسار"
           select
           label="ContactTypeId"
           value={formik.values.ContactTypeId}
@@ -88,57 +130,35 @@ const ContactUs = () => {
             </MenuItem>
           ))}
         </TextField>
+
         <TextField
-          fullWidth
-          id="Name"
-          name="Name"
-          label="الاسم"
-          value={formik.values.Name}
-          onChange={formik.handleChange}
-          error={formik.touched.Name && Boolean(formik.errors.Name)}
-          helperText={formik.touched.Name && formik.errors.Name}
-        />
-        <TextField
-          fullWidth
-          id="PhoneNumber"
-          name="PhoneNumber"
-          label="PhoneNumber"
-          type="PhoneNumber"
-          value={formik.values.PhoneNumber}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.PhoneNumber && Boolean(formik.errors.PhoneNumber)
-          }
-          helperText={formik.touched.PhoneNumber && formik.errors.PhoneNumber}
-        />
-        <TextField
-          fullWidth
-          id="Email"
-          name="Email"
-          label="Email"
-          type="Email"
-          value={formik.values.Email}
-          onChange={formik.handleChange}
-          error={formik.touched.Email && Boolean(formik.errors.Email)}
-          helperText={formik.touched.Email && formik.errors.Email}
-        />
-        <TextField
+          className="px-2 my-2"
+          variant="outlined"
           fullWidth
           id="Subject"
           name="Subject"
-          label="Subject"
+          label="الموضوع"
           type="Subject"
           value={formik.values.Subject}
           onChange={formik.handleChange}
           error={formik.touched.Subject && Boolean(formik.errors.Subject)}
           helperText={formik.touched.Subject && formik.errors.Subject}
         />
-        <Button color="primary" variant="contained" type="submit">
-          Submit
-        </Button>
+        <div className="px-2 my-2">
+          <Button
+            fullWidth
+            className="p-3 "
+            size="large"
+            variant="contained"
+            type="submit"
+            style={{ color: "#fff", backgroundColor: "var(--main-green)" }}
+          >
+            إرسال
+          </Button>
+        </div>
       </form>
     </div>
   );
 };
 
-export default ContactUs;
+export default SuggestionsForm;

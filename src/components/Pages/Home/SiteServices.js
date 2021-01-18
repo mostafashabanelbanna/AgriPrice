@@ -5,13 +5,21 @@ import { Link } from "react-router-dom";
 
 import "./SiteServices.css";
 
+import mainBg from "../../../assets/images/png/panner.png";
 import shopping from "../../../assets/images/png/sign · ecommerce · shopping · tag · sale.png";
 import location from "../../../assets/images/png/location.png";
 import ratio from "../../../assets/images/png/ratio.png";
 
 const SiteServices = () => {
   return (
-    <Row className="justify-content-center">
+    <Row
+      className="justify-content-center"
+      style={{
+        backgroundImage: `url(${mainBg})`,
+        backgroundPosition: "right top",
+        backgroundSize: "cover",
+      }}
+    >
       <Col xs={12}>
         <HeadBar>خدمات الموقع</HeadBar>
       </Col>

@@ -11,7 +11,7 @@ a:hover {
 }
 
 .navbar {
-  background: #f9f9f9;
+  background: var(--main-gray);
   height: 80px;
   display: flex;
   justify-content: center !important;
@@ -67,7 +67,9 @@ a:hover {
   color: #000;
   text-align: center;
 }
-
+.dropdown-menu.show {
+  background-color: var(--main-gray);
+}
 .dropdown-menu .nav-links {
   color: #242424;
 }
@@ -76,7 +78,7 @@ a:hover {
   height: unset !important;
 }
 .nav-links:hover {
-  border-bottom: 4px solid transparent;
+  /* border-bottom: 4px solid transparent; */
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(179, 179, 179, 0.36);
@@ -96,6 +98,10 @@ a:hover {
 .dropdown-menu {
   border: unset !important;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+}
+
+.nav-links.dropdown:has(a:active) {
+  color: red !important;
 }
 
 .fa-bars {

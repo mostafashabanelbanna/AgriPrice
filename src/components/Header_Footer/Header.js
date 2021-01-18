@@ -12,6 +12,13 @@ import "./Header.css";
 
 const Header = () => {
   const [click, setClick] = useState(false);
+  const [show, setShow] = useState(false);
+  const showDropdown = (e) => {
+    setShow(!show);
+  };
+  const hideDropdown = (e) => {
+    setShow(false);
+  };
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -93,6 +100,9 @@ const Header = () => {
               <NavDropdown
                 className="nav-links"
                 title={<span> المركز الإعلامي</span>}
+                show={show}
+                onMouseEnter={showDropdown}
+                onMouseLeave={hideDropdown}
               >
                 <NavLink
                   to="/news-list"
