@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\Pages"
+    "\\src\\components\\Axios",
+    "\\src\\components\\Pages",
+    "\\src\\components\\Pages\\Event",
+    "\\src\\components\\UI"
   ],
-  "SelectedNode": "\\src\\components\\Pages",
+  "SelectedNode": "\\src\\components\\Pages\\Event\\Event-item.js",
   "PreviewInSolutionExplorer": false
 }
