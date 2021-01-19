@@ -13,6 +13,7 @@ import "./Header.css";
 const Header = () => {
   const [click, setClick] = useState(false);
   const [show, setShow] = useState(false);
+  const [Parent,setParent] = useState('');
   const showDropdown = (e) => {
     setShow(!show);
   };
@@ -21,7 +22,10 @@ const Header = () => {
   };
 
   const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+  const closeMobileMenu = (parent) => {
+    setParent(parent);
+    setClick(false);
+  }
 
   return (
     <>
@@ -48,7 +52,7 @@ const Header = () => {
                 exact
                 activeClassName="active"
                 className="nav-links"
-                onClick={closeMobileMenu}
+                onClick={() => closeMobileMenu('')}
               >
                 الرئيسية
               </NavLink>
@@ -58,7 +62,7 @@ const Header = () => {
                 to="/about-us"
                 activeClassName="active"
                 className="nav-links"
-                onClick={closeMobileMenu}
+                onClick={() => closeMobileMenu('')}
               >
                 من نحن
               </NavLink>
@@ -76,29 +80,29 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/"
+                to="/GlobalPrice"
                 exact
                 activeClassName="active"
                 className="nav-links"
-                onClick={closeMobileMenu}
+                onClick={() => closeMobileMenu('')}
               >
                 الأسعار العالمية
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
-                to="/"
+                to="/PortsMarkets"
                 exact
                 activeClassName="active"
                 className="nav-links"
-                onClick={closeMobileMenu}
+                onClick={() => closeMobileMenu('')}
               >
                 أسواق ومنافذ
               </NavLink>
             </li>
             <li className="nav-item">
               <NavDropdown
-                className="nav-links"
+                className={Parent == "MediaCorner" ? "active nav-links" : "nav-links"}
                 title={<span> المركز الإعلامي</span>}
                 show={show}
                 onMouseEnter={showDropdown}
@@ -108,7 +112,7 @@ const Header = () => {
                   to="/news-list"
                   activeClassName="active"
                   className="nav-links"
-                  onClick={closeMobileMenu}
+                  onClick={() => closeMobileMenu('MediaCorner')}
                 >
                   الأخبار
                 </NavLink>
@@ -116,15 +120,16 @@ const Header = () => {
                   to="/events-list"
                   className="nav-links"
                   activeClassName="active"
-                  onClick={closeMobileMenu}
+                  onClick={() => closeMobileMenu('MediaCorner')}
                 >
                   فعاليات
                 </NavLink>
                 <NavLink
                   to="/document-library-list"
                   activeClassName="active"
+                  exact
                   className="nav-links"
-                  onClick={closeMobileMenu}
+                  onClick={() => closeMobileMenu('MediaCorner')}
                 >
                   الإصدارات
                 </NavLink>
