@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
 
 import Header from "./components/Header_Footer/Header";
 import Footer from "./components/Header_Footer/Footer";
@@ -20,7 +19,7 @@ function App() {
     <>
       <Router>
         <Header />
-        <Container fluid className="px-0">
+        <>
           <Switch>
             <Route
               path="/document-library-list/:DocumentLibraryId"
@@ -39,7 +38,7 @@ function App() {
             <Route path="/about-us" exact component={AboutUs} />
             <Route path="/" exact component={Home} />
           </Switch>
-        </Container>
+        </>
         <Footer />
       </Router>
     </>

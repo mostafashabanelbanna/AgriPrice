@@ -60,7 +60,7 @@ const Outlets = () => {
             <Slider {...settings}>
               <div className="px-2 d-flex flex-column align-items-center">
                 <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_one} />
+                  <img src={slide_one} alt="1" />
                 </div>
                 <div className="carrousel_caption">
                   <div className="text-center">
@@ -74,7 +74,7 @@ const Outlets = () => {
 
               <div className="px-2 d-flex flex-column align-items-center">
                 <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_two} className="img-fluid" />
+                  <img src={slide_two} className="img-fluid" alt="2" />
                 </div>
                 <div className="carrousel_caption">
                   <div className="text-center">
@@ -88,7 +88,7 @@ const Outlets = () => {
 
               <div className="px-2 d-flex flex-column align-items-center">
                 <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_one} />
+                  <img src={slide_one} alt="11" />
                 </div>
                 <div className="carrousel_caption">
                   <div className="text-center">
@@ -102,7 +102,7 @@ const Outlets = () => {
 
               <div className="px-2 d-flex flex-column align-items-center">
                 <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_two} className="img-fluid" />
+                  <img src={slide_two} className="img-fluid" alt="22" />
                 </div>
                 <div className="carrousel_caption">
                   <div className="text-center">

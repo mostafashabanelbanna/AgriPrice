@@ -19,7 +19,7 @@ const Suggestions = () => {
             <SuggestionsForm />
           </Col>
           <Col className="text-left" md={6}>
-            <img src={formImg} />
+            <img src={formImg} alt="form_img" />
           </Col>
         </Row>
       </Container>

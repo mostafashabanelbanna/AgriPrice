@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 
 import ReactPaginate from "react-paginate";
 
+import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import CustomCard from "../../UI/Custom-card";
 import { axios } from "../../Axios/Axios";
+import { paths } from "../../Paths/Pathes";
+
+import mainBg from "../../../assets/images/png/panner.png";
 
 const NewsList = () => {
   const [news, setNews] = useState([]);
@@ -45,13 +49,25 @@ const NewsList = () => {
   let { url } = useRouteMatch();
 
   return (
-    <>
+    <Container
+      fluid
+      style={
+        !noNews
+          ? {
+              backgroundImage: `url(${mainBg})`,
+              backgroundPosition: "right top",
+              backgroundSize: "cover",
+            }
+          : {}
+      }
+    >
       <Row>
         {!noNews &&
           news.slice(offset, offset + PER_PAGE).map((newsItem, idx) => {
             return (
-              <Col xs={12} md={6} lg={3} key={idx} className="p-3">
+              <Col xs={12} md={6} lg={3} key={idx} className="p-2">
                 <Link
+                  className="h-100"
                   // pass news item data throw props
                   to={{
                     pathname: `${url}/${newsItem.id}`,
@@ -63,28 +79,31 @@ const NewsList = () => {
                   <CustomCard
                     CardTitle={newsItem.titleA}
                     CardText={newsItem.createDate}
+                    CardImg={`${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA}`}
                   />
                 </Link>
               </Col>
             );
           })}
+        {!noNews && (
+          <Col xs={12}>
+            <ReactPaginate
+              previousLabel={"→ السابق"}
+              nextLabel={"التالى ←"}
+              pageCount={pageCount}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              previousLinkClassName={"pagination__link"}
+              nextLinkClassName={"pagination__link"}
+              disabledClassName={"pagination__link--disabled"}
+              activeClassName={"pagination__link--active"}
+            />
+          </Col>
+        )}
 
         {noNews && <h2 className="text-center p-4"> لا توجد أخبار</h2>}
-        <Col xs={12}>
-          <ReactPaginate
-            previousLabel={"→ السابق"}
-            nextLabel={"التالى ←"}
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            previousLinkClassName={"pagination__link"}
-            nextLinkClassName={"pagination__link"}
-            disabledClassName={"pagination__link--disabled"}
-            activeClassName={"pagination__link--active"}
-          />
-        </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 

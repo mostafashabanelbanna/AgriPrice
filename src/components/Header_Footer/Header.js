@@ -11,7 +11,13 @@ import idscLogo from "../../assets/images/idsc.png";
 import "./Header.css";
 
 const Header = () => {
+  // Close menu  when click on mobile
   const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  //toggle nav-dropdown on hover
   const [show, setShow] = useState(false);
   const showDropdown = (e) => {
     setShow(!show);
@@ -19,9 +25,6 @@ const Header = () => {
   const hideDropdown = (e) => {
     setShow(false);
   };
-
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
 
   return (
     <>

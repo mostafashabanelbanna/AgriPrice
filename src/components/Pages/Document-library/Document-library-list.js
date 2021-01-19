@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 
 import ReactPaginate from "react-paginate";
 
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import CustomCard from "../../UI/Custom-card";
 import { axios } from "../../Axios/Axios";
+import { paths } from "../../Paths/Pathes";
+
+import mainBg from "../../../assets/images/png/panner.png";
 
 const DocumentLibraryList = () => {
   const [documentLibrary, setDocumentLibrary] = useState([]);
@@ -46,7 +50,18 @@ const DocumentLibraryList = () => {
   let { url } = useRouteMatch();
 
   return (
-    <>
+    <Container
+      fluid
+      style={
+        !noDocumentLibrary
+          ? {
+              backgroundImage: `url(${mainBg})`,
+              backgroundPosition: "right top",
+              backgroundSize: "cover",
+            }
+          : {}
+      }
+    >
       <Row>
         {!noDocumentLibrary &&
           documentLibrary
@@ -66,29 +81,32 @@ const DocumentLibraryList = () => {
                     <CustomCard
                       CardTitle={documentLibraryItem.titleA}
                       CardText={documentLibraryItem.createDate}
+                      CardImg={`${paths.NewsPhotos}${documentLibraryItem.id}/${documentLibraryItem.photoA}`}
                     />
                   </Link>
                 </Col>
               );
             })}
+        {!noDocumentLibrary && (
+          <Col xs={12}>
+            <ReactPaginate
+              previousLabel={"→ السابق"}
+              nextLabel={"التالى ←"}
+              pageCount={pageCount}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              previousLinkClassName={"pagination__link"}
+              nextLinkClassName={"pagination__link"}
+              disabledClassName={"pagination__link--disabled"}
+              activeClassName={"pagination__link--active"}
+            />
+          </Col>
+        )}
         {noDocumentLibrary && (
           <h2 className="text-center p-4"> لا توجد نشرات</h2>
         )}
-        <Col xs={12}>
-          <ReactPaginate
-            previousLabel={"→ السابق"}
-            nextLabel={"التالى ←"}
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            previousLinkClassName={"pagination__link"}
-            nextLinkClassName={"pagination__link"}
-            disabledClassName={"pagination__link--disabled"}
-            activeClassName={"pagination__link--active"}
-          />
-        </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 
