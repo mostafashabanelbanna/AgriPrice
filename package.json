@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "formik": "^2.2.6",
+    "html-react-parser": "^1.2.1",
     "jss-rtl": "^0.3.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
