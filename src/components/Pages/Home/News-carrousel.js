@@ -85,53 +85,6 @@ const NewsCarrousel = () => {
               </div>
             );
           })}
-        {/* 
-  
-        <div className="px-2">
-          <div
-            className="carrousel_image"
-            style={{
-              background: `url(${slide_one})`,
-            }}
-          ></div>
-          <div className="carrousel_caption d-flex justify-content-between flex-row-reverse">
-            <div>
-              <h2>عنوان الخبر</h2>
-              <p>عنوان داخلي</p>
-            </div>
-            <div>الاحد ٢ نوفمبر 2021</div>
-          </div>
-        </div>
-        <div className="px-2">
-          <div
-            className="carrousel_image"
-            style={{
-              background: `url(${slide_one})`,
-            }}
-          ></div>
-          <div className="carrousel_caption d-flex justify-content-between flex-row-reverse">
-            <div>
-              <h2>عنوان الخبر</h2>
-              <p>عنوان داخلي</p>
-            </div>
-            <div>الاحد ٢ نوفمبر 2021</div>
-          </div>
-        </div>
-        <div className="px-2">
-          <div
-            className="carrousel_image"
-            style={{
-              background: `url(${slide_one})`,
-            }}
-          ></div>
-          <div className="carrousel_caption d-flex justify-content-between flex-row-reverse">
-            <div>
-              <h2>عنوان الخبر</h2>
-              <p>عنوان داخلي</p>
-            </div>
-            <div>الاحد ٢ نوفمبر 2021</div>
-          </div>
-        </div> */}
       </Slider>
     </div>
   );
