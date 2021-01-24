@@ -33,6 +33,16 @@ body,
 a {
   color: unset;
 }
+
+/* scale */
+.zoom_on_hover:hover {
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -ms-transition: transform 0.5s ease-in-out;
+  -webkit-transform: scale(1.07);
+  -ms-transform: scale(1.07);
+  transform: scale(1.07);
+}
 /* Paginate */
 .pagination {
   display: flex;

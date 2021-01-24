@@ -1,0 +1,7 @@
+.news-item-slider .carrousel_image {
+  height: 400px;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  background-color: #000 !important;
+}

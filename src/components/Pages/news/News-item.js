@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
 import parse from "html-react-parser";
 
-// import ImageGallery from "../../UI/Image-gallary";
+import * as moment from "moment";
+import "moment/locale/ar";
+import TodayIcon from "@material-ui/icons/Today";
+import ShareIcon from "@material-ui/icons/Share";
+
+import { Container, Row, Col } from "react-bootstrap";
+
 import { axios } from "../../Axios/Axios";
-import { paths } from "../../Paths/Pathes";
-import { SampleNextArrow, SamplePrevArrow } from "../../slick-carousel/Arrows";
+import CustomSlider from "../../UI/Custom-slider";
+import "./News-item.css";
 
 const NewsItem = (props) => {
   //get data from Link state
@@ -14,7 +19,7 @@ const NewsItem = (props) => {
     : undefined;
 
   //get news item id from url
-  const newsItemId = props.match.params.NewsId;
+  const newsItemId = parseInt(props.match.params.NewsId);
   //
   // const [news, setNews] = useState([]);
   const [newsItem, setNewsItem] = useState({});
@@ -26,8 +31,9 @@ const NewsItem = (props) => {
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       // setNews(response.data); // set news data to state
+
       response.data.map((newsItem) => {
-        if (newsItem.id == newsItemId) {
+        if (newsItem.id === newsItemId) {
           setNewsItem(newsItem);
         }
       });
@@ -35,23 +41,81 @@ const NewsItem = (props) => {
   };
 
   useEffect(() => {
+    // console.log(newsItemId);
     getNews();
   }, []);
-
-  //
 
   return (
     <>
       {newsItemLinkState ? (
-        <div>
-          <h3>{newsItemLinkState.titleA}</h3>
-          {parse(newsItemLinkState.contentA)}
-        </div>
+        <Container className="mt-4">
+          <Row>
+            <Col>
+              <h4 className="my-4" style={{ color: "var(--main-green)" }}>
+                {newsItemLinkState.titleA}
+              </h4>
+              <h3 className="my-4">{newsItemLinkState.titleE}</h3>
+
+              <div className="carrousel_wrapper news-item-slider px-0">
+                <CustomSlider
+                  objectname={"News"}
+                  objectid={newsItemLinkState.id}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="d-flex justify-content-between my-3">
+              <div>
+                <TodayIcon />
+                <strong className="mx-2" style={{ color: "var(--main-green)" }}>
+                  {moment(newsItemLinkState.publishDate)
+                    .locale("ar")
+                    .format("LL")}
+                </strong>
+              </div>
+              <div>
+                <ShareIcon />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="my-3">{parse(newsItemLinkState.contentA)}</Col>
+          </Row>
+        </Container>
       ) : (
-        <div>
-          <h3>{newsItem.titleA}</h3>
-          {newsItem.contentA}
-        </div>
+        <Container className="mt-4">
+          <Row>
+            <Col>
+              <h4 className="my-4" style={{ color: "var(--main-green)" }}>
+                {newsItem.titleA}
+              </h4>
+              <h3 className="my-4">{newsItem.titleE}</h3>
+
+              <div className="carrousel_wrapper news-item-slider px-0">
+                <CustomSlider objectname={"News"} objectid={newsItemId} />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="d-flex justify-content-between my-3">
+              <div>
+                <TodayIcon />
+                <strong className="mx-2" style={{ color: "var(--main-green)" }}>
+                  {newsItem.publishDate}
+                </strong>
+              </div>
+              <div>
+                <ShareIcon />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="my-3">
+              <p>{newsItem.contentA}</p>
+            </Col>
+          </Row>
+        </Container>
       )}
     </>
   );

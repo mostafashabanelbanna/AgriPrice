@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import * as moment from "moment";
+import "moment/locale/ar";
+
 import ReactPaginate from "react-paginate";
 
 import { Container } from "react-bootstrap";
@@ -78,7 +81,9 @@ const NewsList = () => {
                 >
                   <CustomCard
                     CardTitle={newsItem.titleA}
-                    CardText={newsItem.createDate}
+                    CardText={moment(newsItem.publishDate)
+                      .locale("ar")
+                      .format("LL")}
                     CardImg={`${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA}`}
                   />
                 </Link>

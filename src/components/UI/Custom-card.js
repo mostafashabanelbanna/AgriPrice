@@ -19,7 +19,7 @@ const CustomCard = (props) => {
     //     <Card.Text>{props.CardText}</Card.Text>
     //   </Card.Body>
     // </Card>
-    <Card className="h-100">
+    <Card className=" h-100 d-flex flex-column justify-content-between">
       <CardActionArea>
         <CardMedia
           component="img"
@@ -38,8 +38,12 @@ const CustomCard = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" style={{ color: "var(--main-green)" }}>
-          مزيد
+        <Button
+          size="small"
+          variant="outlined"
+          style={{ color: "#fff", backgroundColor: "var(--main-green)" }}
+        >
+          المزيد
         </Button>
       </CardActions>
     </Card>

@@ -19,10 +19,10 @@ const Outlets = () => {
     centerMode: true,
     infinite: true,
     // autoplay: true,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
 
-    centerPadding: "0px",
-    slidesToShow: 3,
+    // centerPadding: "0px",
+    slidesToShow: 4,
     speed: 500,
     rtl: true,
     responsive: [
@@ -59,59 +59,81 @@ const Outlets = () => {
           <Col className="carrousel_wrapper outlets px-0">
             <Slider {...settings}>
               <div className="px-2 d-flex flex-column align-items-center">
-                <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_one} alt="1" />
-                </div>
-                <div className="carrousel_caption">
-                  <div className="text-center">
-                    الفرع الرئيسي القاهرة /عين شمس
+                <Link className="d-flex flex-column justify-content-center align-items-center ">
+                  <div className="carrousel_image">
+                    <img src={slide_one} className="img-fluid" alt="21" />
                   </div>
-                  <div className="text-center p-3">
-                    <Link style={{ textDecoration: "underline" }}>المزيد</Link>
+                  <div className="carrousel_caption zoom_on_hover">
+                    <div className="text-center">
+                      الفرع الرئيسي القاهرة /عين شمس
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
 
               <div className="px-2 d-flex flex-column align-items-center">
-                <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_two} className="img-fluid" alt="2" />
-                </div>
-                <div className="carrousel_caption">
-                  <div className="text-center">
-                    الفرع الرئيسي القاهرة /عين شمس
+                <Link className="d-flex flex-column justify-content-center align-items-center ">
+                  <div className="carrousel_image">
+                    <img src={slide_two} className="img-fluid" alt="22" />
                   </div>
-                  <div className="text-center p-3">
-                    <Link style={{ textDecoration: "underline" }}>المزيد</Link>
+                  <div className="carrousel_caption zoom_on_hover">
+                    <div className="text-center">
+                      الفرع الرئيسي القاهرة /عين شمس
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
 
               <div className="px-2 d-flex flex-column align-items-center">
-                <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_one} alt="11" />
-                </div>
-                <div className="carrousel_caption">
-                  <div className="text-center">
-                    الفرع الرئيسي القاهرة /عين شمس
+                <Link className="d-flex flex-column justify-content-center align-items-center ">
+                  <div className="carrousel_image">
+                    <img src={slide_one} className="img-fluid" alt="21" />
                   </div>
-                  <div className="text-center p-3">
-                    <Link style={{ textDecoration: "underline" }}>المزيد</Link>
+                  <div className="carrousel_caption zoom_on_hover">
+                    <div className="text-center">
+                      الفرع الرئيسي القاهرة /عين شمس
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
 
               <div className="px-2 d-flex flex-column align-items-center">
-                <div className="carrousel_image align-items-center carrousel_image d-flex justify-content-center">
-                  <img src={slide_two} className="img-fluid" alt="22" />
-                </div>
-                <div className="carrousel_caption">
-                  <div className="text-center">
-                    الفرع الرئيسي القاهرة /عين شمس
+                <Link className="d-flex flex-column justify-content-center align-items-center ">
+                  <div className="carrousel_image">
+                    <img src={slide_two} className="img-fluid" alt="22" />
                   </div>
-                  <div className="text-center p-3">
-                    <Link style={{ textDecoration: "underline" }}>المزيد</Link>
+                  <div className="carrousel_caption zoom_on_hover">
+                    <div className="text-center">
+                      الفرع الرئيسي القاهرة /عين شمس
+                    </div>
                   </div>
-                </div>
+                </Link>
+              </div>
+
+              <div className="px-2 d-flex flex-column align-items-center">
+                <Link className="d-flex flex-column justify-content-center align-items-center ">
+                  <div className="carrousel_image">
+                    <img src={slide_one} className="img-fluid" alt="21" />
+                  </div>
+                  <div className="carrousel_caption zoom_on_hover">
+                    <div className="text-center">
+                      الفرع الرئيسي القاهرة /عين شمس
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="px-2 d-flex flex-column align-items-center">
+                <Link className="d-flex flex-column justify-content-center align-items-center ">
+                  <div className="carrousel_image">
+                    <img src={slide_two} className="img-fluid" alt="22" />
+                  </div>
+                  <div className="carrousel_caption zoom_on_hover">
+                    <div className="text-center">
+                      الفرع الرئيسي القاهرة /عين شمس
+                    </div>
+                  </div>
+                </Link>
               </div>
             </Slider>
           </Col>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import * as moment from "moment";
+import "moment/locale/ar";
+
 import ReactPaginate from "react-paginate";
 
 import Container from "react-bootstrap/Container";
@@ -10,6 +13,7 @@ import Col from "react-bootstrap/Col";
 
 import CustomCard from "../../UI/Custom-card";
 import { axios } from "../../Axios/Axios";
+import { paths } from "../../Paths/Pathes";
 
 import mainBg from "../../../assets/images/png/panner.png";
 
@@ -77,7 +81,10 @@ const EventsList = () => {
                   >
                     <CustomCard
                       CardTitle={eventItem.titleA}
-                      CardText={eventItem.createDate}
+                      CardText={moment(eventItem.publishDate)
+                        .locale("ar")
+                        .format("LL")}
+                      CardImg={`${paths.EventPhotos}${eventItem.id}/${eventItem.photoA}`}
                     />
                   </Link>
                 </Col>

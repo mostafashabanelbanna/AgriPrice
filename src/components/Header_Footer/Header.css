@@ -20,6 +20,9 @@ a:hover {
   position: sticky !important;
   top: 0;
   z-index: 999;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
 }
 
 .navbar-container {
@@ -55,7 +58,7 @@ a:hover {
   box-shadow: 10px 10px 5px 0px rgba(179, 179, 179, 0.36);
 }
 
-.active .nav-link  {
+.active .nav-link {
   color: var(--main-green) !important;
 }
 

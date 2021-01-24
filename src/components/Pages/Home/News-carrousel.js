@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
+import * as moment from "moment";
+import "moment/locale/ar";
+
 import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 import { SampleNextArrow, SamplePrevArrow } from "../../slick-carousel/Arrows";
@@ -62,7 +65,6 @@ const NewsCarrousel = () => {
       <Slider {...settings}>
         {!noNews &&
           news.map((newsItem, idx) => {
-            console.log(newsItem);
             return (
               <div className="px-2">
                 <div
@@ -74,7 +76,9 @@ const NewsCarrousel = () => {
                 ></div>
                 <div className="carrousel_caption ">
                   <div className="row">
-                    <div className="col-md-3">{newsItem.publishDate}</div>
+                    <div className="col-md-3">
+                      {moment(newsItem.publishDate).locale("ar").format("LL")}
+                    </div>
 
                     <div className="col-md-9">
                       <h4>{newsItem.titleA}</h4>

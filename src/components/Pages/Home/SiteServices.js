@@ -27,7 +27,7 @@ const SiteServices = () => {
         <Row>
           <Col sm={4}>
             <Link
-              className="align-items-center d-flex flex-column justify-content-center"
+              className="align-items-center d-flex flex-column justify-content-center zoom_on_hover"
               to="/about-us"
             >
               <div className="services_icon">
@@ -40,7 +40,7 @@ const SiteServices = () => {
           </Col>
           <Col sm={4}>
             <Link
-              className="align-items-center d-flex flex-column justify-content-center"
+              className="align-items-center d-flex flex-column justify-content-center zoom_on_hover"
               to="/about-us"
             >
               <div className="services_icon">
@@ -53,7 +53,7 @@ const SiteServices = () => {
           </Col>
           <Col sm={4}>
             <Link
-              className="align-items-center d-flex flex-column justify-content-center"
+              className="align-items-center d-flex flex-column justify-content-center zoom_on_hover"
               to="/about-us"
             >
               <div className="services_icon">
