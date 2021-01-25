@@ -42,7 +42,11 @@ const CustomSlider = (Props) => {
 
   return (
     <>
-      {noImages && <div></div>}
+      {images.length === 0 && (
+        <div>
+          <img src={Props.mainPhoto} className="img-fluid" alt="" />
+        </div>
+      )}
       <Slider {...settings}>
         {!noImages &&
           images.map((image, idx) => {

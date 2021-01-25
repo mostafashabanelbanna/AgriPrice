@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
+import { Link } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
+
 import * as moment from "moment";
 import "moment/locale/ar";
 
@@ -59,34 +62,46 @@ const NewsCarrousel = () => {
   useEffect(() => {
     getNews();
   }, []);
-
+  let { url } = useRouteMatch();
   return (
     <div className="carrousel_wrapper news px-0">
       <Slider {...settings}>
         {!noNews &&
           news.map((newsItem, idx) => {
             return (
-              <div key={idx} className="px-2">
-                <div
-                  className="carrousel_image"
-                  style={{
-                    // `${path.PhotoLibraryAlbumPhoto}{newsItem.}`
-                    background: `url(${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA})`,
-                  }}
-                ></div>
-                <div className="carrousel_caption ">
-                  <div className="row">
-                    <div className="col-md-3">
-                      {moment(newsItem.publishDate).locale("ar").format("LL")}
-                    </div>
+              <Link
+                key={idx}
+                className="h-100"
+                // pass news item data throw props
+                to={{
+                  pathname: `${url}news-list/${newsItem.id}`,
+                  state: {
+                    newsItem,
+                  },
+                }}
+              >
+                <div className="px-2">
+                  <div
+                    className="carrousel_image"
+                    style={{
+                      // `${path.PhotoLibraryAlbumPhoto}{newsItem.}`
+                      background: `url(${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA})`,
+                    }}
+                  ></div>
+                  <div className="carrousel_caption ">
+                    <div className="row">
+                      <div className="col-md-3">
+                        {moment(newsItem.publishDate).locale("ar").format("LL")}
+                      </div>
 
-                    <div className="col-md-9">
-                      <h4>{newsItem.titleA}</h4>
-                      <p>{newsItem.titleE}</p>
+                      <div className="col-md-9">
+                        <h4>{newsItem.titleA}</h4>
+                        <p>{newsItem.titleE}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
       </Slider>

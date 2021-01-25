@@ -10,6 +10,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { axios } from "../../Axios/Axios";
 import CustomSlider from "../../UI/Custom-slider";
+import { paths } from "../../Paths/Pathes";
 import "./News-item.css";
 
 const NewsItem = (props) => {
@@ -55,11 +56,11 @@ const NewsItem = (props) => {
                 {newsItemLinkState.titleA}
               </h4>
               <h3 className="my-4">{newsItemLinkState.titleE}</h3>
-
               <div className="carrousel_wrapper news-item-slider px-0">
                 <CustomSlider
                   objectname={"News"}
                   objectid={newsItemLinkState.id}
+                  mainPhoto={`${paths.NewsPhotos}${newsItemLinkState.id}/${newsItemLinkState.photoA}`}
                 />
               </div>
             </Col>
@@ -93,7 +94,11 @@ const NewsItem = (props) => {
               <h3 className="my-4">{newsItem.titleE}</h3>
 
               <div className="carrousel_wrapper news-item-slider px-0">
-                <CustomSlider objectname={"News"} objectid={newsItemId} />
+                <CustomSlider
+                  objectname={"News"}
+                  objectid={newsItemId}
+                  mainPhoto={`${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA}`}
+                />
               </div>
             </Col>
           </Row>
