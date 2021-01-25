@@ -86,7 +86,13 @@ const Outlets = () => {
                       key={idx}
                       className="px-2 d-flex flex-column align-items-center"
                     >
-                      <Link className="d-flex flex-column justify-content-center align-items-center ">
+                      <Link className="d-flex flex-column justify-content-center align-items-center "  to={{
+                          pathname: "/Ports/PortEntity",
+                          state: {
+                            EntityId:outletItem.id,
+                            Entitylogo:outletItem.logo
+                          },
+                        }} >
                         <div className="carrousel_image">
                           <img
                             src={`${paths.OutletPhotos}${outletItem.id}/${outletItem.logo}`}
