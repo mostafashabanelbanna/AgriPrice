@@ -66,7 +66,7 @@ const NewsCarrousel = () => {
         {!noNews &&
           news.map((newsItem, idx) => {
             return (
-              <div className="px-2">
+              <div key={idx} className="px-2">
                 <div
                   className="carrousel_image"
                   style={{

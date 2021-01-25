@@ -10,12 +10,12 @@ const Footer = () => {
     <footer className="">
       <Container fluid>
         <Row className="p-4" style={{ backgroundColor: "var(--main-gray)" }}>
-          <Col md={3} className="d-flex">
+          <Col lg={3} className="d-flex">
             <Link to="/" className="navbar-logo">
               <img src={siteLogo} style={{ height: "150px" }} alt="siteLogo" />
             </Link>
           </Col>
-          <Col md={6}>
+          <Col lg={6}>
             <Row>
               <Col xs={4} className="d-flex flex-column  align-items-center">
                 <Link className="my-2" to="/">
@@ -52,7 +52,7 @@ const Footer = () => {
               </Col>
             </Row>
           </Col>
-          <Col md={3}>
+          <Col lg={3}>
             <img src={idscLogo} style={{ height: "150px" }} alt="siteLogo" />
           </Col>
         </Row>

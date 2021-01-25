@@ -3,22 +3,19 @@ import { Col, Container, Row } from "react-bootstrap";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
-import { SampleNextArrow, SamplePrevArrow } from "../../slick-carousel/Arrows";
-
 import HeadBar from "../../UI/HeadBar";
+
 import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 
-import "./Outlet.css";
+import "./Partner.css";
 
-const Outlets = () => {
+const Partner = () => {
   const settings = {
     className: "center",
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
     centerMode: true,
     infinite: true,
-    // autoplay: true,
+    autoplay: true,
     slidesToScroll: 1,
 
     centerPadding: "0px",
@@ -46,21 +43,21 @@ const Outlets = () => {
       },
     ],
   };
-  const [outlets, setOutlets] = useState([]);
-  const noOutlets = !outlets || (outlets && outlets.length === 0); //check if no news
+  const [partners, setPartners] = useState([]);
+  const noPartners = !partners || (partners && partners.length === 0); //check if no partners
 
-  const getOutlets = async () => {
+  const getPartners = async () => {
     //fetch news data
     const response = await axios
-      .get("/Ports/PortEntity")
+      .get("/home/Partner")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
-      setOutlets(response.data); // set news data to state
+      setPartners(response.data); // set partners data to state
     }
   };
 
   useEffect(() => {
-    getOutlets();
+    getPartners();
   }, []);
 
   return (
@@ -73,14 +70,14 @@ const Outlets = () => {
       }}
     >
       <Col xs={12}>
-        <HeadBar>منافذ</HeadBar>
+        <HeadBar>شركاؤنا</HeadBar>
       </Col>
       <Container className="py-5">
         <Row>
-          <Col className="carrousel_wrapper outlets px-0">
+          <Col className="carrousel_wrapper partner px-0">
             <Slider {...settings}>
-              {!noOutlets &&
-                outlets.map((outletItem, idx) => {
+              {!noPartners &&
+                partners.map((partnerItem, idx) => {
                   return (
                     <div
                       key={idx}
@@ -89,13 +86,13 @@ const Outlets = () => {
                       <Link className="d-flex flex-column justify-content-center align-items-center ">
                         <div className="carrousel_image">
                           <img
-                            src={`${paths.OutletPhotos}${outletItem.id}/${outletItem.logo}`}
+                            src={`${paths.PartnerPhotos}${partnerItem.id}/${partnerItem.logo}`}
                             className="img-fluid"
-                            alt={`${outletItem.logo}`}
+                            alt={`${partnerItem.logo}`}
                           />
                         </div>
                         <div className="carrousel_caption zoom_on_hover">
-                          <div className="text-center">{outletItem.nameA}</div>
+                          <div className="text-center">{partnerItem.nameA}</div>
                         </div>
                       </Link>
                     </div>
@@ -109,4 +106,4 @@ const Outlets = () => {
   );
 };
 
-export default Outlets;
+export default Partner;

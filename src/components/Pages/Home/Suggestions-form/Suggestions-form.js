@@ -112,9 +112,9 @@ const SuggestionsForm = () => {
           className="px-2 my-2"
           variant="outlined"
           name="ContactTypeId"
-          id="نوع الإستفسار"
+          id="ContactTypeId"
           select
-          label="ContactTypeId"
+          label="الموضوع"
           value={formik.values.ContactTypeId}
           onChange={formik.handleChange}
           error={
@@ -137,7 +137,7 @@ const SuggestionsForm = () => {
           fullWidth
           id="Subject"
           name="Subject"
-          label="الموضوع"
+          label="الرسالة"
           type="Subject"
           value={formik.values.Subject}
           onChange={formik.handleChange}

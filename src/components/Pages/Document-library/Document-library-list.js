@@ -72,6 +72,7 @@ const DocumentLibraryList = () => {
               .map((documentLibraryItem, idx) => {
                 return (
                   <Col
+                    key={idx}
                     className="p-3 m-3 border"
                     style={{ backgroundColor: "#fff", borderRadius: "8px" }}
                   >
@@ -80,6 +81,7 @@ const DocumentLibraryList = () => {
                         <img
                           src={`${paths.DocumentLibraryPhotos}${documentLibraryItem.id}/${documentLibraryItem.photoA}`}
                           className="img-fluid img-thumbnail p-0"
+                          alt=""
                         />
                       </Col>
                       <Col className="d-flex flex-column justify-content-between  h-100">
@@ -101,8 +103,13 @@ const DocumentLibraryList = () => {
                                 .locale("ar")
                                 .format("LL")}
                             </strong>
-                          </div>
-                          <div>
+                          </div>{" "}
+                          <a
+                            href={`${paths.DocumentLibrarAttachment}${documentLibraryItem.id}/${documentLibraryItem.attachmentA}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            download
+                          >
                             <DescriptionIcon />
                             <strong
                               className="mx-2"
@@ -110,7 +117,7 @@ const DocumentLibraryList = () => {
                             >
                               تحميل ملف مرفق
                             </strong>
-                          </div>
+                          </a>
                         </div>
                       </Col>
                     </Row>

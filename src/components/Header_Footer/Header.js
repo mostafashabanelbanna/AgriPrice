@@ -13,7 +13,7 @@ import "./Header.css";
 const Header = () => {
   const [click, setClick] = useState(false);
   const [show, setShow] = useState(false);
-  const [Parent,setParent] = useState('');
+  const [Parent, setParent] = useState("");
   const showDropdown = (e) => {
     setShow(!show);
   };
@@ -25,7 +25,7 @@ const Header = () => {
   const closeMobileMenu = (parent) => {
     setParent(parent);
     setClick(false);
-  }
+  };
 
   return (
     <>
@@ -52,7 +52,7 @@ const Header = () => {
                 exact
                 activeClassName="active"
                 className="nav-links"
-                onClick={() => closeMobileMenu('')}
+                onClick={() => closeMobileMenu("")}
               >
                 الرئيسية
               </NavLink>
@@ -62,7 +62,7 @@ const Header = () => {
                 to="/about-us"
                 activeClassName="active"
                 className="nav-links"
-                onClick={() => closeMobileMenu('')}
+                onClick={() => closeMobileMenu("")}
               >
                 من نحن
               </NavLink>
@@ -84,7 +84,7 @@ const Header = () => {
                 exact
                 activeClassName="active"
                 className="nav-links"
-                onClick={() => closeMobileMenu('')}
+                onClick={() => closeMobileMenu("")}
               >
                 الأسعار العالمية
               </NavLink>
@@ -95,14 +95,16 @@ const Header = () => {
                 exact
                 activeClassName="active"
                 className="nav-links"
-                onClick={() => closeMobileMenu('')}
+                onClick={() => closeMobileMenu("")}
               >
                 أسواق ومنافذ
               </NavLink>
             </li>
             <li className="nav-item">
               <NavDropdown
-                className={Parent == "MediaCorner" ? "active nav-links" : "nav-links"}
+                className={
+                  Parent === "MediaCorner" ? "active nav-links" : "nav-links"
+                }
                 title={<span> المركز الإعلامي</span>}
                 show={show}
                 onMouseEnter={showDropdown}
@@ -112,7 +114,7 @@ const Header = () => {
                   to="/news-list"
                   activeClassName="active"
                   className="nav-links"
-                  onClick={() => closeMobileMenu('MediaCorner')}
+                  onClick={() => closeMobileMenu("MediaCorner")}
                 >
                   الأخبار
                 </NavLink>
@@ -120,7 +122,7 @@ const Header = () => {
                   to="/events-list"
                   className="nav-links"
                   activeClassName="active"
-                  onClick={() => closeMobileMenu('MediaCorner')}
+                  onClick={() => closeMobileMenu("MediaCorner")}
                 >
                   فعاليات
                 </NavLink>
@@ -129,7 +131,7 @@ const Header = () => {
                   activeClassName="active"
                   exact
                   className="nav-links"
-                  onClick={() => closeMobileMenu('MediaCorner')}
+                  onClick={() => closeMobileMenu("MediaCorner")}
                 >
                   الإصدارات
                 </NavLink>
