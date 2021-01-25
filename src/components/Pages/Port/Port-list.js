@@ -114,13 +114,13 @@ const PortList = (Props) => {
       }
     >
     <Container>
-        <Row className="mt-4">
-            <Col md={6} className="px-0">
+        <Row className="mt-4 ">
+            <Col md={6} className="align-items-center col-md-6 d-flex px-0">
                 <span  style={{
                             borderRadius: "6px",
                             boxShadow: "10px 10px 5px 0px rgba(179, 179, 179, 0.36)",
                             color:"#80B741",
-                            padding:20
+                            padding:12
                             
                         }}>
                     <FlagIcon style={{  fontSize:30}}/>
@@ -145,12 +145,12 @@ const PortList = (Props) => {
                 </TextField>
             </Col>
 
-            <Col md={6} className="px-0">
+            <Col md={6} className="align-items-center col-md-6 d-flex px-0">
                 <span  style={{
                             borderRadius: "6px",
                             boxShadow: "10px 10px 5px 0px rgba(179, 179, 179, 0.36)",
                             color:"#80B741",
-                            padding:20
+                            padding:12
                             
                         }}>
                     <CategoryIcon style={{  fontSize:30}}/>
