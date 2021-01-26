@@ -11,7 +11,9 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { axios } from "../../Axios/Axios";
 import CustomSlider from "../../UI/Custom-slider";
-import "../news/News-item.css";
+import { paths } from "../../Paths/Pathes";
+
+import "../News/News-item.css";
 const EventItem = (props) => {
   // const eventItem = props.location.state.eventItem;
 
@@ -91,7 +93,11 @@ const EventItem = (props) => {
               <h3 className="my-4">{eventItem.titleE}</h3>
 
               <div className="carrousel_wrapper news-item-slider px-0">
-                <CustomSlider objectname={"Event"} objectid={eventItemId} />
+                <CustomSlider
+                  objectname={"Event"}
+                  objectid={eventItemId}
+                  mainPhoto={`${paths.EventPhotos}${eventItem.id}/${eventItem.photoA}`}
+                />
               </div>
             </Col>
           </Row>
