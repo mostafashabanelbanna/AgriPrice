@@ -17,8 +17,11 @@ import { paths } from "../../Paths/Pathes";
 
 import mainBg from "../../../assets/images/png/panner.png";
 
+import PulseLoader from "react-spinners/PulseLoader";
+
 const NewsList = () => {
   const [news, setNews] = useState([]);
+  let [loading, setLoading] = useState(true);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,8 +44,10 @@ const NewsList = () => {
       .get("/news")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
+      setLoading(!loading);
       setNews(response.data); // set news data to state
     }
+    setLoading(!loading);
   };
 
   useEffect(() => {
@@ -50,7 +55,6 @@ const NewsList = () => {
   }, []);
 
   let { url } = useRouteMatch();
-
   return (
     <Container
       fluid
@@ -106,7 +110,14 @@ const NewsList = () => {
           </Col>
         )}
 
-        {noNews && <h2 className="text-center p-4"> لا توجد أخبار</h2>}
+        {/* {noNews && <h2 className="text-center p-4"> لا توجد أخبار</h2>} */}
+        {loading === true && noNews ? (
+          <div className="w-100 d-flex justify-content-center m-5">
+            <PulseLoader loading={loading} color="#0D924C" margin="5" />
+          </div>
+        ) : (
+          <h2 className="w-100 text-center p-4"> لا توجد أخبار</h2>
+        )}
       </Row>
     </Container>
   );
