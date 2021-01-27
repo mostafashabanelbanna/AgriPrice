@@ -24,6 +24,7 @@
     "react-scripts": "4.0.1",
     "react-slick": "^0.27.13",
     "react-spinners": "^0.10.4",
+    "redux": "^4.0.5",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"
   },

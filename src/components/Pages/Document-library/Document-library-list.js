@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import parse from "html-react-parser";
 
 import * as moment from "moment";
+
 import "moment/locale/ar";
 
 import Container from "react-bootstrap/Container";
