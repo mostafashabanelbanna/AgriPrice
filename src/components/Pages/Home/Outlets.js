@@ -59,7 +59,7 @@ const Outlets = () => {
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
 
-  const PER_PAGE = 5;
+  const PER_PAGE = 6;
   const offset = currentPage * PER_PAGE;
 
   const pageCount = Math.ceil(outlets.length / PER_PAGE);
