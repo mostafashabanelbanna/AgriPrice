@@ -11,13 +11,13 @@ import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import PulseLoader from "react-spinners/PulseLoader";
+
 import CustomCard from "../../UI/Custom-card";
 import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 
 import mainBg from "../../../assets/images/png/panner.png";
-
-import PulseLoader from "react-spinners/PulseLoader";
 
 const NewsList = () => {
   const [news, setNews] = useState([]);
@@ -115,9 +115,10 @@ const NewsList = () => {
           <div className="w-100 d-flex justify-content-center m-5">
             <PulseLoader loading={loading} color="#0D924C" margin="5" />
           </div>
-        ) : (
+        ) : null}
+        {loading === false && noNews ? (
           <h2 className="w-100 text-center p-4"> لا توجد أخبار</h2>
-        )}
+        ) : null}
       </Row>
     </Container>
   );

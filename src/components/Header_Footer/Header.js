@@ -96,7 +96,7 @@ const Header = () => {
                 className="nav-links"
                 onClick={() => closeMobileMenu("")}
               >
-                أسواق ومنافذ
+                المنافذ
               </NavLink>
             </li>
             <li className="nav-item">
@@ -136,7 +136,16 @@ const Header = () => {
                 </NavLink>
               </NavDropdown>
             </li>
-            <li className="nav-item"></li>
+            <li className="nav-item">
+              <NavLink
+                to="/suggestions"
+                activeClassName="active"
+                className="nav-links"
+                onClick={() => closeMobileMenu("")}
+              >
+                إﻗﺘﺮاﺣﺎت و ﺷﻜﺎوى
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>

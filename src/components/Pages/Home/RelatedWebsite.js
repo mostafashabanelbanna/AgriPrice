@@ -34,7 +34,7 @@ const RelatedWebsite = () => {
       }}
     >
       <Col xs={12}>
-        <HeadBar>شركاؤنا</HeadBar>
+        <HeadBar>مواقع ذات صلة</HeadBar>
       </Col>
       <Container className="py-5">
         <Row>
@@ -63,10 +63,9 @@ const RelatedWebsite = () => {
                       <Col
                         xs={8}
                         className="p-2 text-white"
-                        style={{ fontSize: ".9rem" }}
+                        // style={{ fontSize: ".9rem" }}
                       >
                         <p>{relatedWebsitesItem.nameA}</p>
-                        <p>{relatedWebsitesItem.url}</p>
                       </Col>
                     </Row>
                   </a>

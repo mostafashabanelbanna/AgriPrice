@@ -11,6 +11,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import PulseLoader from "react-spinners/PulseLoader";
+
 import CustomCard from "../../UI/Custom-card";
 import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
@@ -19,6 +21,7 @@ import mainBg from "../../../assets/images/png/panner.png";
 
 const EventsList = () => {
   const [events, setEvents] = useState([]);
+  let [loading, setLoading] = useState(true);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,8 +44,10 @@ const EventsList = () => {
       .get("/event")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
+      setLoading(!loading);
       setEvents(response.data); // set Events data to state
     }
+    setLoading(!loading);
   };
 
   useEffect(() => {
@@ -106,7 +111,14 @@ const EventsList = () => {
             />
           </Col>
         )}
-        {noEvents && <h2 className="text-center p-4"> لا توجد فعاليات</h2>}
+        {loading === true && noEvents ? (
+          <div className="w-100 d-flex justify-content-center m-5">
+            <PulseLoader loading={loading} color="#0D924C" margin="5" />
+          </div>
+        ) : null}
+        {loading === false && noEvents ? (
+          <h2 className="w-100 text-center p-4"> لا توجد فعاليات</h2>
+        ) : null}
       </Row>
     </Container>
   );

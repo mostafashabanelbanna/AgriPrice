@@ -14,12 +14,16 @@ import DocumentLibraryItem from "./components/Pages/Document-library/Document-li
 import Ports from "./components/Pages/Port/Port-list";
 
 import "./App.css";
+import Suggestions from "./components/Pages/Home/Suggestions";
+import Outlets from "./components/Pages/Home/Outlets";
+import Aside from "./components/Header_Footer/Aside";
 
 function App() {
   return (
     <>
       <Router>
         <Header />
+        <Aside />
         <>
           <Switch>
             <Route
@@ -39,6 +43,8 @@ function App() {
             <Route path="/about-us" exact component={AboutUs} />
             <Route path="/" exact component={Home} />
             <Route path="/Ports/PortEntity" exact component={Ports} />
+            <Route path="/Ports" exact component={Outlets} />
+            <Route path="/suggestions" exact component={Suggestions} />
           </Switch>
         </>
         <Footer />

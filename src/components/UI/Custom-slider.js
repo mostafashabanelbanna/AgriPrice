@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Gallery from "react-grid-gallery";
 import Slider from "react-slick";
+
+import PulseLoader from "react-spinners/PulseLoader";
+
 import { axios } from "../Axios/Axios";
 import { paths } from "../Paths/Pathes";
+
 import { SampleNextArrow, SamplePrevArrow } from "../slick-carousel/Arrows";
 
 const CustomSlider = (Props) => {
   const [images, setImgaes] = useState([]);
   const [noImages, setNoImgaes] = useState({});
+  let [loading, setLoading] = useState(true);
+
   //   const IMAGES = [];
   const GetImages = async () => {
     var url = `PhotoLibrary/GetPhotos?objectName=${Props.objectname}&objectId=${Props.objectid}`;

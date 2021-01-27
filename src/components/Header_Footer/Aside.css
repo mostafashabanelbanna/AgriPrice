@@ -1,0 +1,20 @@
+.aside_container {
+  position: fixed;
+  z-index: 1;
+  left: -44px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--main-gray);
+  padding: 0.5rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 10px 10px 5px 0px rgba(179, 179, 179, 0.36);
+}
+
+.aside_container.hovered {
+  left: 0px;
+  transition: 0.5s ease-in-out;
+}
+.aside_container a:hover {
+  filter: brightness(120%);
+}

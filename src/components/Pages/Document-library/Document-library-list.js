@@ -10,6 +10,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import PulseLoader from "react-spinners/PulseLoader";
+
 import TodayIcon from "@material-ui/icons/Today";
 import DescriptionIcon from "@material-ui/icons/Description";
 
@@ -20,6 +22,7 @@ import mainBg from "../../../assets/images/png/panner.png";
 
 const DocumentLibraryList = () => {
   const [documentLibrary, setDocumentLibrary] = useState([]);
+  let [loading, setLoading] = useState(true);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -43,8 +46,10 @@ const DocumentLibraryList = () => {
       .get("/DocumentLibrary")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
+      setLoading(!loading);
       setDocumentLibrary(response.data); // set Events data to state
     }
+    setLoading(!loading);
   };
 
   useEffect(() => {
@@ -139,9 +144,15 @@ const DocumentLibraryList = () => {
               />
             </Col>
           )}
-          {noDocumentLibrary && (
-            <h2 className="text-center p-4"> لا توجد نشرات</h2>
-          )}
+
+          {loading === true && noDocumentLibrary ? (
+            <div className="w-100 d-flex justify-content-center m-5">
+              <PulseLoader loading={loading} color="#0D924C" margin="5" />
+            </div>
+          ) : null}
+          {loading === false && noDocumentLibrary ? (
+            <h2 className="w-100 text-center p-4"> لا توجد إصدارات</h2>
+          ) : null}
         </Row>
       </Container>
     </Container>
