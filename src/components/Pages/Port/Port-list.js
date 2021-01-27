@@ -20,12 +20,15 @@ import FlagIcon from '@material-ui/icons/Flag';
 import CategoryIcon from '@material-ui/icons/Category';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
+import PulseLoader from "react-spinners/PulseLoader";
+
 const PortList = (Props) => {
   const [Ports, setPorts] = useState([]);
   const [Governorate,setGovernorate] = useState([]);
   const [portType,setPortType] = useState([]);
   const [governorateSelectedVal, setGovernorateSelectedVal] = useState(0);
   const [portTypeSelectedVal, setportTypeSelectedVal] = useState(0);
+  let [loading, setLoading] = useState(true);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -44,14 +47,18 @@ const PortList = (Props) => {
     !Ports || (Ports && Ports.length === 0); //check if no Ports
 
   const getPorts = async () => {
+    setLoading(true);
     let url =  `Ports/Port?PortEntityId=${Props.location.state.EntityId}&GovId=${governorateSelectedVal}&PortTypeId=${portTypeSelectedVal}`;
     //fetch Ports data
     const response = await axios
       .get(url)
       .catch((err) => console.log("Error", err)); //handle errors
+
+    setLoading(false);
     if (response && response.data) {
-      setPorts(response.data); // set Events data to state
+      setPorts(response.data);
     }
+     
   };
 
   const GetGovernorate = async ()=>{
@@ -72,15 +79,12 @@ const PortList = (Props) => {
     }
   }
 
-  const GovHandleChanges = async (event) =>{
-    await  setGovernorateSelectedVal(event.target.value);
-     getPorts();
-     
+  const GovHandleChanges = (event) =>{
+    setGovernorateSelectedVal(event.target.value);
   }
 
-  const PortTypeHandleChanges = async (event) =>{
+  const PortTypeHandleChanges = (event) =>{
      setportTypeSelectedVal(event.target.value);
-     await getPorts();
   }
 
   useEffect(() => {
@@ -88,7 +92,12 @@ const PortList = (Props) => {
     GetGovernorate();
     GetPortType();
 
-  }, [Ports]);
+  }, []);
+
+
+  useEffect(() => {
+    getPorts(); 
+  }, [portTypeSelectedVal,governorateSelectedVal]);
 
   return (
     <Container
@@ -215,10 +224,17 @@ const PortList = (Props) => {
               />
             </Col>
           )}
-          {noPorts && (
-            <h2 className="text-center p-4"> لا توجد منافذ</h2>
+          
+          {loading === true && noPorts && (
+          <div className="w-100 d-flex justify-content-center m-5">
+            <PulseLoader loading={loading} color="#0D924C" margin="5" />
+          </div>
           )}
+         {loading === false && noPorts && (
+          <h2 className="w-100 text-center p-4"> لا توجد منافذ</h2>
+         )}
         </Row>
+       
       </Container>
     </Container>
   );
