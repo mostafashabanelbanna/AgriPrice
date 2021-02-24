@@ -83,7 +83,10 @@ const Partner = () => {
                       key={idx}
                       className="px-2 d-flex flex-column align-items-center"
                     >
-                      <Link className="d-flex flex-column justify-content-center align-items-center ">
+                      <Link
+                        to="/"
+                        className="d-flex flex-column justify-content-center align-items-center "
+                      >
                         <div className="carrousel_image">
                           <img
                             src={`${paths.PartnerPhotos}${partnerItem.id}/${partnerItem.logo}`}

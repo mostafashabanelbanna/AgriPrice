@@ -16,7 +16,6 @@ const Aside = () => {
   const handleHover = () => {
     setIsHoverd(!isHovered);
   };
-  console.log(isHovered);
   return (
     <div
       className={`aside_container d-flex flex-column ${
@@ -31,27 +30,27 @@ const Aside = () => {
         </Link>
       </div>
       <div className="p-2" style={{ color: "var(--main-green)" }}>
-        <Link>
+        <Link to="/">
           <LocalOfferIcon fontSize="large" color="inherit" />
         </Link>
       </div>
       <div className="p-2" style={{ color: "var(--main-green)" }}>
-        <Link>
+        <Link to="/">
           <DraftsIcon fontSize="large" color="inherit" />
         </Link>
       </div>
       <div className="p-2">
-        <Link>
+        <Link to="/">
           <FacebookIcon fontSize="large" color="primary" />
         </Link>
       </div>
       <div className="p-2" style={{ color: "#0e76a8" }}>
-        <Link>
+        <Link to="/">
           <LinkedInIcon fontSize="large" color="inherit" />
         </Link>
       </div>
       <div className="p-2" style={{ color: " #00acee" }}>
-        <Link>
+        <Link to="/">
           <TwitterIcon fontSize="large" color="inherit" />
         </Link>
       </div>

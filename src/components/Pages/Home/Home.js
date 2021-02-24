@@ -14,7 +14,7 @@ const Home = () => {
     <>
       <Container fluid>
         <NewsCarrousel />
-        <SearchForm />
+        {/* <SearchForm /> */}
         <SiteServices />
         <Outlets />
         <Suggestions />
