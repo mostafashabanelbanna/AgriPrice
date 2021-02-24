@@ -18,30 +18,30 @@ const Footer = () => {
           <Col lg={6}>
             <Row>
               <Col xs={4} className="d-flex flex-column  align-items-center">
-                <Link className="my-2" to="/">
+                <Link className="my-2" to="/about-us">
                   عن الموقع
                 </Link>
                 <Link className="my-2" to="/">
                   خريطة الأسعار
                 </Link>
-                <Link className="my-2" to="/">
+                <Link className="my-2" to="/suggestions">
                   تواصل معنا
                 </Link>
               </Col>
               <Col xs={4} className="d-flex flex-column  align-items-center">
-                <Link className="my-2" to="/">
+                <Link className="my-2" to="/news-list">
                   الاخبار
                 </Link>
-                <Link className="my-2" to="/">
+                <Link className="my-2" to="/events-list">
                   الفاعليات
                 </Link>
-                <Link className="my-2" to="/">
+                <Link className="my-2" to="/document-library-list">
                   اصدارات بحثية
                 </Link>
               </Col>
               <Col xs={4} className="d-flex flex-column  align-items-center">
-                <Link className="my-2" to="/">
-                  أسواق و منافذ
+                <Link className="my-2" to="/Ports">
+                 المنافذ
                 </Link>
                 <Link className="my-2" to="/">
                   مواقع ذات صلة

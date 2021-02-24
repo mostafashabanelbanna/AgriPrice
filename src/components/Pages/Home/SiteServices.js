@@ -28,7 +28,7 @@ const SiteServices = () => {
           <Col sm={4}>
             <Link
               className="align-items-center d-flex flex-column justify-content-center zoom_on_hover"
-              to="/about-us"
+              to="/"
             >
               <div className="services_icon">
                 <img src={shopping} alt="icon" />
@@ -41,20 +41,20 @@ const SiteServices = () => {
           <Col sm={4}>
             <Link
               className="align-items-center d-flex flex-column justify-content-center zoom_on_hover"
-              to="/about-us"
+              to="/"
             >
               <div className="services_icon">
                 <img src={location} alt="icon" />
               </div>
               <div className="services_txt">
-                تعرف على منافذ البيع و أسعار المنتجات فيها
+                تعرف على أسواق الجملة و أسعار المنتجات فيها
               </div>
             </Link>
           </Col>
           <Col sm={4}>
             <Link
               className="align-items-center d-flex flex-column justify-content-center zoom_on_hover"
-              to="/about-us"
+              to="/"
             >
               <div className="services_icon">
                 <img src={ratio} alt="icon" />
