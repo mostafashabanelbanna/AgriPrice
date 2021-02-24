@@ -68,16 +68,16 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavDropdown
+              <NavLink
+                to="/local-prices"
+                activeClassName="active"
                 className="nav-links"
-                title={<span>الأسعار المحلية</span>}
+                onClick={() => closeMobileMenu("")}
               >
-                <NavDropdown.Item>Action</NavDropdown.Item>
-                <NavDropdown.Item>Another action</NavDropdown.Item>
-                <NavDropdown.Item>Something</NavDropdown.Item>
-                <NavDropdown.Item>Separated link</NavDropdown.Item>
-              </NavDropdown>
+                الأسعار المحلية
+              </NavLink>
             </li>
+
             <li className="nav-item">
               <NavLink
                 to="/GlobalPrice"

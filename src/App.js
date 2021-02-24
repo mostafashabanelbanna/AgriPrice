@@ -17,6 +17,7 @@ import "./App.css";
 import Suggestions from "./components/Pages/Home/Suggestions";
 import Outlets from "./components/Pages/Home/Outlets";
 import Aside from "./components/Header_Footer/Aside";
+import LocalPrices from "./components/Local-prices/Local-prices";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Aside />
         <>
           <Switch>
+            <Route path="/local-prices" exact component={LocalPrices} />
             <Route
               path="/document-library-list/:DocumentLibraryId"
               exact

@@ -4,7 +4,7 @@
   left: -44px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: var(--main-gray);
+  background-color: #fff;
   padding: 0.5rem;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
