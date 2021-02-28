@@ -7,6 +7,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 import RetailPrices from "./Retail-prices";
 import WholesalePrices from "./Wholesale-prices";
+import  "./LocalPrices.css";
 
 const LocalPrices = () => {
   const [value, setValue] = React.useState("retail");
@@ -28,6 +29,7 @@ const LocalPrices = () => {
             value={value}
             onChange={handleRadioChange}
             row
+            style={{paddingRight:30}}
           >
             <FormControlLabel
               value="retail"

@@ -1,0 +1,8 @@
+.table-responsive{
+    margin-top: 40px  !important;
+    width: 98% !important;
+}
+
+table td , table th{
+    padding: 0.5rem !important;
+}

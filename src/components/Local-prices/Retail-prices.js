@@ -15,7 +15,7 @@ import wheatBag from "../../assets/images/png/Wheat Bag.png";
 import flag from "../../assets/images/png/flag.png";
 import { MenuItem } from "@material-ui/core";
 import { Table } from "react-bootstrap";
-import PricesResult from "./Prices-result";
+import RetailPricesResult from "./RetailPrices-result";
 
 const RetailPrices = () => {
   const [genralIndicators, setGenralIndicators] = useState([]);
@@ -23,6 +23,7 @@ const RetailPrices = () => {
   const [subIndicator, setSubIndicator] = useState([]);
   const [classification, setClassification] = useState();
   const [searchResult, setSearchResult] = useState([]);
+  const [SelectedGov,setSelectedGov] =useState(0)
 
   const noSearchResult =
     !searchResult || (searchResult && searchResult.length === 0); //check if no searchResult
@@ -62,7 +63,6 @@ const RetailPrices = () => {
 
   const formik = useFormik({
     initialValues: {
-      ClassificationId: 1,
       GeneralIndicatorId: 0,
       GovernorateId: 0,
       subIndicatorId: 0,
@@ -70,12 +70,13 @@ const RetailPrices = () => {
     validationSchema: validationSchema,
 
     onSubmit: async (values) => {
-      alert(JSON.stringify(values, null, 2));
+      //alert(JSON.stringify(values, null, 2));
+      setSelectedGov(values.GovernorateId);
       const response = await axios
-        .post("/home/PriceSearch", JSON.stringify(values, null, 2))
+        .post("/Prices/Retail", JSON.stringify(values, null, 2))
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
-        alert("sucess!");
+        //alert("sucess!");
         setSearchResult(response.data);
         console.log(response);
       }
@@ -83,7 +84,7 @@ const RetailPrices = () => {
   });
 
   return (
-    <div>
+    <div style={{ paddingRight:30}}>
       <form onSubmit={formik.handleSubmit}>
         <Row>
           <Col className="px-0">
@@ -119,7 +120,7 @@ const RetailPrices = () => {
                 formik.errors.GeneralIndicatorId
               }
             >
-              <MenuItem value={0}>No Selected</MenuItem>
+              <MenuItem value={0}>المجموعة السلعية</MenuItem>
               {genralIndicators.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
                   {option.name}
@@ -155,7 +156,7 @@ const RetailPrices = () => {
                 formik.touched.subIndicator && formik.errors.subIndicator
               }
             >
-              <MenuItem value={0}>No Selected</MenuItem>
+              <MenuItem value={0}>السلعة</MenuItem>
               {subIndicator.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
                   {option.name}
@@ -191,7 +192,7 @@ const RetailPrices = () => {
                 formik.touched.governorates && formik.errors.governorates
               }
             >
-              <MenuItem value={0}>No Selected</MenuItem>
+              <MenuItem value={0}>المحافظة</MenuItem>
               {governorates.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
                   {option.name}
@@ -211,12 +212,12 @@ const RetailPrices = () => {
                 width: "200px",
               }}
             >
-              إرسال
+              بحث
             </Button>
           </Col>
         </Row>
       </form>
-      {!noSearchResult && <PricesResult resultData={searchResult} />}
+      {!noSearchResult && <RetailPricesResult GovId = {SelectedGov} resultData={searchResult} />}
     </div>
   );
 };
