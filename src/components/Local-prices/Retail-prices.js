@@ -21,7 +21,6 @@ const RetailPrices = () => {
   const [genralIndicators, setGenralIndicators] = useState([]);
   const [governorates, setGovernorate] = useState([]);
   const [subIndicator, setSubIndicator] = useState([]);
-  const [classification, setClassification] = useState();
   const [searchResult, setSearchResult] = useState([]);
   const [SelectedGov,setSelectedGov] =useState(0)
 
@@ -35,7 +34,6 @@ const RetailPrices = () => {
     if (response && response.data) {
       setGenralIndicators(response.data.genralIndicators);
       setGovernorate(response.data.governorates);
-      setClassification(response.data.classification);
     }
   };
 

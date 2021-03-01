@@ -2,7 +2,30 @@
     margin-top: 40px  !important;
     width: 98% !important;
 }
+thead th{
+    color: white !important;
+}
 
 table td , table th{
     padding: 0.5rem !important;
+    font-size: 20px;
+}
+
+.GovVal{
+    color: white;
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+.MinVal{
+    background-color: red;
+}
+
+.MaxVal{
+    background-color: #0D924C;
 }

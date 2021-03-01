@@ -95,7 +95,7 @@ function createData(name, calories, fat) {
   return { name, calories, fat };
 }
 
-const RetailPricesResult = (props) => {
+const WholesalePricesResult = (props) => {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -124,20 +124,14 @@ const RetailPricesResult = (props) => {
           textAlign: "center",
         }}>
           <TableRow>
-            <TableCell rowSpan={2} className="text-center"> النوع </TableCell>
-            <TableCell rowSpan={2} className="text-center"> الوحدة </TableCell>
-            <TableCell rowSpan={2} className="text-center"> العملة </TableCell>
-            {
-              props.GovId == 0 &&   <TableCell colSpan={2} className="text-center"> أسعار السلع على مستوى الجمهورية  </TableCell>
-            }
-            {
-              props.GovId != 0 &&   <TableCell colSpan={2} className="text-center"> أسعار السلع فى المحافظات </TableCell>
-            }
-            <TableCell rowSpan={2} className="text-center"> التاريخ </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="text-center"> أدنى سعر </TableCell>
-            <TableCell className="text-center"> أعلى سعر </TableCell>
+            <TableCell  className="text-center"> السلعة </TableCell>
+            <TableCell  className="text-center"> السعر </TableCell>
+            <TableCell  className="text-center"> العبوة </TableCell>
+            <TableCell  className="text-center"> الوحدة </TableCell>
+            <TableCell  className="text-center"> العملة </TableCell>
+            <TableCell  className="text-center"> النوع </TableCell>
+            <TableCell  className="text-center"> الحجم </TableCell>
+            <TableCell  className="text-center"> التاريخ </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -147,10 +141,12 @@ const RetailPricesResult = (props) => {
             ).map((item,idx) => (
               <TableRow key={idx}>
                 <TableCell className="text-center">{item.subindictorName}</TableCell>
+                <TableCell className="text-center">{item.price}</TableCell>
+                <TableCell className="text-center">{item.packaging_A}</TableCell>
                 <TableCell className="text-center">{item.unit}</TableCell>
                 <TableCell className="text-center">{item.currency}</TableCell>
-                <TableCell className="text-center">{item.minValue} {props.GovId == 0 && <div className="MaxVal GovVal">  {item.govMin} </div> }</TableCell>
-                <TableCell className="text-center">{item.maxValue} {props.GovId == 0 && <div className="MinVal GovVal">  {item.govMax} </div> }</TableCell>
+                <TableCell className="text-center">{item.variaty_A}</TableCell>
+                <TableCell className="text-center">{item.volume_A}</TableCell>
                 <TableCell className="text-center">{ moment(item.insertionDate).format("LL")}</TableCell>
               </TableRow>
             ))}
@@ -181,67 +177,7 @@ const RetailPricesResult = (props) => {
         </TableFooter>
       </Table>
     </TableContainer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    <Table responsive bordered>
-      <thead
-        style={{
-          backgroundColor: "var(--main-green",
-          color: "#fff",
-          textAlign: "center",
-        }}
-      >
-        <tr>
-          <th rowSpan="2" className="text-center">
-            النوع
-          </th>
-          <th rowSpan="2" className="text-center">
-            الوحدة
-          </th>
-          <th rowSpan="2" className="text-center">
-            العملة
-          </th>
-          {
-            props.GovId == 0 &&   <th colSpan="2" className="text-center"> أسعار السلع على مستوى الجمهورية  </th>
-          }
-          {
-            props.GovId != 0 &&   <th colSpan="2" className="text-center"> أسعار السلع فى المحافظات </th>
-          }
-        
-          <th rowSpan="2" className="text-center">التاريخ </th>
-        </tr>
-        <tr>
-          <th className="text-center">ادنى سعر</th>
-          <th className="text-center"> أعلى سعر</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.resultData.map((item,idx) => (
-          <tr key={idx}>
-            <td className="text-center">{item.subindictorName}</td>
-            <td className="text-center">{item.unit}</td>
-            <td className="text-center">{item.currency}</td>
-            <td className="text-center">{item.minValue} <div className="MaxVal GovVal"> {props.GovId == 0 && item.govMin} </div></td>
-            <td className="text-center">{item.maxValue} <div className="MinVal GovVal"> {props.GovId == 0 && item.govMax} </div></td>
-            <td className="text-center">{ moment(item.insertionDate).format("LL")}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
-    */
   );
 };
 
-export default RetailPricesResult;
+export default WholesalePricesResult;
