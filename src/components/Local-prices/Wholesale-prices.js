@@ -15,7 +15,7 @@ import icommodityGroup from "../../assets/images/png/product.png";
 import wheatBag from "../../assets/images/png/Wheat Bag.png";
 import flag from "../../assets/images/png/flag.png";
 import { MenuItem } from "@material-ui/core";
-import  WholesalePricesResult  from "./WholesalePrices-Result";
+import WholesalePricesResult from "./WholesalePrices-Result";
 
 const WholesalePrices = () => {
   const [genralIndicators, setGenralIndicators] = useState([]);
@@ -23,9 +23,10 @@ const WholesalePrices = () => {
   const [subIndicator, setSubIndicator] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   let [loading, setLoading] = useState(false);
+  const [fetched, setFeched] = useState(true);
 
   const noSearchResult =
-  !searchResult || (searchResult && searchResult.length === 0); //check if no searchResult
+    !searchResult || (searchResult && searchResult.length === 0); //check if no searchResult
 
   const getPopulate = async () => {
     const response = await axios
@@ -36,7 +37,6 @@ const WholesalePrices = () => {
       setMarket(response.data.wholesaleMarket);
     }
   };
-
 
   const getSubindicator = async (id) => {
     //setLoading(!loading);
@@ -60,11 +60,8 @@ const WholesalePrices = () => {
   const validationSchema = yup.object({
     GeneralIndicatorId: yup.mixed().notOneOf([0], "أختر المجموعة السلعية"),
     MarketId: yup.mixed().notOneOf([0], "أختر السوق "),
-
   });
 
-
-  
   const formik = useFormik({
     initialValues: {
       GeneralIndicatorId: 0,
@@ -74,22 +71,28 @@ const WholesalePrices = () => {
     validationSchema: validationSchema,
 
     onSubmit: async (values) => {
-      setLoading(!loading);
+      setLoading(true);
+      setSearchResult([]);
       //alert(JSON.stringify(values, null, 2));
       const response = await axios
         .post("/Prices/Wholesale", JSON.stringify(values, null, 2))
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
         //alert("sucess!");
-        setLoading(!loading);
+        setLoading(false);
         setSearchResult(response.data);
-        console.log(response);
+        if (response.data.length > 0) {
+          setFeched(true);
+        } else {
+          setFeched(false);
+        }
+        //console.log(response);
       }
     },
   });
 
   return (
-    <div style={{ paddingRight:30}}>
+    <div style={{ paddingRight: 30 }}>
       <form onSubmit={formik.handleSubmit}>
         <Row>
           <Col className="px-0">
@@ -189,13 +192,8 @@ const WholesalePrices = () => {
               label="السوق"
               value={formik.values.MarketId}
               onChange={formik.handleChange}
-              error={
-                formik.touched.MarketId &&
-                Boolean(formik.errors.MarketId)
-              }
-              helperText={
-                formik.touched.MarketId && formik.errors.MarketId
-              }
+              error={formik.touched.MarketId && Boolean(formik.errors.MarketId)}
+              helperText={formik.touched.MarketId && formik.errors.MarketId}
             >
               <MenuItem value={0}>السوق</MenuItem>
               {Market.map((option) => (
@@ -222,13 +220,17 @@ const WholesalePrices = () => {
           </Col>
         </Row>
       </form>
-      {!noSearchResult && <WholesalePricesResult  resultData={searchResult} />}
+      {!noSearchResult && fetched && (
+        <WholesalePricesResult resultData={searchResult} />
+      )}
       {loading === true && noSearchResult ? (
-          <div className="w-100 d-flex justify-content-center m-5">
-            <PulseLoader loading={loading} color="#0D924C" margin="5" />
-          </div>
-        ) : null}
-
+        <div className="w-100 d-flex justify-content-center m-5">
+          <PulseLoader loading={loading} color="#0D924C" margin="5" />
+        </div>
+      ) : null}
+      {!fetched && loading == false && (
+        <h2 className="w-100 text-center p-4"> لا توجد نتائج</h2>
+      )}
     </div>
   );
 };

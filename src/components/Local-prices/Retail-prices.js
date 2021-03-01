@@ -16,13 +16,16 @@ import flag from "../../assets/images/png/flag.png";
 import { MenuItem } from "@material-ui/core";
 import { Table } from "react-bootstrap";
 import RetailPricesResult from "./RetailPrices-result";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const RetailPrices = () => {
   const [genralIndicators, setGenralIndicators] = useState([]);
   const [governorates, setGovernorate] = useState([]);
   const [subIndicator, setSubIndicator] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-  const [SelectedGov,setSelectedGov] =useState(0)
+  const [SelectedGov, setSelectedGov] = useState(0);
+  let [loading, setLoading] = useState(false);
+  const [fetched, setFeched] = useState(true);
 
   const noSearchResult =
     !searchResult || (searchResult && searchResult.length === 0); //check if no searchResult
@@ -70,19 +73,28 @@ const RetailPrices = () => {
     onSubmit: async (values) => {
       //alert(JSON.stringify(values, null, 2));
       setSelectedGov(values.GovernorateId);
+      setLoading(true);
+      setSearchResult([]);
+
       const response = await axios
         .post("/Prices/Retail", JSON.stringify(values, null, 2))
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
         //alert("sucess!");
+        setLoading(false);
         setSearchResult(response.data);
-        console.log(response);
+        if (response.data.length > 0) {
+          setFeched(true);
+        } else {
+          setFeched(false);
+        }
+        //console.log(response);
       }
     },
   });
 
   return (
-    <div style={{ paddingRight:30}}>
+    <div style={{ paddingRight: 30 }}>
       <form onSubmit={formik.handleSubmit}>
         <Row>
           <Col className="px-0">
@@ -215,7 +227,17 @@ const RetailPrices = () => {
           </Col>
         </Row>
       </form>
-      {!noSearchResult && <RetailPricesResult GovId = {SelectedGov} resultData={searchResult} />}
+      {!noSearchResult && (
+        <RetailPricesResult GovId={SelectedGov} resultData={searchResult} />
+      )}
+      {loading === true && noSearchResult ? (
+        <div className="w-100 d-flex justify-content-center m-5">
+          <PulseLoader loading={loading} color="#0D924C" margin="5" />
+        </div>
+      ) : null}
+      {!fetched && loading == false && (
+        <h2 className="w-100 text-center p-4"> لا توجد نتائج</h2>
+      )}
     </div>
   );
 };

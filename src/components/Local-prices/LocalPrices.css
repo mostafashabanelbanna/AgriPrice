@@ -1,31 +1,28 @@
-.table-responsive{
-    margin-top: 40px  !important;
-    width: 98% !important;
+.table-responsive {
+  margin-top: 40px !important;
+  width: 98% !important;
 }
-thead th{
-    color: white !important;
-}
-
-table td , table th{
-    padding: 0.5rem !important;
-    font-size: 20px;
+thead th {
+  color: white !important;
 }
 
-.GovVal{
-    color: white;
-    padding: 10px;
-    border-radius: 30px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    width: 70%;
-    margin: auto;
-    text-align: center;
+table td,
+table th {
+  padding: 0.5rem !important;
+  font-size: 20px;
 }
 
-.MinVal{
-    background-color: red;
+.GovVal {
+  color: white;
+  padding: 6px;
+  border-radius: 8px;
+  text-align: center;
 }
 
-.MaxVal{
-    background-color: #0D924C;
+.MinVal {
+  background-color: red;
+}
+
+.MaxVal {
+  background-color: #0d924c;
 }
