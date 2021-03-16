@@ -90,12 +90,17 @@ const NewsCarrousel = () => {
                   ></div>
                   <div className="carrousel_caption ">
                     <div className="row">
-                      <div className="col-md-3">
+                      <div className="col-md-2 d-flex align-items-end">
                         {moment(newsItem.publishDate).locale("ar").format("LL")}
                       </div>
 
-                      <div className="col-md-9">
-                        <h4>{newsItem.titleA}</h4>
+                      <div className="col-md-10">
+                        <h4
+                          style={{ direction: "rtl" }}
+                          className="text-truncate"
+                        >
+                          {newsItem.titleA}
+                        </h4>
                         <p>{newsItem.titleE}</p>
                       </div>
                     </div>

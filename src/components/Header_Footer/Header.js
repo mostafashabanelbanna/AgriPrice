@@ -80,7 +80,7 @@ const Header = () => {
 
             <li className="nav-item">
               <NavLink
-                to="/GlobalPrice"
+                to="/Global-prices"
                 exact
                 activeClassName="active"
                 className="nav-links"

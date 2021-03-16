@@ -184,7 +184,6 @@ const PortList = (Props) => {
         <Row>
           {!noPorts &&
             Ports.slice(offset, offset + PER_PAGE).map((PortItem, idx) => {
-              console.log(PortItem);
               return (
                 <Col
                   key={idx}
