@@ -11,6 +11,7 @@ import DocumentLibraryList from "./components/Pages/Document-library/Document-li
 import newsItem from "./components/Pages/News/News-item";
 import eventItem from "./components/Pages/Event/Event-item";
 import DocumentLibraryItem from "./components/Pages/Document-library/Document-library-item";
+import portItem from "./components/Pages/Port/Port-item";
 import Ports from "./components/Pages/Port/Port-list";
 
 import "./App.css";
@@ -32,6 +33,11 @@ function App() {
               path="/document-library-list/:DocumentLibraryId"
               exact
               component={DocumentLibraryItem}
+            />
+            <Route
+              path="/Ports/PortEntity/:PortId"
+              exact
+              component={portItem}
             />
             <Route path="/events-list/:EventId" exact component={eventItem} />
             <Route path="/news-list/:NewsId" exact component={newsItem} />

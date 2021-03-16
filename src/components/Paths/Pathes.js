@@ -1,4 +1,5 @@
-const MainPath = "https://localhost:44346/Upload/";
+// const MainPath = "http://41.128.217.182:10081/Upload/"; //https://localhost:44346/Upload/
+const MainPath = "https://localhost:44346/Upload/"; //http://41.128.217.182:10081/Upload/
 
 export const paths = {
   PhotoLibraryAlbumPhoto: `${MainPath}PhotoLibraryAlbum/PhotoA/`,
@@ -9,5 +10,5 @@ export const paths = {
   RelatedWebsitePhotos: `${MainPath}RelatedWebsite/Logo/`,
   DocumentLibraryPhotos: `${MainPath}DocumentLibrary/PhotoA/`,
   DocumentLibrarAttachment: `${MainPath}DocumentLibrary/AttachmentA/`,
-  AboutUs:`${MainPath}StaticContent/PhotoA/`
+  AboutUs: `${MainPath}StaticContent/PhotoA/`,
 };

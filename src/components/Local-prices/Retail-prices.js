@@ -14,7 +14,6 @@ import icommodityGroup from "../../assets/images/png/product.png";
 import wheatBag from "../../assets/images/png/Wheat Bag.png";
 import flag from "../../assets/images/png/flag.png";
 import { MenuItem } from "@material-ui/core";
-import { Table } from "react-bootstrap";
 import RetailPricesResult from "./RetailPrices-result";
 import PulseLoader from "react-spinners/PulseLoader";
 
