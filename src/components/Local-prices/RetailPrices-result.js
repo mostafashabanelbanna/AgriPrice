@@ -18,6 +18,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 import { TableHead } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -185,7 +186,17 @@ const RetailPricesResult = (props) => {
           ).map((item, idx) => (
             <TableRow key={idx}>
               <TableCell className="text-center">
-                {item.subindictorName}
+                <Link
+                  to={{
+                    pathname: `/local-prices/SubIndicatorInfo/${item.subindicatorId}`,
+                    state: {
+                      id:item.subindicatorId,
+                    },
+                  }}
+                >
+                 {item.subindictorName}
+                </Link>
+               
               </TableCell>
               <TableCell className="text-center">{item.unit}</TableCell>
               <TableCell className="text-center">{item.currency}</TableCell>

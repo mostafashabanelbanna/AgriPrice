@@ -26,3 +26,9 @@ table th {
 .MaxVal {
   background-color: #0d924c;
 }
+
+.recharts-cartesian-axis-tick {    
+  font-size: 22px;
+  margin: 10px;
+  font-variant-numeric:stacked-fractions !important;
+}
