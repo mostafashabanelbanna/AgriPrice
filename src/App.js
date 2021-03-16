@@ -19,6 +19,7 @@ import Suggestions from "./components/Pages/Home/Suggestions";
 import Outlets from "./components/Pages/Home/Outlets";
 import Aside from "./components/Header_Footer/Aside";
 import LocalPrices from "./components/Local-prices/Local-prices";
+import GlobalPrices from "./components/Global-prices/Global-prices";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Aside />
         <>
           <Switch>
+            <Route path="/global-prices" exact component={GlobalPrices} />
             <Route path="/local-prices" exact component={LocalPrices} />
             <Route
               path="/document-library-list/:DocumentLibraryId"
