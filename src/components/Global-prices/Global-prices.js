@@ -68,7 +68,7 @@ const GlobalPrices = () => {
     validationSchema: validationSchema,
 
     onSubmit: async (values) => {
-      alert(JSON.stringify(values, null, 2));
+      //alert(JSON.stringify(values, null, 2));
       console.log(JSON.stringify(values, null, 2));
       setLoading(true);
       setSearchResult([]);
@@ -77,7 +77,7 @@ const GlobalPrices = () => {
         .post("/Prices/International", JSON.stringify(values, null, 2))
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
-        alert("sucess!");
+        //alert("sucess!");
         setLoading(false);
         setSearchResult(response.data);
         if (response.data.length > 0) {
