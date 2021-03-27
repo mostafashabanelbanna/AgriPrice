@@ -29,6 +29,9 @@ const PortList = (Props) => {
   const [portType, setPortType] = useState([]);
   const [governorateSelectedVal, setGovernorateSelectedVal] = useState(0);
   const [portTypeSelectedVal, setportTypeSelectedVal] = useState(0);
+  // const [portsURL, setPortsURL] = useState(
+  //   `Ports/Port?PortEntityId=${Props.location.state.EntityId}&GovId=${governorateSelectedVal}&PortTypeId=${portTypeSelectedVal}`
+  // );
   let [loading, setLoading] = useState(true);
 
   // Pagination
@@ -46,16 +49,18 @@ const PortList = (Props) => {
 
   const noPorts = !Ports || (Ports && Ports.length === 0); //check if no Ports
 
+  let portsURL = `Ports/Port?PortEntityId=${Props.location.state.EntityId}&GovId=${governorateSelectedVal}&PortTypeId=${portTypeSelectedVal}`;
   const getPorts = async () => {
     setLoading(true);
-    let url = `Ports/Port?PortEntityId=${Props.location.state.EntityId}&GovId=${governorateSelectedVal}&PortTypeId=${portTypeSelectedVal}`;
     //fetch Ports data
+    console.log(portsURL);
     const response = await axios
-      .get(url)
+      .get(portsURL)
       .catch((err) => console.log("Error", err)); //handle errors
 
     setLoading(false);
     if (response && response.data) {
+      console.log(response.data);
       setPorts(response.data);
     }
   };
@@ -94,7 +99,7 @@ const PortList = (Props) => {
 
   useEffect(() => {
     getPorts();
-  }, [portTypeSelectedVal, governorateSelectedVal]);
+  }, [portTypeSelectedVal, governorateSelectedVal, portsURL]);
 
   let { url } = useRouteMatch();
 
