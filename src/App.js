@@ -20,6 +20,7 @@ import Outlets from "./components/Pages/Home/Outlets";
 import Aside from "./components/Header_Footer/Aside";
 import LocalPrices from "./components/Local-prices/Local-prices";
 import GlobalPrices from "./components/Global-prices/Global-prices";
+import SubIndicatorInfo from "./components/Local-prices/SubIndicatorInfo"
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Switch>
             <Route path="/global-prices" exact component={GlobalPrices} />
             <Route path="/local-prices" exact component={LocalPrices} />
+            <Route path="/local-prices/SubIndicatorInfo/:Id" exact component={SubIndicatorInfo}/>
             <Route
               path="/document-library-list/:DocumentLibraryId"
               exact

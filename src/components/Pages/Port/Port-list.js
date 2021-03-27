@@ -89,6 +89,7 @@ const PortList = (Props) => {
 
   const PortTypeHandleChanges = (event) => {
     setportTypeSelectedVal(event.target.value);
+    console.log(event.target.value)
   };
 
   useEffect(() => {
