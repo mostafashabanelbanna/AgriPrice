@@ -22,3 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.vs/PricesWebsite/v16
+.vs/slnx.sqlite
+.vs/slnx.sqlite
+.eslintcache
