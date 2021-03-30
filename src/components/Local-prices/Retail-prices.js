@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { connect } from "react-redux";
 
 import { Col, Container, Row } from "react-bootstrap";
 
@@ -16,8 +17,9 @@ import flag from "../../assets/images/png/flag.png";
 import { MenuItem } from "@material-ui/core";
 import RetailPricesResult from "./RetailPrices-result";
 import PulseLoader from "react-spinners/PulseLoader";
+import { saveSearchRes } from "../../store/actions/locSearchRes";
 
-const RetailPrices = () => {
+const RetailPrices = (props) => {
   const [genralIndicators, setGenralIndicators] = useState([]);
   const [governorates, setGovernorate] = useState([]);
   const [subIndicator, setSubIndicator] = useState([]);
@@ -26,8 +28,9 @@ const RetailPrices = () => {
   let [loading, setLoading] = useState(false);
   const [fetched, setFeched] = useState(true);
 
-  const noSearchResult =
-    !searchResult || (searchResult && searchResult.length === 0); //check if no searchResult
+  const searchData = props.savedSearchRes.LocSearchRes.searchData;
+
+  const noSearchResult = !searchData || (searchData && searchData.length === 0); //check if no searchResult
 
   const getPopulate = async () => {
     const response = await axios
@@ -49,8 +52,15 @@ const RetailPrices = () => {
   };
 
   useEffect(() => {
-    getPopulate();
+    //getPopulate();
+    props.saveRes(searchResult);
   }, [searchResult]);
+
+  useEffect(() => {
+    getPopulate();
+    console.log(props.savedSearchRes.LocSearchRes.searchData);
+    setSearchResult(props.savedSearchRes.LocSearchRes.searchData);
+  }, []);
 
   const handleGenralIndicatorsChange = (e) => {
     getSubindicator(e.target.value);
@@ -74,6 +84,7 @@ const RetailPrices = () => {
       setSelectedGov(values.GovernorateId);
       setLoading(true);
       setSearchResult([]);
+      props.saveRes(searchResult);
 
       const response = await axios
         .post("/Prices/Retail", JSON.stringify(values, null, 2))
@@ -94,6 +105,7 @@ const RetailPrices = () => {
 
   return (
     <div style={{ paddingRight: 30 }}>
+      {console.log(props)}
       <form onSubmit={formik.handleSubmit}>
         <Row>
           <Col className="px-0">
@@ -227,7 +239,7 @@ const RetailPrices = () => {
         </Row>
       </form>
       {!noSearchResult && (
-        <RetailPricesResult GovId={SelectedGov} resultData={searchResult} />
+        <RetailPricesResult GovId={SelectedGov} resultData={searchData} />
       )}
       {loading === true && noSearchResult ? (
         <div className="w-100 d-flex justify-content-center m-5">
@@ -241,4 +253,18 @@ const RetailPrices = () => {
   );
 };
 
-export default RetailPrices;
+const mapStateToProps = (state) => {
+  return {
+    savedSearchRes: state,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveRes: (res) => {
+      dispatch(saveSearchRes(res));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RetailPrices);

@@ -1,0 +1,2 @@
+export const SAVE_SEARCH_RES = "SAVE_SEARCH_RES";
+export const GET_SEARCH_RES = "GET_SEARCH_RES";

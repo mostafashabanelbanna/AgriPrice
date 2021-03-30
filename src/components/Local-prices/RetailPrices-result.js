@@ -177,6 +177,7 @@ const RetailPricesResult = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
+          {/* {console.log(props.resultData)} */}
           {(rowsPerPage > 0
             ? props.resultData.slice(
                 page * rowsPerPage,
@@ -190,13 +191,12 @@ const RetailPricesResult = (props) => {
                   to={{
                     pathname: `/local-prices/SubIndicatorInfo/${item.subindicatorId}`,
                     state: {
-                      id:item.subindicatorId,
+                      id: item.subindicatorId,
                     },
                   }}
                 >
-                 {item.subindictorName}
+                  {item.subindictorName}
                 </Link>
-               
               </TableCell>
               <TableCell className="text-center">{item.unit}</TableCell>
               <TableCell className="text-center">{item.currency}</TableCell>
@@ -244,54 +244,6 @@ const RetailPricesResult = (props) => {
         </TableFooter>
       </Table>
     </TableContainer>
-
-    /*
-    <Table responsive bordered>
-      <thead
-        style={{
-          backgroundColor: "var(--main-green",
-          color: "#fff",
-          textAlign: "center",
-        }}
-      >
-        <tr>
-          <th rowSpan="2" className="text-center">
-            النوع
-          </th>
-          <th rowSpan="2" className="text-center">
-            الوحدة
-          </th>
-          <th rowSpan="2" className="text-center">
-            العملة
-          </th>
-          {
-            props.GovId == 0 &&   <th colSpan="2" className="text-center"> أسعار السلع على مستوى الجمهورية  </th>
-          }
-          {
-            props.GovId != 0 &&   <th colSpan="2" className="text-center"> أسعار السلع فى المحافظات </th>
-          }
-        
-          <th rowSpan="2" className="text-center">التاريخ </th>
-        </tr>
-        <tr>
-          <th className="text-center">ادنى سعر</th>
-          <th className="text-center"> أعلى سعر</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.resultData.map((item,idx) => (
-          <tr key={idx}>
-            <td className="text-center">{item.subindictorName}</td>
-            <td className="text-center">{item.unit}</td>
-            <td className="text-center">{item.currency}</td>
-            <td className="text-center">{item.minValue} <div className="MaxVal GovVal"> {props.GovId == 0 && item.govMin} </div></td>
-            <td className="text-center">{item.maxValue} <div className="MinVal GovVal"> {props.GovId == 0 && item.govMax} </div></td>
-            <td className="text-center">{ moment(item.insertionDate).format("LL")}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
-    */
   );
 };
 
