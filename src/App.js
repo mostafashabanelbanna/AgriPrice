@@ -15,24 +15,28 @@ import portItem from "./components/Pages/Port/Port-item";
 import Ports from "./components/Pages/Port/Port-list";
 
 import "./App.css";
-import Suggestions from "./components/Pages/Home/Suggestions";
-import Outlets from "./components/Pages/Home/Outlets";
+import Suggestions from "./components/Pages/Home/Suggestions-form/Suggestions";
+import Outlets from "./components/Pages/Home/Outllets/Outlets";
 import Aside from "./components/Header_Footer/Aside";
 import LocalPrices from "./components/Local-prices/Local-prices";
 import GlobalPrices from "./components/Global-prices/Global-prices";
-import SubIndicatorInfo from "./components/Local-prices/SubIndicatorInfo"
+import SubIndicatorInfo from "./components/Local-prices/SubIndicatorInfo";
 
 function App() {
   return (
     <>
       <Router>
         <Header />
-        <Aside />
+        {/* <Aside /> */}
         <>
           <Switch>
             <Route path="/global-prices" exact component={GlobalPrices} />
             <Route path="/local-prices" exact component={LocalPrices} />
-            <Route path="/local-prices/SubIndicatorInfo/:Id" exact component={SubIndicatorInfo}/>
+            <Route
+              path="/local-prices/SubIndicatorInfo/:Id"
+              exact
+              component={SubIndicatorInfo}
+            />
             <Route
               path="/document-library-list/:DocumentLibraryId"
               exact

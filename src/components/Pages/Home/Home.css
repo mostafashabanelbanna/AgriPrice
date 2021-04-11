@@ -1,0 +1,18 @@
+.nav-tabs {
+  border-bottom: 3px solid var(--main-green) !important;
+}
+
+.nav-tabs .nav-link {
+  padding: 0.5rem 2rem;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-color: var(--main-green) !important;
+  margin-left: 6px;
+  background-color: var(--main-gray);
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--main-green) !important;
+  color: #fff !important;
+  border-bottom: 1px solid #fff !important;
+}

@@ -4,11 +4,10 @@ import { useRouteMatch } from "react-router-dom";
 
 import { Col, Container, Row } from "react-bootstrap";
 
-import HeadBar from "../../UI/HeadBar";
-import SuggestionsForm from "./Suggestions-form/Suggestions-form";
+import HeadBar from "../../../UI/HeadBar";
+import SuggestionsForm from "./Suggestions-form";
 
-import formImg from "../../../assets/images/png/desktop-computer.png";
-import "./Outlet.css";
+// import "./Outlet.css";
 
 const Suggestions = () => {
   let { url } = useRouteMatch();
@@ -16,18 +15,19 @@ const Suggestions = () => {
     <Container fluid className={url === "/" ? "px-0" : ""}>
       <Row className="justify-content-center py-5">
         {url === "/" ? (
-          <Col xs={12}>
-            <HeadBar>اﻗﺘﺮاﺣﺎت و ﺷﻜﺎوى</HeadBar>
+          <Col xs={12} className="mb-2">
+            <h6 style={{ color: "var(--main-green)" }}>
+              <span style={{ borderBottom: "2px solid var(--main-green)" }}>
+                اﻗﺘﺮاﺣﺎت و ﺷﻜﺎوى
+              </span>
+            </h6>
           </Col>
         ) : null}
 
         <Container className="py-5">
           <Row>
-            <Col md={6}>
+            <Col sm={12}>
               <SuggestionsForm />
-            </Col>
-            <Col className="text-left" md={6}>
-              <img src={formImg} alt="form_img" />
             </Col>
           </Row>
         </Container>

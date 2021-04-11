@@ -13,6 +13,7 @@ const SuggestionsForm = () => {
 
   // Schema for yup
   const validationSchema = yup.object({
+    // ContactTypeId: yup.number.required("ContactType is required"),
     Name: yup.string("أدخل الأسم").required("أدخل الأسم"),
     Email: yup
       .string("أدخل البريد الإلكتروني")
@@ -65,7 +66,7 @@ const SuggestionsForm = () => {
     <div>
       <form onSubmit={formik.handleSubmit}>
         <TextField
-          style={{ width: "100%" }}
+          style={{ width: "50%" }}
           className="px-2 my-2"
           variant="outlined"
           id="Name"
@@ -77,7 +78,7 @@ const SuggestionsForm = () => {
           helperText={formik.touched.Name && formik.errors.Name}
         />
         <TextField
-          style={{ width: "100%" }}
+          style={{ width: "50%" }}
           className="px-2 my-2"
           variant="outlined"
           id="Email"
@@ -91,7 +92,7 @@ const SuggestionsForm = () => {
         />
 
         <TextField
-          style={{ width: "100%" }}
+          style={{ width: "50%" }}
           className="px-2 my-2"
           variant="outlined"
           id="PhoneNumber"
@@ -107,7 +108,7 @@ const SuggestionsForm = () => {
         />
 
         <TextField
-          style={{ width: "100%" }}
+          style={{ width: "50%" }}
           className="px-2 my-2"
           variant="outlined"
           name="ContactTypeId"
@@ -134,8 +135,6 @@ const SuggestionsForm = () => {
           className="px-2 my-2"
           variant="outlined"
           fullWidth
-          multiline
-          rows={4}
           id="Subject"
           name="Subject"
           label="الرسالة"
@@ -145,13 +144,14 @@ const SuggestionsForm = () => {
           error={formik.touched.Subject && Boolean(formik.errors.Subject)}
           helperText={formik.touched.Subject && formik.errors.Subject}
         />
-        <div className="px-2 my-2 d-flex justify-content-end">
+        <div className="px-2 my-2">
           <Button
-            className="px-4 "
-            variant="outlined"
-            color="secondary"
+            fullWidth
+            className="p-3 "
+            size="large"
+            variant="contained"
             type="submit"
-            // style={{ color: "#fff", backgroundColor: "var(--main-green)" }}
+            style={{ color: "#fff", backgroundColor: "var(--main-green)" }}
           >
             إرسال
           </Button>

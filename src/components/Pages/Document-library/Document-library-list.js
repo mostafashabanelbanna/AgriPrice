@@ -78,6 +78,7 @@ const DocumentLibraryList = () => {
               .map((documentLibraryItem, idx) => {
                 return (
                   <Col
+                    sm={12}
                     key={idx}
                     className="p-3 m-3 border"
                     style={{ backgroundColor: "#fff", borderRadius: "8px" }}

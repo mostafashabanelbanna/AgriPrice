@@ -1,13 +1,13 @@
-.table-responsive {
+.local_prices.table-responsive {
   margin-top: 40px !important;
   width: 98% !important;
 }
-thead th {
+.local_prices thead th {
   color: white !important;
 }
 
-table td,
-table th {
+.local_prices table td,
+.local_prices table th {
   padding: 0.5rem !important;
   font-size: 20px;
 }
@@ -27,8 +27,8 @@ table th {
   background-color: #0d924c;
 }
 
-.recharts-cartesian-axis-tick {    
+.recharts-cartesian-axis-tick {
   font-size: 22px;
   margin: 10px;
-  font-variant-numeric:stacked-fractions !important;
+  font-variant-numeric: stacked-fractions !important;
 }

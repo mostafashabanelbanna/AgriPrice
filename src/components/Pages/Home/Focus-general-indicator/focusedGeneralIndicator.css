@@ -1,0 +1,12 @@
+.table thead th {
+  color: var(--main-green);
+  background-color: #fff;
+}
+
+.selectMainIndicatorsOption {
+  width: 340px;
+}
+.select__control {
+  border-radius: 20px !important;
+  border-color: var(--main-green) !important;
+}

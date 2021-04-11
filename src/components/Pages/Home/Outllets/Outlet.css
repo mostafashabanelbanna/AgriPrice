@@ -1,0 +1,33 @@
+.outlet .carrousel_image {
+  height: 150px;
+  width: 100%;
+  border-radius: 8px;
+  background-size: cover !important;
+  background-color: #fff !important;
+}
+
+.outlet .carrousel_image img {
+  border-radius: unset;
+  height: 100%;
+}
+.outlet .carrousel_caption {
+  /* color: #fff; */
+  padding: 1rem 1rem;
+  font-size: 1.2rem;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.outlet .slick-dots li button:before {
+  font-size: 40px;
+}
+
+.outlet .slick-dots {
+  position: static;
+  bottom: 0;
+}
+.outlet .slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  font-size: 64px;
+  color: var(--main-green);
+}

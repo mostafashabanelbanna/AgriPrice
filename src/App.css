@@ -10,8 +10,8 @@
   --main-green: #0d924c;
   --secondary-green: #54a646;
   --main-gray: #f9f9f9;
+  --secondary-gray: #f7f7f7;
 }
-
 
 body::-webkit-scrollbar {
   width: 0.5em;
@@ -22,7 +22,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #0D924C;
+  background-color: #0d924c;
   outline: 1px solid slategrey;
   border-radius: 20px;
 }
@@ -33,6 +33,7 @@ body::-webkit-scrollbar-thumb {
   margin: 0;
   padding: 0;
   font-family: "GESSTwo", "PT Sans", sans-serif !important;
+  font-size: 0.9rem;
 }
 
 html,
@@ -106,9 +107,10 @@ a {
 .pagination__link--disabled a {
   color: darkgray;
 }
-.table td, .table th {
-  vertical-align: middle !important; 
+.table td,
+.table th {
+  vertical-align: middle !important;
 }
-.MuiTableCell-root{
+.MuiTableCell-root {
   font-size: 1.1rem !important;
 }

@@ -131,7 +131,9 @@ const RetailPricesResult = (props) => {
   return (
     <TableContainer component={Paper}>
       <Table
-        className={(classes.table, "table table-bordered table-responsive")}
+        className={
+          (classes.table, "table table-bordered table-responsive local_prices")
+        }
         aria-label="custom pagination table"
       >
         <TableHead

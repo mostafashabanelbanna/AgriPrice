@@ -12,7 +12,12 @@ const Footer = () => {
         <Row className="p-4" style={{ backgroundColor: "var(--main-gray)" }}>
           <Col lg={3} className="d-flex">
             <Link to="/" className="navbar-logo">
-              <img src={siteLogo} style={{ height: "150px" }} alt="siteLogo" />
+              <img
+                className="img-fluid"
+                src={siteLogo}
+                style={{ height: "150px" }}
+                alt="siteLogo"
+              />
             </Link>
           </Col>
           <Col lg={6}>
@@ -41,7 +46,7 @@ const Footer = () => {
               </Col>
               <Col xs={4} className="d-flex flex-column  align-items-center">
                 <Link className="my-2" to="/Ports">
-                 المنافذ
+                  المنافذ
                 </Link>
                 <Link className="my-2" to="/">
                   مواقع ذات صلة
@@ -53,7 +58,12 @@ const Footer = () => {
             </Row>
           </Col>
           <Col lg={3}>
-            <img src={idscLogo} style={{ height: "150px" }} alt="siteLogo" />
+            <img
+              className="img-fluid"
+              src={idscLogo}
+              style={{ height: "150px" }}
+              alt="siteLogo"
+            />
           </Col>
         </Row>
         <Row>
