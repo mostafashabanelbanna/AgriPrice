@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Table } from "react-bootstrap";
+import { Row, Col, Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import * as moment from "moment";
 import "moment/locale/ar";
@@ -52,23 +52,41 @@ const GeneralIndicatorContent = (props) => {
                       {item.avgPrice} {item.currency}
                     </span>
                     <div className="p-2">
-                      <div
-                        className="border-bottom"
-                        style={{ color: "var(--main-green)" }}
+                      <OverlayTrigger
+                        placement={"top"}
+                        overlay={
+                          <Tooltip>
+                            <strong>{item.minSubIndicatorName}</strong>
+                          </Tooltip>
+                        }
                       >
-                        <ArrowDropDownIcon />
-                        أدنى
-                        <span className="mr-2" style={{ color: "#909090" }}>
-                          {item.minPrice} {item.currency}
-                        </span>
-                      </div>
-                      <div style={{ color: "#FF3232" }}>
-                        <ArrowDropUpIcon />
-                        أعلى
-                        <span n className="mr-2" style={{ color: "#909090" }}>
-                          {item.maxPrice} {item.currency}
-                        </span>
-                      </div>
+                        <div
+                          className="border-bottom"
+                          style={{ color: "var(--main-green)" }}
+                        >
+                          <ArrowDropDownIcon />
+                          أدنى
+                          <span className="mr-2" style={{ color: "#909090" }}>
+                            {item.minPrice} {item.currency}
+                          </span>
+                        </div>
+                      </OverlayTrigger>
+                      <OverlayTrigger
+                        placement={"bottom"}
+                        overlay={
+                          <Tooltip>
+                            <strong>{item.maxSubIndicatorName}</strong>
+                          </Tooltip>
+                        }
+                      >
+                        <div style={{ color: "#FF3232" }}>
+                          <ArrowDropUpIcon />
+                          أعلى
+                          <span n className="mr-2" style={{ color: "#909090" }}>
+                            {item.maxPrice} {item.currency}
+                          </span>
+                        </div>
+                      </OverlayTrigger>
                     </div>
                   </td>
                   <td className="text-center">
