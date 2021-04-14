@@ -17,6 +17,7 @@ import ConatctUs from "./Contact-us/ContactUs";
 import GeneralIndicatorTabs from "./Focus-general-indicator/GeneralIndicatorTabs";
 import PortsPrices from "./Ports-prices/PortsPrices";
 import GlobalPrices from "./Global-prices/GlobalPrices";
+import Metals from "./Metals/Metals";
 
 const Home = () => {
   return (
@@ -36,6 +37,7 @@ const Home = () => {
                 <img src={testImage} className="img-fluid" />
               </div>
               <Partner />
+              <Metals />
               <Outlets />
               <RelatedWebsite />
               <ConatctUs />

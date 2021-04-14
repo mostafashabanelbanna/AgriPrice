@@ -1,11 +1,13 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
+import { useRouteMatch } from "react-router";
 
 const MainIndicatorData = (props) => {
+  let { url } = useRouteMatch();
   return (
-    <Row className="justify-content-center">
+    <Row className="justify-content-center mb-4">
       {props.mainIndicatorData.fieldAvgPrice !== 0 ? (
-        <Col md={4} sm={6} className="p-1">
+        <Col md={url === "/" ? 4 : 6} sm={6} className="p-1">
           <div className="border " style={{ borderRadius: "10px" }}>
             <div
               className="p-2  d-flex flex-column justify-content-center align-items-center"
@@ -66,6 +68,26 @@ const MainIndicatorData = (props) => {
                 </div>
               </div>
               <div className="d-flex justify-content-between ">
+                <span>مقارنة بالشهر السابق</span>
+
+                <div>
+                  {props.mainIndicatorData.fieldComMonth > 0 ? (
+                    <span style={{ color: "#FF3232" }}>
+                      +{props.mainIndicatorData.fieldComMonth}
+                    </span>
+                  ) : (
+                    <span
+                      className="ml-1"
+                      style={{ color: "var(--main-green)" }}
+                    >
+                      {props.mainIndicatorData.fieldComMonth}
+                    </span>
+                  )}
+                  جنيه
+                </div>
+              </div>
+
+              <div className="d-flex justify-content-between ">
                 <span>مقارنة بالعام السابق</span>
 
                 <div>
@@ -90,7 +112,7 @@ const MainIndicatorData = (props) => {
       ) : null}
       {/* Whole Prices */}
       {props.mainIndicatorData.wholeAvgPrice !== 0 ? (
-        <Col md={4} sm={6} className="p-1">
+        <Col md={url === "/" ? 4 : 6} sm={6} className="p-1">
           <div className="border " style={{ borderRadius: "10px" }}>
             <div
               className="p-2  d-flex flex-column justify-content-center align-items-center"
@@ -175,7 +197,7 @@ const MainIndicatorData = (props) => {
       ) : null}
       {/* Ports Prices */}
       {props.mainIndicatorData.portAvgPrice !== 0 ? (
-        <Col md={4} sm={6} className="p-1">
+        <Col md={url === "/" ? 4 : 6} sm={6} className="p-1">
           <div className="border " style={{ borderRadius: "10px" }}>
             <div
               className="p-2  d-flex flex-column justify-content-center align-items-center"
@@ -260,7 +282,7 @@ const MainIndicatorData = (props) => {
       ) : null}
       {/* Retail Prices */}
       {props.mainIndicatorData.retailAvgPrice !== 0 ? (
-        <Col md={4} sm={6} className="p-1">
+        <Col md={url === "/" ? 4 : 6} sm={6} className="p-1">
           <div className="border " style={{ borderRadius: "10px" }}>
             <div
               className="p-2  d-flex flex-column justify-content-center align-items-center"
@@ -346,7 +368,7 @@ const MainIndicatorData = (props) => {
 
       {/* Global Prices */}
       {props.mainIndicatorData.intAvgPrice !== 0 ? (
-        <Col md={4} sm={6} className="p-1">
+        <Col md={url === "/" ? 4 : 6} sm={6} className="p-1">
           <div className="border " style={{ borderRadius: "10px" }}>
             <div
               className="p-2  d-flex flex-column justify-content-center align-items-center"

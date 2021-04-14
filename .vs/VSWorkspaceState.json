@@ -2,8 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\Pages"
+    "\\src\\components"
   ],
   "SelectedNode": "\\src\\components\\UI",
   "PreviewInSolutionExplorer": false

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import * as moment from "moment";
 
+import { Link, useRouteMatch } from "react-router-dom";
+
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -140,6 +142,7 @@ const GeneralIndicatorContent = (props) => {
       100
     );
   };
+  let { url } = useRouteMatch();
   return (
     <TableContainer component={Paper}>
       <Table
@@ -170,13 +173,25 @@ const GeneralIndicatorContent = (props) => {
           ).map((item, idx) => (
             <TableRow key={idx}>
               <TableCell className="text-center" style={{ lineHeight: "2" }}>
-                <span className="mb-5">
-                  {item.indictorName} / {item.unit}
-                </span>
-                <br />
-                <span style={{ color: "rgb(144, 144, 144)" }}>
-                  {moment(item.insertionDate).format("LL")}
-                </span>
+                {/* {console.log(item)} */}
+                <Link
+                  className="h-100 d-flex flex-column align-items-center justify-content-center"
+                  // pass news item data throw props
+                  to={{
+                    pathname: `/local-prices/${item.indicatorId}`,
+                    state: {
+                      item: item,
+                    },
+                  }}
+                >
+                  <span className="">
+                    {item.indictorName} / {item.unit}
+                  </span>
+                  <br />
+                  <span style={{ color: "rgb(144, 144, 144)" }}>
+                    {moment(item.insertionDate).format("LL")}
+                  </span>
+                </Link>
               </TableCell>
               <TableCell className="text-center d-flex justify-content-center align-items-center border-bottom-0">
                 <span>

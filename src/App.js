@@ -19,18 +19,24 @@ import Suggestions from "./components/Pages/Home/Suggestions-form/Suggestions";
 import Outlets from "./components/Pages/Home/Outllets/Outlets";
 import Aside from "./components/Header_Footer/Aside";
 import LocalPrices from "./components/Local-prices/Local-prices";
-import GlobalPrices from "./components/Global-prices/Global-prices";
+import GlobalPrices from "./components/Global-prices/GlobalPrices";
 import SubIndicatorInfo from "./components/Local-prices/SubIndicatorInfo";
+import MainIndicatorDetails from "./components/Local-prices/MainIndicatorDetails/MainIndicatorDetails";
 
 function App() {
   return (
     <>
       <Router>
         <Header />
-        {/* <Aside /> */}
+
         <>
           <Switch>
             <Route path="/global-prices" exact component={GlobalPrices} />
+            <Route
+              path="/local-prices/:indicatorId"
+              exact
+              component={MainIndicatorDetails}
+            />
             <Route path="/local-prices" exact component={LocalPrices} />
             <Route
               path="/local-prices/SubIndicatorInfo/:Id"
