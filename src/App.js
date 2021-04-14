@@ -49,7 +49,7 @@ function App() {
               component={DocumentLibraryItem}
             />
             <Route
-              path="/Ports/PortEntity/:PortId"
+              path="/Ports/:PortId"
               exact
               component={portItem}
             />
@@ -64,8 +64,8 @@ function App() {
             <Route path="/news-list" exact component={NewsList} />
             <Route path="/about-us" exact component={AboutUs} />
             <Route path="/" exact component={Home} />
-            <Route path="/Ports/PortEntity" exact component={Ports} />
-            <Route path="/Ports" exact component={Outlets} />
+            <Route path="/Ports" exact component={Ports} />
+            {/* <Route path="/Ports" exact component={Outlets} /> */}
             <Route path="/suggestions" exact component={Suggestions} />
           </Switch>
         </>
