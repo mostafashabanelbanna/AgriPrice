@@ -1,0 +1,9 @@
+.MuiOutlinedInput-notchedOutline{
+    border-color: green !important;
+    border-radius: 7px !important;
+  }
+  .PortCard{
+    border:1px solid green;
+    padding: 10px;
+    min-height: 170px;
+  }
