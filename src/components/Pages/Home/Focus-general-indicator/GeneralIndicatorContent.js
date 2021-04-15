@@ -1,6 +1,8 @@
 import React from "react";
 import { Row, Col, Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
+
 import * as moment from "moment";
 import "moment/locale/ar";
 
@@ -22,7 +24,7 @@ const GeneralIndicatorContent = (props) => {
   };
   return (
     <Row className="px-2">
-      <Col>
+      <Col xs={12}>
         <Table className="text-center bg-white" responsive>
           <thead>
             <tr>
@@ -36,16 +38,26 @@ const GeneralIndicatorContent = (props) => {
             {props.focusedGeneralIndicatorData.indicatorPrices
               .slice(0, 4)
               .map((item, idx) => (
-                <tr style={{ lineHeight: 2 }}>
+                <tr key={idx} style={{ lineHeight: 2 }}>
                   <td>
-                    <span>
-                      {item.indictorName} / {item.unit}
-                    </span>
-                    <br />
-                    <span style={{ color: "#909090" }}>
-                      {moment(item.insertionDate).locale("ar").format("LL")}
-                      {/* {item.insertionDate} */}
-                    </span>
+                    <Link
+                      className="h-100 d-flex flex-column align-items-center justify-content-center"
+                      to={{
+                        pathname: `/local-prices/${item.indicatorId}`,
+                        state: {
+                          item: item,
+                        },
+                      }}
+                    >
+                      <span>
+                        {item.indictorName} / {item.unit}
+                      </span>
+                      <br />
+                      <span style={{ color: "#909090" }}>
+                        {moment(item.insertionDate).locale("ar").format("LL")}
+                        {/* {item.insertionDate} */}
+                      </span>
+                    </Link>
                   </td>
                   <td className="text-center d-flex justify-content-center align-items-center">
                     <span>

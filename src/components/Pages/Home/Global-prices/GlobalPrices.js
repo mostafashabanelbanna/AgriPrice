@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { axios } from "../../../Axios/Axios";
 import defualtPro from "../../../../assets/images//product.png";
 
@@ -66,6 +66,20 @@ const GlobalPrices = () => {
             </Col>
           );
         })}
+      <Col xs={12} className="mb-2">
+        <Link
+          className="my-4 d-flex align-items-center justify-content-end"
+          to={{
+            pathname: `/Global-prices`,
+          }}
+        >
+          <span
+            style={{ color: "rgb(255, 50, 50)", textDecoration: "underline" }}
+          >
+            إستعراض المزيد
+          </span>
+        </Link>
+      </Col>
     </Row>
   );
 };

@@ -7,13 +7,16 @@ import "./LocalPrices.css";
 import { SampleNextArrow, SamplePrevArrow } from "../slick-carousel/Arrows";
 import GeneralIndicatorTabs from "./General-indicator-tabs";
 
-const LocalPrices = () => {
+const LocalPrices = (props) => {
   const [generalIndicators, setGeneralIndicators] = useState([]);
   const [generalIndicatorData, setGeneralIndicatorData] = useState();
   const [currentGeneralIndicator, setCurrentGeneralIndicator] = useState();
 
   const noGeneralIndicators =
     !generalIndicators || (generalIndicators && generalIndicators.length === 0); //check if no news
+
+  //get indicatorId from show more btn in home page
+  // let indicatorId = parseInt(props.location.state.indicatorId);
 
   const getGeneralIndicators = async () => {
     //fetch generalIndicators data
@@ -74,6 +77,7 @@ const LocalPrices = () => {
       },
     ],
   };
+
   return (
     <Container fluid className="my-4 local-prices">
       <Row>

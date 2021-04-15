@@ -5,6 +5,9 @@ import GeneralIndicatorContent from "./GeneralIndicatorContent";
 // import AsyncSelect from 'react-select/async';
 import Select from "react-select";
 import MainIndicatorData from "./MainIndicatorData";
+import { Col } from "react-bootstrap";
+
+import { Link } from "react-router-dom";
 
 const GeneralIndicatorTabs = () => {
   const [focusedGeneralIndicator, setFocusedGeneralIndicator] = useState([]);
@@ -12,6 +15,7 @@ const GeneralIndicatorTabs = () => {
   const [mainIndicatorData, setMainIndicatorData] = useState({});
   const [mainIndicatorsOptions, setMainIndicatorsOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState({});
+  const [generalIndicatorId, setGeneralIndicatorId] = useState(1);
 
   const noFocusedGeneralIndicator =
     !focusedGeneralIndicator ||
@@ -52,10 +56,13 @@ const GeneralIndicatorTabs = () => {
       .get(`/PricesData/GetMainIndicatorData/${obj.value}`)
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
-      console.log(response.data);
       setMainIndicatorData(response.data); // set MainIndicatorData data to state
       setSelectedValue(obj);
     }
+  };
+
+  const getGeneralIndicatorId = (id) => {
+    setGeneralIndicatorId(id);
   };
 
   useEffect(() => {
@@ -69,36 +76,60 @@ const GeneralIndicatorTabs = () => {
     if (response && response.data) {
       // setMainIndicators(response.data); // set MainIndicators data to state
       getMainIndicators(id);
+      getGeneralIndicatorId(id);
     }
   };
 
   const tabs = () => {
     if (!noFocusedGeneralIndicator) {
       return (
-        <Tabs
-          className="mt-4 flex-md-row flex-column"
-          id="focusedGeneralIndicator"
-          onSelect={(eventKey) => handleTabSelect(eventKey)}
-        >
-          {focusedGeneralIndicator.map((focusedGeneralIndicatorItem, idx) => {
-            return (
-              <Tab
-                key={idx}
-                defaultValue
-                eventKey={focusedGeneralIndicatorItem.generalIndicatorId}
-                title={focusedGeneralIndicatorItem.generalIndicatorname}
-                className="py-2 border"
+        <>
+          <Tabs
+            className="mt-4 flex-md-row flex-column"
+            id="focusedGeneralIndicator"
+            onSelect={(eventKey) => handleTabSelect(eventKey)}
+          >
+            {focusedGeneralIndicator.map((focusedGeneralIndicatorItem, idx) => {
+              return (
+                <Tab
+                  key={idx}
+                  defaultValue
+                  eventKey={focusedGeneralIndicatorItem.generalIndicatorId}
+                  title={focusedGeneralIndicatorItem.generalIndicatorname}
+                  className="py-2 border"
+                  style={{
+                    backgroundColor: "var(--secondary-gray)",
+                  }}
+                >
+                  <GeneralIndicatorContent
+                    focusedGeneralIndicatorData={focusedGeneralIndicatorItem}
+                  />
+                </Tab>
+              );
+            })}
+          </Tabs>
+          {console.log(generalIndicatorId)}
+          <Col xs={12} className="mb-2">
+            <Link
+              className="my-3 d-flex align-items-center justify-content-end"
+              to={{
+                pathname: `/local-prices`,
+                state: {
+                  indicatorId: generalIndicatorId,
+                },
+              }}
+            >
+              <span
                 style={{
-                  backgroundColor: "var(--secondary-gray)",
+                  color: "rgb(255, 50, 50)",
+                  textDecoration: "underline",
                 }}
               >
-                <GeneralIndicatorContent
-                  focusedGeneralIndicatorData={focusedGeneralIndicatorItem}
-                />
-              </Tab>
-            );
-          })}
-        </Tabs>
+                إستعراض المزيد من السلع
+              </span>
+            </Link>
+          </Col>
+        </>
       );
     } else {
       return null;
