@@ -16,7 +16,7 @@ const LocalPrices = (props) => {
     !generalIndicators || (generalIndicators && generalIndicators.length === 0); //check if no news
 
   //get indicatorId from show more btn in home page
-  // let indicatorId = parseInt(props.location.state.indicatorId);
+  //let indicatorId = parseInt(props.location.state.indicatorId);
 
   const getGeneralIndicators = async () => {
     //fetch generalIndicators data
@@ -25,7 +25,14 @@ const LocalPrices = (props) => {
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGeneralIndicators(response.data); // set generalIndicators data to state
-      getGeneralIndicatorData(response.data[0].id); // set GeneralIndicatorData on component mount
+      if(props.location.state == null){
+        getGeneralIndicatorData(response.data[0].id); // set GeneralIndicatorData on component mount
+        setCurrentGeneralIndicator(response.data[0].id);
+      }
+      else{
+        getGeneralIndicatorData(parseInt(props.location.state.indicatorId)); // set GeneralIndicatorData on component mount
+        setCurrentGeneralIndicator(props.location.state.indicatorId);
+      }
     }
   };
 

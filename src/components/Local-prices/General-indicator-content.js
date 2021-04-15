@@ -296,7 +296,7 @@ const GeneralIndicatorContent = (props) => {
                     {/* {item.minWithinYearDate} */}
                   </div>
                   <div>
-                    <div style={{ color: "#FF3232" }}>
+                    <div className="text-left" style={{ color: "#FF3232" }}>
                       {item.maxPriceWithinYear}
                     </div>
                     <div style={{ color: "#909090" }}>
