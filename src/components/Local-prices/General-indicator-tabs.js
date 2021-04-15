@@ -15,7 +15,6 @@ const GeneralIndicatorTabs = (props) => {
     <Container>
       <Tabs className="mt-4 flex-md-row flex-column">
         {ArrgeneralIndicatorData.map((generalIndicatorDataItem, idx) => {
-          console.log(generalIndicatorDataItem);
           if (
             generalIndicatorDataItem[Object.keys(generalIndicatorDataItem)[0]]
               .length !== 0

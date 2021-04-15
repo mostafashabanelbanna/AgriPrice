@@ -31,8 +31,6 @@ const NewsItem = (props) => {
       .get("/news")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
-      // setNews(response.data); // set news data to state
-
       response.data.map((newsItem) => {
         if (newsItem.id === newsItemId) {
           setNewsItem(newsItem);
@@ -42,7 +40,6 @@ const NewsItem = (props) => {
   };
 
   useEffect(() => {
-    // console.log(newsItemId);
     getNews();
   }, []);
 

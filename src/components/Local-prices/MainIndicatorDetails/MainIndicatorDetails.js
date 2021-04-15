@@ -15,12 +15,16 @@ import SubIndicatorDetails from "./SubIndicatorDetails";
 
 const MainIndicatorDetails = (props) => {
   //get mainIndicator id from url
-  const mainIndicatorItemId = parseInt(props.match.params.indicatorId);
+  //const mainIndicatorItemId = parseInt(props.match.params.indicatorId);
 
   const [mainIndicatorItem, setMainIndicatorItem] = useState({});
   const [mainIndicatorData, setMainIndicatorData] = useState({});
   const [producingGovernorates, setProducingGovernorates] = useState();
   const [subIndicatorDetails, setSubIndicatorDetails] = useState([]);
+  const [mainIndicatorOptions, setMainIndicatorOptions] = useState([]);
+  const [mainIndicatorItemId, setMainIndicatorItemId] = useState(
+    parseInt(props.match.params.indicatorId)
+  );
 
   const getMainIndicator = async () => {
     //fetch MainIndicator data
@@ -59,52 +63,111 @@ const MainIndicatorDetails = (props) => {
     }
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     getMainIndicator();
     getMainIndicatorData();
     getProducingGovernorates();
     getSubIndicatorDetails();
-  }, []);
+    getMainIndicatorOptions();
+  }, [mainIndicatorItemId]);
 
-  // const groupStyles = {
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "space-between",
-  // };
-  // const groupBadgeStyles = {
-  //   backgroundColor: "#EBECF0",
-  //   borderRadius: "2em",
-  //   color: "#172B4D",
-  //   display: "inline-block",
-  //   fontSize: 12,
-  //   fontWeight: "normal",
-  //   lineHeight: "1",
-  //   minWidth: 1,
-  //   padding: "0.16666666666667em 0.5em",
-  //   textAlign: "center",
-  // };
+  const HandleMainIndicatorchange = (obj) => {
+    setMainIndicatorItemId(obj.value);
+  };
 
-  // const formatGroupLabel = (data) => (
-  //   <div style={groupStyles}>
-  //     <span>{data.label}</span>
-  //     <span style={groupBadgeStyles}>{data.options.length}</span>
-  //   </div>
-  // );
+  const groupStyles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  };
+  const groupBadgeStyles = {
+    backgroundColor: "#EBECF0",
+    borderRadius: "2em",
+    color: "#172B4D",
+    display: "inline-block",
+    fontSize: 12,
+    fontWeight: "normal",
+    lineHeight: "1",
+    minWidth: 1,
+    padding: "0.16666666666667em 0.5em",
+    textAlign: "center",
+  };
 
+  const formatGroupLabel = (data) => (
+    <div style={groupStyles}>
+      <span>{data.label}</span>
+      <span style={groupBadgeStyles}>{data.options.length}</span>
+    </div>
+  );
+
+  //
+
+  const groupedOptions = [
+    {
+      label: "Colours",
+      options: [
+        { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
+        { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
+        { value: "purple", label: "Purple", color: "#5243AA" },
+        { value: "red", label: "Red", color: "#FF5630", isFixed: true },
+        { value: "orange", label: "Orange", color: "#FF8B00" },
+        { value: "yellow", label: "Yellow", color: "#FFC400" },
+        { value: "green", label: "Green", color: "#36B37E" },
+        { value: "forest", label: "Forest", color: "#00875A" },
+        { value: "slate", label: "Slate", color: "#253858" },
+        { value: "silver", label: "Silver", color: "#666666" },
+      ],
+    },
+    {
+      label: "Flavours",
+      options: [
+        { value: "vanilla", label: "Vanilla", rating: "safe" },
+        { value: "chocolate", label: "Chocolate", rating: "good" },
+        { value: "strawberry", label: "Strawberry", rating: "wild" },
+        { value: "salted-caramel", label: "Salted Caramel", rating: "crazy" },
+      ],
+    },
+  ];
+
+  const getMainIndicatorOptions = async () => {
+    const response = await axios
+      .get(`/PricesData/GetMainIndicatorsPerGeneralIndicator`)
+      .catch((err) => console.log("Error", err)); //handle errors
+    if (response && response.data) {
+      const temp_mainIndicatorsOptions = [];
+      response.data.map((item) => {
+        var Temp_Options = [];
+        for (var i = 0; i < item.mainIndicators.length; i++) {
+          Temp_Options.push({
+            value: item.mainIndicators[i].id,
+            label: item.mainIndicators[i].name,
+          });
+        }
+        temp_mainIndicatorsOptions.push({
+          label: item.generalIndicator,
+          options: Temp_Options,
+        });
+
+        setMainIndicatorOptions(temp_mainIndicatorsOptions); // set MainIndicatorOptions  to state
+      });
+    }
+  };
+
+  //
   return (
     <Container>
-      {/* <Row className="my-4">
+      <Row className="my-4">
         <Col xs={12}>
           <Select
             className="selectMainIndicatorsOption"
-            defaultValue={colourOptions[1]}
-            options={groupedOptions}
+            // defaultValue={colourOptions[1]}
+            options={mainIndicatorOptions}
             formatGroupLabel={formatGroupLabel}
+            onChange={(event) => HandleMainIndicatorchange(event)}
+            placeholder={mainIndicatorItem.mainIndicator}
           />
         </Col>
-      </Row> */}
+      </Row>
       <MainIndicatorBox mainIndicatorItem={mainIndicatorItem} />
       <Row>
         <Col lg={9}>
