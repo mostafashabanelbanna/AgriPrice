@@ -213,7 +213,7 @@ const GeneralIndicatorContent = (props) => {
                       <ArrowDropDownIcon />
                       أدنى
                       <span className="mr-2" style={{ color: "#909090" }}>
-                        {item.minPrice} {item.currency}
+                        {item.minSubIndicatorPrice} {item.currency}
                       </span>
                     </div>
                   </OverlayTrigger>
@@ -229,7 +229,7 @@ const GeneralIndicatorContent = (props) => {
                       <ArrowDropUpIcon />
                       أعلى
                       <span n className="mr-2" style={{ color: "#909090" }}>
-                        {item.maxPrice} {item.currency}
+                        {item.maxSubIndicatorPrice} {item.currency}
                       </span>
                     </div>
                   </OverlayTrigger>
