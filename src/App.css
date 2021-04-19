@@ -59,6 +59,15 @@ a {
   -ms-transform: scale(1.07);
   transform: scale(1.07);
 }
+
+.zoom_image_on_hover:hover .zoomed_img {
+  -webkit-transition: transform 0.2s ease-in-out;
+  -moz-transition: transform 0.2s ease-in-out;
+  -ms-transition: transform 0.2s ease-in-out;
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
 /* Paginate */
 .pagination {
   display: flex;

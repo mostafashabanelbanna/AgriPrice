@@ -109,9 +109,26 @@ const GeneralIndicatorTabs = () => {
             })}
           </Tabs>
           {console.log(generalIndicatorId)}
-          <Col xs={12} className="mb-2">
+          <Col
+            xs={12}
+            className="mb-2 my-3 d-flex align-items-center justify-content-between"
+          >
             <Link
-              className="my-3 d-flex align-items-center justify-content-end"
+              to={{
+                pathname: `/local-prices`,
+              }}
+            >
+              <span
+                style={{
+                  color: "var(--main-green)",
+                  textDecoration: "underline",
+                }}
+              >
+                إستعراض المزيد من المجموعات السلعية
+              </span>
+            </Link>
+            <Link
+              // className="my-3 d-flex align-items-center justify-content-end"
               to={{
                 pathname: `/local-prices`,
                 state: {

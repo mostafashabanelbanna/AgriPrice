@@ -18,6 +18,7 @@ import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 
 import mainBg from "../../../assets/images/png/panner.png";
+import { Button } from "@material-ui/core";
 
 const NewsList = () => {
   const [news, setNews] = useState([]);
@@ -26,7 +27,7 @@ const NewsList = () => {
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
 
-  const PER_PAGE = 5;
+  const PER_PAGE = 9;
   const offset = currentPage * PER_PAGE;
 
   const pageCount = Math.ceil(news.length / PER_PAGE);
@@ -55,26 +56,46 @@ const NewsList = () => {
   }, []);
 
   let { url } = useRouteMatch();
+  let firstItem;
+  let secondItem;
+  let thirdItem;
+  const firstRow = () => {
+    return (
+      <>
+        <Col lg={6} className="my-3">
+          {firstItem}
+        </Col>
+
+        <Col lg={6} className="my-3">
+          {secondItem}
+          {thirdItem}
+        </Col>
+      </>
+    );
+  };
+
+  let counter;
+
   return (
     <Container
-      fluid
-      style={
-        !noNews
-          ? {
-              backgroundImage: `url(${mainBg})`,
-              backgroundPosition: "right top",
-              backgroundSize: "cover",
-            }
-          : {}
-      }
+    // style={
+    //   !noNews
+    //     ? {
+    //         backgroundImage: `url(${mainBg})`,
+    //         backgroundPosition: "right top",
+    //         backgroundSize: "cover",
+    //       }
+    //     : {}
+    // }
     >
       <Row>
         {!noNews &&
           news.slice(offset, offset + PER_PAGE).map((newsItem, idx) => {
-            return (
-              <Col xs={12} md={6} lg={3} key={idx} className="p-2">
+            counter = idx;
+            if (idx === 0) {
+              firstItem = (
                 <Link
-                  className="h-100"
+                  className="h-100 p-2 zoom_image_on_hover"
                   // pass news item data throw props
                   to={{
                     pathname: `${url}/${newsItem.id}`,
@@ -83,43 +104,275 @@ const NewsList = () => {
                     },
                   }}
                 >
-                  <CustomCard
-                    CardTitle={newsItem.titleA}
-                    CardText={moment(newsItem.publishDate)
-                      .locale("ar")
-                      .format("LL")}
-                    CardImg={`${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA}`}
-                  />
+                  <div className="mt-3 h-100 d-flex flex-column justify-content-between">
+                    <div
+                      style={{
+                        height: "300px",
+                      }}
+                    >
+                      <div
+                        className="zoomed_img"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          backgroundImage: `url(${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                    </div>
+                    <div className="h-100 d-flex flex-column justify-content-between">
+                      <div>
+                        <h4>{newsItem.titleA}</h4>
+                      </div>
+                      <div className="d-flex  justify-content-between">
+                        <p>
+                          {moment(newsItem.publishDate)
+                            .locale("ar")
+                            .format("LL")}
+                        </p>
+                        <Button
+                          className="px-4 "
+                          variant="outlined"
+                          color="secondary"
+                          type="submit"
+                        >
+                          إقرأ المزيد
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </Link>
-              </Col>
+              );
+            }
+            if (idx === 1) {
+              secondItem = (
+                <Link
+                  className="h-50 p-2  zoom_image_on_hover"
+                  // pass news item data throw props
+                  to={{
+                    pathname: `${url}/${newsItem.id}`,
+                    state: {
+                      newsItem,
+                    },
+                  }}
+                >
+                  <div className="h-50 d-flex  justify-content-between">
+                    <div
+                      style={{
+                        width: "40%",
+                      }}
+                    >
+                      <div
+                        className="zoomed_img"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          backgroundImage: `url(${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                    </div>
+
+                    <div
+                      style={{
+                        width: "60%",
+                      }}
+                      className="px-3 h-100 d-flex flex-column justify-content-between"
+                    >
+                      <div>
+                        <h4>{newsItem.titleA}</h4>
+                      </div>
+                      <div className="d-flex  justify-content-between">
+                        <p>
+                          {moment(newsItem.publishDate)
+                            .locale("ar")
+                            .format("LL")}
+                        </p>
+                        <Button
+                          className="px-4 "
+                          variant="outlined"
+                          color="secondary"
+                          type="submit"
+                        >
+                          إقرأ المزيد
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            }
+
+            if (idx === 2) {
+              thirdItem = (
+                <Link
+                  className="h-50 p-2 zoom_image_on_hover"
+                  // pass news item data throw props
+                  to={{
+                    pathname: `${url}/${newsItem.id}`,
+                    state: {
+                      newsItem,
+                    },
+                  }}
+                >
+                  <div className="h-50 d-flex  justify-content-between">
+                    <div
+                      style={{
+                        width: "40%",
+                      }}
+                    >
+                      <div
+                        className="zoomed_img"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          backgroundImage: `url(${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                    </div>
+
+                    <div
+                      style={{
+                        width: "60%",
+                      }}
+                      className="px-3 h-100 d-flex flex-column justify-content-between"
+                    >
+                      <div>
+                        <h4>{newsItem.titleA}</h4>
+                      </div>
+                      <div className="d-flex  justify-content-between">
+                        <p>
+                          {moment(newsItem.publishDate)
+                            .locale("ar")
+                            .format("LL")}
+                        </p>
+                        <Button
+                          className="px-4 "
+                          variant="outlined"
+                          color="secondary"
+                          type="submit"
+                        >
+                          إقرأ المزيد
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            }
+
+            return (
+              <>
+                {idx === 2 ? (
+                  firstRow()
+                ) : counter > 2 ? (
+                  <Col lg={6} className="my-3">
+                    <Link
+                      className="h-100 p-2 zoom_image_on_hover"
+                      // pass news item data throw props
+                      to={{
+                        pathname: `${url}/${newsItem.id}`,
+                        state: {
+                          newsItem,
+                        },
+                      }}
+                    >
+                      <div className="h-100 d-flex flex-column justify-content-between">
+                        <div
+                          style={{
+                            height: "200px",
+                          }}
+                        >
+                          <div
+                            className="zoomed_img"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundImage: `url(${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA})`,
+                              backgroundRepeat: "no-repeat",
+                              backgroundPosition: "center",
+                              backgroundSize: "cover",
+                            }}
+                          ></div>
+                        </div>
+                        <div className="mt-3 h-100 d-flex flex-column justify-content-between">
+                          <div>
+                            <h4>{newsItem.titleA}</h4>
+                          </div>
+                          <div className="d-flex  justify-content-between">
+                            <p>
+                              {moment(newsItem.publishDate)
+                                .locale("ar")
+                                .format("LL")}
+                            </p>
+                            <Button
+                              className="px-4 "
+                              variant="outlined"
+                              color="secondary"
+                              type="submit"
+                            >
+                              إقرأ المزيد
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                ) : null}
+              </>
             );
           })}
-        {!noNews && (
-          <Col xs={12}>
-            <ReactPaginate
-              previousLabel={"→ السابق"}
-              nextLabel={"التالى ←"}
-              pageCount={pageCount}
-              onPageChange={handlePageClick}
-              containerClassName={"pagination"}
-              previousLinkClassName={"pagination__link"}
-              nextLinkClassName={"pagination__link"}
-              disabledClassName={"pagination__link--disabled"}
-              activeClassName={"pagination__link--active"}
-            />
-          </Col>
-        )}
-
-        {/* {noNews && <h2 className="text-center p-4"> لا توجد أخبار</h2>} */}
-        {loading === true && noNews ? (
-          <div className="w-100 d-flex justify-content-center m-5">
-            <PulseLoader loading={loading} color="#0D924C" margin="5" />
-          </div>
-        ) : null}
-        {loading === false && noNews ? (
-          <h2 className="w-100 text-center p-4"> لا توجد أخبار</h2>
-        ) : null}
       </Row>
+
+      {/* <Link
+        className="h-100"
+        // pass news item data throw props
+        to={{
+          pathname: `${url}/${newsItem.id}`,
+          state: {
+            newsItem,
+          },
+        }}
+      >
+        <CustomCard
+          CardTitle={newsItem.titleA}
+          CardText={moment(newsItem.publishDate)
+            .locale("ar")
+            .format("LL")}
+          CardImg={`${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA}`}
+        />
+      </Link> */}
+
+      {!noNews && (
+        <Col xs={12}>
+          <ReactPaginate
+            previousLabel={"→ السابق"}
+            nextLabel={"التالى ←"}
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            containerClassName={"pagination"}
+            previousLinkClassName={"pagination__link"}
+            nextLinkClassName={"pagination__link"}
+            disabledClassName={"pagination__link--disabled"}
+            activeClassName={"pagination__link--active"}
+          />
+        </Col>
+      )}
+      {loading === true && noNews ? (
+        <div className="w-100 d-flex justify-content-center m-5">
+          <PulseLoader loading={loading} color="#0D924C" margin="5" />
+        </div>
+      ) : null}
+      {loading === false && noNews ? (
+        <h2 className="w-100 text-center p-4"> لا توجد أخبار</h2>
+      ) : null}
     </Container>
   );
 };
