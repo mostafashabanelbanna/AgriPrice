@@ -3,6 +3,8 @@ import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axios } from "../../../Axios/Axios";
 import defualtPro from "../../../../assets/images//product.png";
+import {paths} from '../../../Paths/Pathes'
+import FourPieacesHorizontalSkeleton from '../../../LoadingSkeleton/FourPieacesHorizontal'
 
 const GlobalPrices = () => {
   const [globalPrices, setGlobalPrices] = useState([]);
@@ -56,7 +58,7 @@ const GlobalPrices = () => {
                 <div style={{ width: "120px" }}>
                   <img
                     className="img-fluid"
-                    src={!globalPricesItem.photo ? defualtPro : null}
+                    src={!globalPricesItem.photo ? defualtPro : paths.MainIndicatorPhot + globalPricesItem.mainIndicatorId + "/" + globalPricesItem.photo}
                   />
                 </div>
                 <div className="py-2 text-center">
@@ -66,7 +68,9 @@ const GlobalPrices = () => {
             </Col>
           );
         })}
-      <Col xs={12} className="mb-2">
+
+      {noGlobalPrices && <Col md={12}><FourPieacesHorizontalSkeleton/></Col> }
+      {!noGlobalPrices && <Col xs={12} className="mb-2">
         <Link
           className="my-4 d-flex align-items-center justify-content-end"
           to={{
@@ -79,7 +83,7 @@ const GlobalPrices = () => {
             إستعراض المزيد
           </span>
         </Link>
-      </Col>
+      </Col>}
     </Row>
   );
 };

@@ -11,4 +11,5 @@ export const paths = {
   DocumentLibraryPhotos: `${MainPath}DocumentLibrary/PhotoA/`,
   DocumentLibrarAttachment: `${MainPath}DocumentLibrary/AttachmentA/`,
   AboutUs: `${MainPath}StaticContent/PhotoA/`,
+  MainIndicatorPhot :  `${MainPath}MainIndicator/Image/`,
 };

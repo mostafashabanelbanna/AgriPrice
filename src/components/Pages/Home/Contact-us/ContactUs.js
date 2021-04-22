@@ -20,7 +20,7 @@ const ConatctUs = () => {
         </h6>
       </div>
       <div>
-        <div className="p-3 d-flex jusify-content-center align-items-center">
+        <div className="p-3 d-flex jusify-content-center">
           <RoomIcon fontSize="large" className="mx-3" />
           <span>
             1 ش مجلس الشعب - قصر العينى - القاهرة - مصر

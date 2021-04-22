@@ -18,6 +18,7 @@ import GeneralIndicatorTabs from "./Focus-general-indicator/GeneralIndicatorTabs
 import PortsPrices from "./Ports-prices/PortsPrices";
 import GlobalPrices from "./Global-prices/GlobalPrices";
 import Metals from "./Metals/Metals";
+import Currency from './Currency/Currency'
 
 const Home = () => {
   return (
@@ -39,6 +40,7 @@ const Home = () => {
               <Partner />
               <Metals />
               <Outlets />
+              <Currency/>
               <RelatedWebsite />
               <ConatctUs />
             </Container>

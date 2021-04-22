@@ -10,6 +10,7 @@ import "moment/locale/ar";
 
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
+import ThreePieacesHorizontalSkeleton from '../../../LoadingSkeleton/ThreePieacesHorizontal'
 
 const DocsTab = () => {
   const [documentLibrary, setDocumentLibrary] = useState([]);
@@ -99,6 +100,7 @@ const DocsTab = () => {
             </Col>
           );
         })}
+        {noDocumentLibrary && <Col md={12}><ThreePieacesHorizontalSkeleton/></Col>}
     </Row>
   );
 };

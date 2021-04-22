@@ -7,6 +7,7 @@ import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
 
 import "./Partner.css";
+import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
 
 const Partner = () => {
   const settings = {
@@ -54,6 +55,7 @@ const Partner = () => {
       className="justify-content-center pt-3 px-3 mb-3"
       style={{
         backgroundColor: "var(--secondary-gray)",
+        maxHeight:320,
       }}
     >
       <div>
@@ -91,6 +93,7 @@ const Partner = () => {
                 </div>
               );
             })}
+            {noPartners && <OnePieaceSkeleton/>}
         </Slider>
       </div>
     </div>

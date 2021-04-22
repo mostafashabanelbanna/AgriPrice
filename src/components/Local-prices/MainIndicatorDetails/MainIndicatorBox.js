@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import defualtPro from "../../../assets/images/product.png";
+import {paths} from '../../Paths/Pathes'
 
 const MainIndicatorBox = (props) => {
   return (
@@ -13,7 +14,7 @@ const MainIndicatorBox = (props) => {
                 className="img-fluid"
                 src={
                   props.mainIndicatorItem.photo !== ""
-                    ? props.mainIndicatorItem.photo
+                    ? paths.MainIndicatorPhot + props.mainIndicatorItemId + "/" + props.mainIndicatorItem.photo 
                     : defualtPro
                 }
               />
@@ -35,12 +36,14 @@ const MainIndicatorBox = (props) => {
               </span>
             </div>
           </div>
+          {props.mainIndicatorItem.unit !="" && 
           <div className="pb-2">
             <div className="d-flex justify-content-around">
               <span style={{ color: "var(--main-green)" }}>الوحدة</span>
               <span className="pr-1">{props.mainIndicatorItem.unit}</span>
             </div>
           </div>
+          }
         </div>
       </Col>
       <Col
@@ -88,7 +91,7 @@ const MainIndicatorBox = (props) => {
               <span style={{ color: "var(--main-green)" }}>
                 {props.mainIndicatorItem.minSubInicatorPrice}{" "}
               </span>
-              {props.mainIndicatorItem.currency} /{" "}
+              {props.mainIndicatorItem.currency} {props.mainIndicatorItem.unit !="" && <span>/</span>} {" "}
               {props.mainIndicatorItem.unit}
             </span>
           </div>
@@ -108,7 +111,7 @@ const MainIndicatorBox = (props) => {
                 {" "}
                 {props.mainIndicatorItem.maxSubInicatorPrice}{" "}
               </span>
-              {props.mainIndicatorItem.currency} /{" "}
+              {props.mainIndicatorItem.currency} {props.mainIndicatorItem.unit !="" && <span>/</span>} {" "}
               {props.mainIndicatorItem.unit}
             </span>
           </div>

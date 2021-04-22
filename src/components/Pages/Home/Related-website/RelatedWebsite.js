@@ -6,6 +6,7 @@ import HeadBar from "../../../UI/HeadBar";
 
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
+import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
 
 const RelatedWebsite = () => {
   const [relatedWebsites, setRelatedWebsites] = useState([]);
@@ -76,6 +77,14 @@ const RelatedWebsite = () => {
               </Col>
             );
           })}
+          {noRelatedWebsites &&
+            <>
+              <div><OnePieaceSkeleton/></div>
+              <div><OnePieaceSkeleton/></div>
+              <div><OnePieaceSkeleton/></div>
+              <div><OnePieaceSkeleton/></div>
+            </>
+          }
       </div>
     </div>
   );

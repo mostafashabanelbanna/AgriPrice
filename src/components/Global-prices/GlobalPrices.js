@@ -4,6 +4,7 @@ import { useRouteMatch } from "react-router-dom";
 import { axios } from "../Axios/Axios";
 import defualtPro from "../../assets/images/product.png";
 import PulseLoader from "react-spinners/PulseLoader";
+import {paths} from '../Paths/Pathes'
 
 const GlobalPrices = () => {
   const [globalPrices, setGlobalPrices] = useState([]);
@@ -69,7 +70,7 @@ const GlobalPrices = () => {
                       <div style={{ width: "120px" }}>
                         <img
                           className="img-fluid"
-                          src={!item.photo ? defualtPro : null}
+                          src={innerItem.photo == "" ? defualtPro : paths.MainIndicatorPhot + innerItem.mainIndicatorId + "/" + innerItem.photo}
                         />
                       </div>
                       <div className="py-2 text-center">

@@ -9,7 +9,7 @@ import MainIndicatorData from "../../Pages/Home/Focus-general-indicator/MainIndi
 import MainIndicatorBox from "./MainIndicatorBox";
 import PricesChangesRatio from "./PricesChangesRatio";
 import ProducingGovernorates from "./ProducingGovernorates";
-
+import Chart from './Chart';
 import "./MainIndicatorDetails.css";
 import SubIndicatorDetails from "./SubIndicatorDetails";
 
@@ -25,6 +25,7 @@ const MainIndicatorDetails = (props) => {
   const [mainIndicatorItemId, setMainIndicatorItemId] = useState(
     parseInt(props.match.params.indicatorId)
   );
+  const [mainIndicatorChart, setMainIndicatorChart] = useState([]); 
 
   const getMainIndicator = async () => {
     //fetch MainIndicator data
@@ -63,12 +64,24 @@ const MainIndicatorDetails = (props) => {
     }
   };
 
+  const GetMainIndicatorChart = async ()=> {
+    const response = await axios
+      .get(
+        `/PricesData/GetMainIndicatorDetailsChart/${mainIndicatorItemId}`
+      )
+      .catch((err) => console.log("Error", err)); //handle errors
+    if (response && response.data) {
+      setMainIndicatorChart(response.data); // set SubIndicatorDetails data to state
+    }
+  }
+
   useEffect(() => {
     getMainIndicator();
     getMainIndicatorData();
     getProducingGovernorates();
     getSubIndicatorDetails();
     getMainIndicatorOptions();
+    GetMainIndicatorChart();
   }, [mainIndicatorItemId]);
 
   const HandleMainIndicatorchange = (obj) => {
@@ -168,13 +181,15 @@ const MainIndicatorDetails = (props) => {
           />
         </Col>
       </Row>
-      <MainIndicatorBox mainIndicatorItem={mainIndicatorItem} />
+      <MainIndicatorBox mainIndicatorItem={mainIndicatorItem} mainIndicatorItemId = {mainIndicatorItemId} />
       <Row>
         <Col lg={9}>
           <PricesChangesRatio mainIndicatorItem={mainIndicatorItem} />
           {mainIndicatorData.AvgPrice !== 0 ? (
             <MainIndicatorData mainIndicatorData={mainIndicatorData} />
           ) : null}
+
+          <Chart mainIndicatorChart={mainIndicatorChart}/>
           <ProducingGovernorates
             mainIndicatorItem={mainIndicatorItem}
             producingGovernorates={producingGovernorates}

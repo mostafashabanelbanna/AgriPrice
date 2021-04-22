@@ -8,6 +8,9 @@ import MainIndicatorData from "./MainIndicatorData";
 import { Col } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
+import FocusedGeneralIndicatorSkeleton from '../../../LoadingSkeleton/FocusedGeneralIndicator'
+import ThreePieacesHorizontalSkeleton from '../../../LoadingSkeleton/ThreePieacesHorizontal'
+
 
 const GeneralIndicatorTabs = () => {
   const [focusedGeneralIndicator, setFocusedGeneralIndicator] = useState([]);
@@ -149,14 +152,16 @@ const GeneralIndicatorTabs = () => {
         </>
       );
     } else {
-      return null;
+      return (
+             <FocusedGeneralIndicatorSkeleton/>
+            );
     }
   };
 
   return (
     <>
       {tabs()}
-      <div className="d-flex justify-content-center">
+      {!noFocusedGeneralIndicator && <div className="d-flex justify-content-center">
         <Select
           className="selectMainIndicatorsOption my-4"
           classNamePrefix="select"
@@ -171,10 +176,11 @@ const GeneralIndicatorTabs = () => {
           placeholder={selectedValue.label}
           onChange={(event) => getMainIndicatorData(event)}
         />
-      </div>
-      {mainIndicatorData.AvgPrice !== 0 ? (
+      </div> }
+      {!noFocusedGeneralIndicator && mainIndicatorData.AvgPrice !== 0 ? (
         <MainIndicatorData mainIndicatorData={mainIndicatorData} />
       ) : null}
+      {noFocusedGeneralIndicator && <ThreePieacesHorizontalSkeleton/>}
     </>
   );
 };

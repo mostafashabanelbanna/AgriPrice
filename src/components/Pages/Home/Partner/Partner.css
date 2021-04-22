@@ -32,3 +32,6 @@
 
   color: var(--main-green);
 }
+.partner .slick-dots ul{
+  margin-top: 100px !important;
+}

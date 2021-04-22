@@ -12,6 +12,7 @@ import { paths } from "../../../Paths/Pathes";
 import mainBg from "../../../../assets/images/png/panner.png";
 
 import "./Outlet.css";
+import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
 
 const Outlets = () => {
   const settings = {
@@ -95,7 +96,7 @@ const Outlets = () => {
                       key={idx}
                       className="px-2 d-flex flex-column align-items-center"
                     >
-                      <Link
+                      {/* <Link
                         className="d-flex flex-column justify-content-center align-items-center "
                         to={{
                           pathname: "/Ports/PortEntity",
@@ -104,7 +105,7 @@ const Outlets = () => {
                             Entitylogo: outletItem.logo,
                           },
                         }}
-                      >
+                      > */}
                         <div className="carrousel_image ">
                           <img
                             src={`${paths.OutletPhotos}${outletItem.id}/${outletItem.logo}`}
@@ -115,10 +116,11 @@ const Outlets = () => {
                         <div className="carrousel_caption zoom_on_hover">
                           <div className="text-center">{outletItem.nameA}</div>
                         </div>
-                      </Link>
+                      {/* </Link> */}
                     </div>
                   );
                 })}
+                {noOutlets && <OnePieaceSkeleton/>}
             </Slider>
           </div>
         </div>

@@ -3,7 +3,6 @@ import { Row, Col } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
-import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
 
 // import parse from "html-react-parser";
 // import striptags from "striptags";
@@ -13,23 +12,24 @@ import "moment/locale/ar";
 
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
+import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
 
-const Metals = () => {
-  const [metals, setMetals] = useState([]);
-  const noMetals = !metals || (metals && metals.length === 0); //check if no metals
+const Currency = () => {
+  const [curr, setcurr] = useState([]);
+  const noCurr = !curr || (curr && curr.length === 0); //check if no metals
 
-  const getMetals = async () => {
+  const getCurrency = async () => {
     //fetch metals data
     const response = await axios
-      .get("/PricesData/Get_PreciousMetals")
+      .get("/PricesData/GetCurrencyExchange")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
-      setMetals(response.data); // set metals data to state
+        setcurr(response.data); // set metals data to state
     }
   };
 
   useEffect(() => {
-    getMetals();
+    getCurrency();
   }, []);
 
   return (
@@ -42,7 +42,7 @@ const Metals = () => {
       <div>
         <h6 style={{ color: "var(--main-green)" }}>
           <span style={{ borderBottom: "2px solid var(--main-green)" }}>
-            أسعار المعادن
+            أسعار العملات
           </span>
         </h6>
       </div>
@@ -53,25 +53,25 @@ const Metals = () => {
           borderRadius: "10px",
         }}
       >
-        {!noMetals && <div className="border-bottom px-3 py-1 d-flex justify-content-between">
-          <span>المعدن</span>
-          <span>عيار</span>
-          <span>السعر</span>
+        {!noCurr &&<div className="border-bottom px-3 py-1 d-flex justify-content-between">
+          <span> من </span>
+          <span>  إلى </span>
+          <span> السعر</span>
         </div>}
-        {!noMetals &&
-          metals.map((Item, idx) => {
+        {!noCurr &&
+         curr.map((Item, idx) => {
             return (
-              <div className="px-3 py-1 d-flex justify-content-between">
-                <span>{Item.mainIndicatorName}</span>
-                <span>{Item.unit}</span>
-                <span>{Item.avgPrice}</span>
+              <div key={idx} className="px-3 py-1 d-flex justify-content-between">
+                <span>{Item.from}</span>
+                <span>{Item.to}</span>
+                <span>{Item.value}</span>
               </div>
             );
           })}
-          {noMetals && <OnePieaceSkeleton/>}
+        {noCurr && <OnePieaceSkeleton/>}
       </div>
     </div>
   );
 };
 
-export default Metals;
+export default Currency;

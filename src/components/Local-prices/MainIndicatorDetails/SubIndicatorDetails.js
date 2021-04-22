@@ -5,11 +5,13 @@ const SubIndicatorDetails = (props) => {
   return (
     <Row className="my-4">
       <Col xs={12} className="mb-2">
+        {props.subIndicatorDetails.length > 0 && 
         <h6 style={{ color: "var(--main-green)" }}>
           <span style={{ borderBottom: "2px solid var(--main-green)" }}>
             الفئات السلعية
           </span>
         </h6>
+        }
       </Col>
       <Col>
         {props.subIndicatorDetails.map((item, idx) => {

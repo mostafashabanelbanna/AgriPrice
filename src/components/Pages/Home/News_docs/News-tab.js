@@ -12,6 +12,7 @@ import "moment/locale/ar";
 
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
+import ThreePieacesHorizontalSkeleton from '../../../LoadingSkeleton/ThreePieacesHorizontal'
 
 const NewsTab = () => {
   const [news, setNews] = useState([]);
@@ -94,6 +95,7 @@ const NewsTab = () => {
             </Col>
           );
         })}
+        {noNews && <Col md={12}><ThreePieacesHorizontalSkeleton/></Col>}
     </Row>
   );
 };

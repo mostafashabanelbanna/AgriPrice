@@ -3,6 +3,8 @@ import { Col, Row } from "react-bootstrap";
 import { useRouteMatch } from "react-router-dom";
 import { axios } from "../../../Axios/Axios";
 import defualtPro from "../../../../assets/images//product.png";
+import {paths} from '../../../Paths/Pathes'
+import FourPieacesHorizontalSkeleton from '../../../LoadingSkeleton/FourPieacesHorizontal'
 
 const PortsPrices = () => {
   const [portsPrices, setPortsPrices] = useState([]);
@@ -55,7 +57,7 @@ const PortsPrices = () => {
                   <div style={{ width: "120px" }}>
                     <img
                       className="img-fluid"
-                      src={!portsPricesItem.photo ? defualtPro : null}
+                      src={!portsPricesItem.photo ? defualtPro : paths.MainIndicatorPhot + portsPricesItem.mainIndicatorId + "/" + portsPricesItem.photo }
                     />
                   </div>
                   <div className="py-2">{portsPricesItem.indicatorName}</div>
@@ -72,6 +74,7 @@ const PortsPrices = () => {
                 </Col>
               );
             })}
+            {noPortsPrices && <Col md={12}><FourPieacesHorizontalSkeleton/></Col> }
         </Row>
       </Col>
     </Row>

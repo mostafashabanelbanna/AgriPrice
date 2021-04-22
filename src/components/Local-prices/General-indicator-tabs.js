@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Tab, Tabs } from "react-bootstrap";
 import { Row, Col, Table } from "react-bootstrap";
 import GeneralIndicatorContent from "./General-indicator-content";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const GeneralIndicatorTabs = (props) => {
   let ArrgeneralIndicatorData = [];
@@ -14,7 +15,7 @@ const GeneralIndicatorTabs = (props) => {
   return (
     <Container>
       <Tabs className="mt-4 flex-md-row flex-column">
-        {ArrgeneralIndicatorData.map((generalIndicatorDataItem, idx) => {
+        {ArrgeneralIndicatorData.length > 0 && ArrgeneralIndicatorData.map((generalIndicatorDataItem, idx) => {
           if (
             generalIndicatorDataItem[Object.keys(generalIndicatorDataItem)[0]]
               .length !== 0
@@ -54,6 +55,11 @@ const GeneralIndicatorTabs = (props) => {
             );
           }
         })}
+        {ArrgeneralIndicatorData.length <=0 && 
+         <div className="w-100 d-flex justify-content-center m-5">
+          <PulseLoader loading={true} color="#0D924C" margin="5" />
+         </div>
+        }
       </Tabs>
     </Container>
   );
