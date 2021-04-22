@@ -13,11 +13,9 @@ import Col from "react-bootstrap/Col";
 
 import PulseLoader from "react-spinners/PulseLoader";
 
-import CustomCard from "../../UI/Custom-card";
 import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 
-import mainBg from "../../../assets/images/png/panner.png";
 import { Button } from "@material-ui/core";
 
 const NewsList = () => {
@@ -270,9 +268,9 @@ const NewsList = () => {
 
             return (
               <>
-                {idx === 2 ? (
+                {idx === 2 && currentPage === 0 ? (
                   firstRow()
-                ) : counter > 2 ? (
+                ) : counter > 2 || currentPage > 0 || news.length < 3 ? (
                   <Col lg={6} className="my-3">
                     <Link
                       className="h-100 p-2 zoom_image_on_hover"
@@ -330,25 +328,6 @@ const NewsList = () => {
             );
           })}
       </Row>
-
-      {/* <Link
-        className="h-100"
-        // pass news item data throw props
-        to={{
-          pathname: `${url}/${newsItem.id}`,
-          state: {
-            newsItem,
-          },
-        }}
-      >
-        <CustomCard
-          CardTitle={newsItem.titleA}
-          CardText={moment(newsItem.publishDate)
-            .locale("ar")
-            .format("LL")}
-          CardImg={`${paths.NewsPhotos}${newsItem.id}/${newsItem.photoA}`}
-        />
-      </Link> */}
 
       {!noNews && (
         <Col xs={12}>
