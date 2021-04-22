@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 
 import ReactPaginate from "react-paginate";
 import parse from "html-react-parser";
@@ -56,7 +58,7 @@ const DocumentLibraryList = () => {
   useEffect(() => {
     getDocumentLibrary();
   }, []);
-
+  let { url } = useRouteMatch();
   return (
     <Container
       fluid
@@ -83,51 +85,74 @@ const DocumentLibraryList = () => {
                     className="p-3 m-3 border"
                     style={{ backgroundColor: "#fff", borderRadius: "8px" }}
                   >
-                    <Row>
-                      <Col xs={4} className="h-100">
-                        <img
-                          src={`${paths.DocumentLibraryPhotos}${documentLibraryItem.id}/${documentLibraryItem.photoA}`}
-                          className="img-fluid img-thumbnail p-0"
-                          alt=""
-                        />
-                      </Col>
-                      <Col className="d-flex flex-column justify-content-between  h-100">
-                        <div>
-                          <h3 style={{ color: "var(--main-green)" }}>
-                            {documentLibraryItem.titleA}
-                          </h3>
-                          <h4>{documentLibraryItem.titleE}</h4>
-                          <p>{parse(documentLibraryItem.contentA)}</p>
-                        </div>
-                        <div className="border-top d-flex justify-content-between py-3">
-                          <div>
-                            <TodayIcon />
-                            <strong
-                              className="mx-2"
-                              style={{ color: "var(--main-green)" }}
-                            >
-                              {moment(documentLibraryItem.publishDate)
-                                .locale("ar")
-                                .format("LL")}
-                            </strong>
-                          </div>{" "}
-                          <a
-                            href={`${paths.DocumentLibrarAttachment}${documentLibraryItem.id}/${documentLibraryItem.attachmentA}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            download
+                    <Link
+                      className="h-100 p-2 zoom_image_on_hover"
+                      // pass news item data throw props
+                      to={{
+                        pathname: `${url}/${documentLibraryItem.id}`,
+                        state: {
+                          documentLibraryItem,
+                        },
+                      }}
+                    >
+                      <Row className="h-100">
+                        <Col xs={4} className="h-100">
+                          <div
+                            style={{
+                              height: "200px",
+                            }}
                           >
-                            <DescriptionIcon />
-                            <strong
-                              className="mx-2"
-                              style={{ color: "var(--main-green)" }}
+                            <div
+                              className="zoomed_img"
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                backgroundImage: `url(${paths.DocumentLibraryPhotos}${documentLibraryItem.id}/${documentLibraryItem.photoA})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center",
+                                backgroundSize: "cover",
+                              }}
+                            ></div>
+                          </div>
+                        </Col>
+                        <Col className="d-flex flex-column justify-content-between  h-100">
+                          <div>
+                            <h3 style={{ color: "var(--main-green)" }}>
+                              {documentLibraryItem.titleA}
+                            </h3>
+                            <h4>{documentLibraryItem.titleE}</h4>
+                            <p>{parse(documentLibraryItem.contentA)}</p>
+                          </div>
+                          <div className="border-top d-flex justify-content-between py-3">
+                            <div>
+                              <TodayIcon />
+                              <strong
+                                className="mx-2"
+                                style={{ color: "var(--main-green)" }}
+                              >
+                                {moment(documentLibraryItem.publishDate)
+                                  .locale("ar")
+                                  .format("LL")}
+                              </strong>
+                            </div>{" "}
+                            <span
+                              href={`${paths.DocumentLibrarAttachment}${documentLibraryItem.id}/${documentLibraryItem.attachmentA}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              download
                             >
-                              تحميل ملف مرفق
-                            </strong>
-                          </a>
-                        </div>
-                      </Col>
-                    </Row>
+                              <DescriptionIcon />
+                              <strong
+                                className="mx-2"
+                                style={{ color: "var(--main-green)" }}
+                              >
+                                إستعراض ملف مرفق
+                              </strong>
+                            </span>
+                          </div>
+                        </Col>
+                      </Row>
+                    </Link>
                   </Col>
                 );
               })}

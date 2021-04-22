@@ -75,17 +75,7 @@ const NewsList = () => {
   let counter;
 
   return (
-    <Container
-    // style={
-    //   !noNews
-    //     ? {
-    //         backgroundImage: `url(${mainBg})`,
-    //         backgroundPosition: "right top",
-    //         backgroundSize: "cover",
-    //       }
-    //     : {}
-    // }
-    >
+    <Container>
       <Row>
         {!noNews &&
           news.slice(offset, offset + PER_PAGE).map((newsItem, idx) => {
