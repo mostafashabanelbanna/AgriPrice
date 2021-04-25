@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
-import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
+import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
 
 // import parse from "html-react-parser";
 // import striptags from "striptags";
@@ -51,13 +51,16 @@ const Metals = () => {
         style={{
           backgroundColor: "#fff",
           borderRadius: "10px",
+          boxShadow: "rgb(179 179 179 / 36%) 4px 4px 4px 0px",
         }}
       >
-        {!noMetals && <div className="border-bottom px-3 py-1 d-flex justify-content-between">
-          <span>المعدن</span>
-          <span>عيار</span>
-          <span>السعر</span>
-        </div>}
+        {!noMetals && (
+          <div className="border-bottom px-3 py-1 d-flex justify-content-between">
+            <span>المعدن</span>
+            <span>عيار</span>
+            <span>السعر</span>
+          </div>
+        )}
         {!noMetals &&
           metals.map((Item, idx) => {
             return (
@@ -68,7 +71,7 @@ const Metals = () => {
               </div>
             );
           })}
-          {noMetals && <OnePieaceSkeleton/>}
+        {noMetals && <OnePieaceSkeleton />}
       </div>
     </div>
   );

@@ -3,8 +3,10 @@ import RoomIcon from "@material-ui/icons/Room";
 import PhoneEnabledIcon from "@material-ui/icons/PhoneEnabled";
 import MailIcon from "@material-ui/icons/Mail";
 import LocalPrintshopIcon from "@material-ui/icons/LocalPrintshop";
+import { useRouteMatch } from "react-router-dom";
 
 const ConatctUs = () => {
+  let { url } = useRouteMatch();
   return (
     <div
       className="border-right  justify-content-center pt-3 px-3"
@@ -12,23 +14,19 @@ const ConatctUs = () => {
         borderWidth: "3px",
       }}
     >
-      <div>
-        <h6 style={{ color: "var(--main-green)" }}>
-          <span style={{ borderBottom: "2px solid var(--main-green)" }}>
-            تواصل معنا
-          </span>
-        </h6>
-      </div>
+      {url === "/" ? (
+        <div>
+          <h6 style={{ color: "var(--main-green)" }}>
+            <span style={{ borderBottom: "2px solid var(--main-green)" }}>
+              تواصل معنا
+            </span>
+          </h6>
+        </div>
+      ) : null}
       <div>
         <div className="p-3 d-flex jusify-content-center">
           <RoomIcon fontSize="large" className="mx-3" />
-          <span>
-            1 ش مجلس الشعب - قصر العينى - القاهرة - مصر
-            <br />
-            ص.ب: 191 مجلس الشعب
-            <br />
-            رقم بريدى: 11582
-          </span>
+          <span>1 ش مجلس الشعب - قصر العينى - القاهرة - مصر</span>
         </div>
         <div className="p-3 d-flex jusify-content-center align-items-center">
           <PhoneEnabledIcon fontSize="large" className="mx-3" />

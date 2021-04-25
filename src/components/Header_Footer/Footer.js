@@ -1,26 +1,35 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
 import "./Footer.css";
 
-import siteLogo from "../../assets/images/logo@2x.png";
-import idscLogo from "../../assets/images/idsc.png";
+import siteLogo from "../../assets/images/header_footer/logo_footer.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="">
-      <Container fluid>
-        <Row className="p-4" style={{ backgroundColor: "var(--main-gray)" }}>
-          <Col lg={3} className="d-flex">
+    <footer style={{ backgroundColor: "var(--main-gray)" }}>
+      <Container>
+        <Row className="p-4">
+          {/* <Col lg={2}>
+            <img
+              className="img-fluid"
+              src={siteLogo}
+              style={{ height: "150px" }}
+              alt="siteLogo"
+            />
+          </Col> */}
+          <Col lg={5} className="d-flex">
             <Link to="/" className="navbar-logo">
               <img
                 className="img-fluid"
                 src={siteLogo}
-                style={{ height: "150px" }}
+                style={{ height: "120px" }}
                 alt="siteLogo"
               />
             </Link>
           </Col>
-          <Col lg={6}>
+          <Col lg={5}>
             <Row>
               <Col xs={4} className="d-flex flex-column  align-items-center">
                 <Link className="my-2" to="/about-us">
@@ -57,17 +66,22 @@ const Footer = () => {
               </Col>
             </Row>
           </Col>
-          <Col lg={3}>
-            <img
-              className="img-fluid"
-              src={idscLogo}
-              style={{ height: "150px" }}
-              alt="siteLogo"
-            />
+          <Col
+            lg={2}
+            className="d-flex flex-column align-items-center justify-content-center"
+          >
+            <a href="#" className="my-2">
+              <FacebookIcon fontSize="large" style={{ color: "#707070" }} />
+            </a>
+            <a href="#" className="my-2">
+              <InstagramIcon fontSize="large" style={{ color: "#707070" }} />
+            </a>
           </Col>
         </Row>
+      </Container>
+      <Container fluid style={{ backgroundColor: "#d6d6d6" }}>
         <Row>
-          <Col className="text-white d-flex justify-content-center p-3">
+          <Col className="d-flex justify-content-center p-3">
             جميع الحقوق محفوظة -مركز المعلومات و دعم اتخاذ القرار ٢٠٢١
           </Col>
         </Row>
