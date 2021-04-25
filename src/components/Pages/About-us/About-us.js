@@ -3,6 +3,10 @@ import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 import parse from "html-react-parser";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
+import Home from "../Home/Home";
+
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
 const AboutUs = () => {
   const [aboutUs, setAboutUs] = useState(null);
@@ -18,9 +22,16 @@ const AboutUs = () => {
   useEffect(() => {
     getAbouUs();
   }, []);
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "من نحن", path: "/about-us" },
+    { text: "عن الموقع", path: "/about-us" },
+  ];
 
   return (
     <Container>
+      <Breadcrumb crumbs={crumbs} />
+
       <div
         className="my-3"
         style={{ color: "var(--main-green)", fontSize: "1.2rem" }}

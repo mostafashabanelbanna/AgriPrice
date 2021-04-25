@@ -6,6 +6,7 @@ import { axios } from "../Axios/Axios";
 import "./LocalPrices.css";
 import { SampleNextArrow, SamplePrevArrow } from "../slick-carousel/Arrows";
 import GeneralIndicatorTabs from "./General-indicator-tabs";
+import Breadcrumb from "../UI/Bread-crumb/Breadcrumb";
 
 const LocalPrices = (props) => {
   const [generalIndicators, setGeneralIndicators] = useState([]);
@@ -25,11 +26,10 @@ const LocalPrices = (props) => {
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGeneralIndicators(response.data); // set generalIndicators data to state
-      if(props.location.state == null){
+      if (props.location.state == null) {
         getGeneralIndicatorData(response.data[0].id); // set GeneralIndicatorData on component mount
         setCurrentGeneralIndicator(response.data[0].id);
-      }
-      else{
+      } else {
         getGeneralIndicatorData(parseInt(props.location.state.indicatorId)); // set GeneralIndicatorData on component mount
         setCurrentGeneralIndicator(props.location.state.indicatorId);
       }
@@ -84,37 +84,49 @@ const LocalPrices = (props) => {
       },
     ],
   };
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "الأسعار المحلية", path: "/local-prices" },
+    { text: "المجموعة السلعية", path: "/local-prices" },
+  ];
 
   return (
-    <Container fluid className="my-4 local-prices">
-      <Row>
-        <Col xs={12}>
-          <h5 style={{ color: "var(--main-green)" }}>المجموعات السلعية</h5>
-        </Col>
-        <Col xs={12} className="my-4">
-          <Slider {...settings}>
-            {!noGeneralIndicators &&
-              generalIndicators.map((Item, idx) => {
-                return (
-                  <div key={Item.id}>
-                    <div
-                      className={`p-2 mx-2 lable ${
-                        Item.id === currentGeneralIndicator ? "active" : ""
-                      }`}
-                      onClick={() => handleGeneralIndicatorSelect(Item.id)}
-                    >
-                      <h6 className="text-center my-1">{Item.nameA}</h6>
+    <>
+      <Container>
+        <Breadcrumb crumbs={crumbs} />
+        <Row className="mt-4">
+          <Col xs={12}>
+            <h5 style={{ color: "var(--main-green)" }}>المجموعات السلعية</h5>
+          </Col>
+        </Row>
+      </Container>
+      <Container fluid className="my-2 local-prices">
+        <Row>
+          <Col xs={12} className="my-4">
+            <Slider {...settings}>
+              {!noGeneralIndicators &&
+                generalIndicators.map((Item, idx) => {
+                  return (
+                    <div key={Item.id}>
+                      <div
+                        className={`p-2 mx-2 lable ${
+                          Item.id === currentGeneralIndicator ? "active" : ""
+                        }`}
+                        onClick={() => handleGeneralIndicatorSelect(Item.id)}
+                      >
+                        <h6 className="text-center my-1">{Item.nameA}</h6>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-          </Slider>
-        </Col>
-        <Col xs={12}>
-          <GeneralIndicatorTabs generalIndicatorData={generalIndicatorData} />
-        </Col>
-      </Row>
-    </Container>
+                  );
+                })}
+            </Slider>
+          </Col>
+          <Col xs={12}>
+            <GeneralIndicatorTabs generalIndicatorData={generalIndicatorData} />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

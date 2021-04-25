@@ -9,9 +9,10 @@ import MainIndicatorData from "../../Pages/Home/Focus-general-indicator/MainIndi
 import MainIndicatorBox from "./MainIndicatorBox";
 import PricesChangesRatio from "./PricesChangesRatio";
 import ProducingGovernorates from "./ProducingGovernorates";
-import Chart from './Chart';
+import Chart from "./Chart";
 import "./MainIndicatorDetails.css";
 import SubIndicatorDetails from "./SubIndicatorDetails";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
 const MainIndicatorDetails = (props) => {
   //get mainIndicator id from url
@@ -25,7 +26,7 @@ const MainIndicatorDetails = (props) => {
   const [mainIndicatorItemId, setMainIndicatorItemId] = useState(
     parseInt(props.match.params.indicatorId)
   );
-  const [mainIndicatorChart, setMainIndicatorChart] = useState([]); 
+  const [mainIndicatorChart, setMainIndicatorChart] = useState([]);
 
   const getMainIndicator = async () => {
     //fetch MainIndicator data
@@ -64,16 +65,14 @@ const MainIndicatorDetails = (props) => {
     }
   };
 
-  const GetMainIndicatorChart = async ()=> {
+  const GetMainIndicatorChart = async () => {
     const response = await axios
-      .get(
-        `/PricesData/GetMainIndicatorDetailsChart/${mainIndicatorItemId}`
-      )
+      .get(`/PricesData/GetMainIndicatorDetailsChart/${mainIndicatorItemId}`)
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setMainIndicatorChart(response.data); // set SubIndicatorDetails data to state
     }
-  }
+  };
 
   useEffect(() => {
     getMainIndicator();
@@ -165,11 +164,22 @@ const MainIndicatorDetails = (props) => {
       });
     }
   };
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "الأسعار المحلية", path: `/local-prices/${mainIndicatorItemId}` },
+    { text: "المجموعة السلعية", path: "/local-prices" },
+    { text: "بحث السلع", path: `/local-prices/${mainIndicatorItemId}` },
+  ];
 
-  //
   return (
     <Container>
+      <Breadcrumb crumbs={crumbs} />
       <Row className="my-4">
+        <Row className="mt-4">
+          <Col xs={12}>
+            <h5 style={{ color: "var(--main-green)" }}>المجموعات السلعية</h5>
+          </Col>
+        </Row>
         <Col xs={12}>
           <Select
             className="selectMainIndicatorsOption"
@@ -181,7 +191,10 @@ const MainIndicatorDetails = (props) => {
           />
         </Col>
       </Row>
-      <MainIndicatorBox mainIndicatorItem={mainIndicatorItem} mainIndicatorItemId = {mainIndicatorItemId} />
+      <MainIndicatorBox
+        mainIndicatorItem={mainIndicatorItem}
+        mainIndicatorItemId={mainIndicatorItemId}
+      />
       <Row>
         <Col lg={9}>
           <PricesChangesRatio mainIndicatorItem={mainIndicatorItem} />
@@ -189,7 +202,7 @@ const MainIndicatorDetails = (props) => {
             <MainIndicatorData mainIndicatorData={mainIndicatorData} />
           ) : null}
 
-          <Chart mainIndicatorChart={mainIndicatorChart}/>
+          <Chart mainIndicatorChart={mainIndicatorChart} />
           <ProducingGovernorates
             mainIndicatorItem={mainIndicatorItem}
             producingGovernorates={producingGovernorates}

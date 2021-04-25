@@ -7,6 +7,7 @@ import TodayIcon from "@material-ui/icons/Today";
 import * as moment from "moment";
 
 import "moment/locale/ar";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
 const DocumentLibraryItem = (props) => {
   //get data from Link state
@@ -36,9 +37,19 @@ const DocumentLibraryItem = (props) => {
   useEffect(() => {
     getDocumentLibraryItem();
   }, []);
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "الإصدارات", path: `/document-library-list` },
+    {
+      text: "تفاصيل الإصدارة",
+      path: `/document-library-list/${documentLibraryItemId}`,
+    },
+  ];
 
   return (
-    <Container className="my-4">
+    <Container className="">
+      <Breadcrumb crumbs={crumbs} />
+
       {documentLibraryItemLinkState ? (
         <div>
           <div className="border-bottom d-flex justify-content-between py-3 mb-2">

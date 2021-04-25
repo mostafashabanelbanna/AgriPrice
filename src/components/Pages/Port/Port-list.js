@@ -20,6 +20,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Button from "@material-ui/core/Button";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import "./Port.css";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
 const PortList = (Props) => {
   const [Ports, setPorts] = useState([]);
@@ -110,9 +111,14 @@ const PortList = (Props) => {
   }, [SelectedGovernorate, SelectedPortEntity, SelectedPortType]);
 
   let { url } = useRouteMatch();
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "المنافذ", path: `/Ports` },
+  ];
 
   return (
     <Container>
+      <Breadcrumb crumbs={crumbs} />
       <div className="row mt-4">
         <div className="col-md-12">
           <h3 style={{ color: "#4A9559" }}>المنافذ</h3>

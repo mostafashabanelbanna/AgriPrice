@@ -22,6 +22,7 @@ import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 
 import mainBg from "../../../assets/images/png/panner.png";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
 const DocumentLibraryList = () => {
   const [documentLibrary, setDocumentLibrary] = useState([]);
@@ -59,6 +60,10 @@ const DocumentLibraryList = () => {
     getDocumentLibrary();
   }, []);
   let { url } = useRouteMatch();
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "الإصدارات", path: `/document-library-list` },
+  ];
   return (
     <Container
       fluid
@@ -73,6 +78,7 @@ const DocumentLibraryList = () => {
       }
     >
       <Container>
+        <Breadcrumb crumbs={crumbs} />
         <Row>
           {!noDocumentLibrary &&
             documentLibrary

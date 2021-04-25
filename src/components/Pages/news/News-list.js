@@ -17,6 +17,7 @@ import { axios } from "../../Axios/Axios";
 import { paths } from "../../Paths/Pathes";
 
 import { Button } from "@material-ui/core";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
 const NewsList = () => {
   const [news, setNews] = useState([]);
@@ -73,9 +74,14 @@ const NewsList = () => {
   };
 
   let counter;
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "الأخبار", path: `/news-list` },
+  ];
 
   return (
     <Container>
+      <Breadcrumb crumbs={crumbs} />
       <Row>
         {!noNews &&
           news.slice(offset, offset + PER_PAGE).map((newsItem, idx) => {

@@ -12,6 +12,7 @@ import { axios } from "../../Axios/Axios";
 import CustomSlider from "../../UI/Custom-slider";
 import { paths } from "../../Paths/Pathes";
 import "./News-item.css";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
 const NewsItem = (props) => {
   //get data from Link state
@@ -42,11 +43,16 @@ const NewsItem = (props) => {
   useEffect(() => {
     getNews();
   }, []);
-
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "الأخبار", path: `/news-list` },
+    { text: "تفاصيل الخبر", path: `/news-list/${newsItemId}` },
+  ];
   return (
     <>
       {newsItemLinkState ? (
-        <Container className="mt-4">
+        <Container className="">
+          <Breadcrumb crumbs={crumbs} />
           <Row>
             <Col>
               <h4 className="my-4" style={{ color: "var(--main-green)" }}>
@@ -82,7 +88,8 @@ const NewsItem = (props) => {
           </Row>
         </Container>
       ) : (
-        <Container className="mt-4">
+        <Container className="">
+          <Breadcrumb crumbs={crumbs} />
           <Row>
             <Col>
               <h4 className="my-4" style={{ color: "var(--main-green)" }}>

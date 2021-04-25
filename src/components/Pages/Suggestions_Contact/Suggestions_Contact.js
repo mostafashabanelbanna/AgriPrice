@@ -1,15 +1,21 @@
 import React from "react";
 
 import { Col, Container, Row } from "react-bootstrap";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 import ConatctUs from "../Home/Contact-us/ContactUs";
 
 import SuggestionsForm from "../Home/Suggestions-form/Suggestions-form";
 
-// import "./Outlet.css";
-
 const SuggestionsContact = () => {
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "من نحن", path: "/suggestions" },
+    { text: " إتصل بنا", path: "/suggestions" },
+  ];
+
   return (
     <Container>
+      <Breadcrumb crumbs={crumbs} />
       <Row className="justify-content-center ">
         <Container>
           <Row className="my-3">
