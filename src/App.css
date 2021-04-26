@@ -50,6 +50,22 @@ a {
   color: unset;
 }
 
+/* breadcrumb */
+.breadcrumb {
+  background-color: #fffefe;
+  background-image: linear-gradient(315deg, #f6f6f6 0%, #ffffff 74%);
+}
+.breadcrumb .breadcrumb-item .active.current {
+  color: var(--main-green);
+}
+.breadcrumb .breadcrumb-item .active.current:hover {
+  color: var(--main-gray);
+  cursor: default;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  padding-left: 0.5rem;
+  content: ">";
+}
 /* scale */
 .zoom_on_hover:hover {
   -webkit-transition: transform 0.5s ease-in-out;

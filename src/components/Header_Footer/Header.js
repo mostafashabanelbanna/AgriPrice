@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import siteLogo from "../../assets/images/logo@2x.png";
-import idscLogo from "../../assets/images/idsc.png";
+import siteLogo from "../../assets/images/header_footer/logo_banner.png";
 
 import "./Header.css";
 
 const Header = () => {
   const [click, setClick] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showAboutUs, setAboutUs] = useState(false);
+  const [showMediaCorner, setMediaCorner] = useState(false);
   const [Parent, setParent] = useState("");
-  const showDropdown = (e) => {
-    setShow(!show);
+
+  const showAboutusDropdown = (e) => {
+    setAboutUs(!showAboutUs);
   };
-  const hideDropdown = (e) => {
-    setShow(false);
+  const hideAboutusDropdown = (e) => {
+    setAboutUs(false);
+  };
+
+  const showMediaCornerDropdown = (e) => {
+    setMediaCorner(!showMediaCorner);
+  };
+  const hideMediaCornerDropdown = (e) => {
+    setMediaCorner(false);
   };
 
   const handleClick = () => setClick(!click);
@@ -29,22 +35,21 @@ const Header = () => {
 
   return (
     <>
-      <Container fluid className="panner">
-        <Row className="align-items-center justify-content-between px-5 row">
-          <div></div>
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            <img src={siteLogo} style={{ height: "100px" }} alt="siteLogo" />
-          </Link>
-
-          <img src={idscLogo} style={{ height: "100px" }} alt="siteLogo" />
-        </Row>
-      </Container>
-
-      <nav className="navbar">
+      <nav className="navbar panner justify-content-between px-md-5 px-2">
+        <NavLink
+          to="/"
+          exact
+          activeClassName="active"
+          className="nav-links"
+          onClick={() => closeMobileMenu("")}
+        >
+          <img src={siteLogo} style={{ height: "60px" }} alt="siteLogo" />
+        </NavLink>
         <div className="navbar-container">
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
+
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <NavLink
@@ -58,14 +63,32 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                to="/about-us"
-                activeClassName="active"
-                className="nav-links"
-                onClick={() => closeMobileMenu("")}
+              <NavDropdown
+                className={
+                  Parent === "about" ? "active nav-links" : "nav-links"
+                }
+                title={<span> من نحن</span>}
+                show={showAboutUs}
+                onMouseEnter={showAboutusDropdown}
+                onMouseLeave={hideAboutusDropdown}
               >
-                من نحن
-              </NavLink>
+                <NavLink
+                  to="/about-us"
+                  activeClassName="active"
+                  className="nav-links"
+                  onClick={() => closeMobileMenu("about")}
+                >
+                  عن الموقع
+                </NavLink>
+                <NavLink
+                  to="/suggestions"
+                  className="nav-links"
+                  activeClassName="active"
+                  onClick={() => closeMobileMenu("about")}
+                >
+                  إتصل بنا
+                </NavLink>
+              </NavDropdown>
             </li>
             <li className="nav-item">
               <NavLink
@@ -105,9 +128,9 @@ const Header = () => {
                   Parent === "MediaCorner" ? "active nav-links" : "nav-links"
                 }
                 title={<span> المركز الإعلامي</span>}
-                show={show}
-                onMouseEnter={showDropdown}
-                onMouseLeave={hideDropdown}
+                show={showMediaCorner}
+                onMouseEnter={showMediaCornerDropdown}
+                onMouseLeave={hideMediaCornerDropdown}
               >
                 <NavLink
                   to="/news-list"
@@ -117,14 +140,14 @@ const Header = () => {
                 >
                   الأخبار
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   to="/events-list"
                   className="nav-links"
                   activeClassName="active"
                   onClick={() => closeMobileMenu("MediaCorner")}
                 >
                   فعاليات
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   to="/document-library-list"
                   activeClassName="active"
@@ -136,7 +159,7 @@ const Header = () => {
                 </NavLink>
               </NavDropdown>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink
                 to="/suggestions"
                 activeClassName="active"
@@ -145,9 +168,11 @@ const Header = () => {
               >
                 إﻗﺘﺮاﺣﺎت و ﺷﻜﺎوى
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
+        {/* login */}
+        <div></div>
       </nav>
     </>
   );

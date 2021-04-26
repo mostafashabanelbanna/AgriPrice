@@ -4,7 +4,8 @@ import { useRouteMatch } from "react-router-dom";
 import { axios } from "../Axios/Axios";
 import defualtPro from "../../assets/images/product.png";
 import PulseLoader from "react-spinners/PulseLoader";
-import {paths} from '../Paths/Pathes'
+import { paths } from "../Paths/Pathes";
+import Breadcrumb from "../UI/Bread-crumb/Breadcrumb";
 
 const GlobalPrices = () => {
   const [globalPrices, setGlobalPrices] = useState([]);
@@ -28,8 +29,13 @@ const GlobalPrices = () => {
   useEffect(() => {
     getGlobalPrices();
   }, []);
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "الأسعار العالمية", path: `/Global-prices` },
+  ];
   return (
     <Container>
+      <Breadcrumb crumbs={crumbs} />
       <Row className="my-4">
         <Col xs={12}>
           <h5 style={{ color: "var(--main-green)" }}>الأسعار العالمية</h5>
@@ -70,7 +76,14 @@ const GlobalPrices = () => {
                       <div style={{ width: "120px" }}>
                         <img
                           className="img-fluid"
-                          src={innerItem.photo == "" ? defualtPro : paths.MainIndicatorPhot + innerItem.mainIndicatorId + "/" + innerItem.photo}
+                          src={
+                            innerItem.photo == ""
+                              ? defualtPro
+                              : paths.MainIndicatorPhot +
+                                innerItem.mainIndicatorId +
+                                "/" +
+                                innerItem.photo
+                          }
                         />
                       </div>
                       <div className="py-2 text-center">

@@ -12,7 +12,7 @@ import { paths } from "../../../Paths/Pathes";
 import mainBg from "../../../../assets/images/png/panner.png";
 
 import "./Outlet.css";
-import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
+import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
 
 const Outlets = () => {
   const settings = {
@@ -106,21 +106,21 @@ const Outlets = () => {
                           },
                         }}
                       > */}
-                        <div className="carrousel_image ">
-                          <img
-                            src={`${paths.OutletPhotos}${outletItem.id}/${outletItem.logo}`}
-                            className="img-fluid mx-auto"
-                            alt={`${outletItem.logo}`}
-                          />
-                        </div>
-                        <div className="carrousel_caption zoom_on_hover">
-                          <div className="text-center">{outletItem.nameA}</div>
-                        </div>
+                      <div className="carrousel_image ">
+                        <img
+                          src={`${paths.OutletPhotos}${outletItem.id}/${outletItem.logo}`}
+                          className="img-fluid mx-auto"
+                          alt={`${outletItem.logo}`}
+                        />
+                      </div>
+                      <div className="carrousel_caption zoom_on_hover">
+                        <div className="text-center">{outletItem.nameA}</div>
+                      </div>
                       {/* </Link> */}
                     </div>
                   );
                 })}
-                {noOutlets && <OnePieaceSkeleton/>}
+              {noOutlets && <OnePieaceSkeleton />}
             </Slider>
           </div>
         </div>
@@ -163,7 +163,9 @@ const Outlets = () => {
                       >
                         <div
                           className="carrousel_image"
-                          style={{ border: "5px solid var(--main-green)" }}
+                          style={{
+                            boxShadow: "rgb(179 179 179 / 36%) 4px 4px 4px 0px",
+                          }}
                         >
                           <img
                             src={`${paths.OutletPhotos}${outletItem.id}/${outletItem.logo}`}

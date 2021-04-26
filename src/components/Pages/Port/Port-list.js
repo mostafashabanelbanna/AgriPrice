@@ -18,6 +18,7 @@ import Move from "../../../assets/images/Move.png";
 
 import PulseLoader from "react-spinners/PulseLoader";
 import Button from "@material-ui/core/Button";
+import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import './Port.css'
 import {savePortSearch} from '../../../store/actions/PortSearch';
@@ -60,32 +61,32 @@ const PortList = (props) => {
       setPorts(response.data);
     }
   };
-  const GetGovernorates = async()=> {
+  const GetGovernorates = async () => {
     const response = await axios
-    .get("Home/Governorate")
-    .catch((err) => console.log("Error", err)); //handle errors
+      .get("Home/Governorate")
+      .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGovernorate(response.data);
     }
-  }
+  };
 
-  const GetPortEntities = async()=> {
+  const GetPortEntities = async () => {
     const response = await axios
-    .get("Ports/PortEntity")
-    .catch((err) => console.log("Error", err)); //handle errors
+      .get("Ports/PortEntity")
+      .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setPortEntity(response.data);
     }
-  }
+  };
 
-  const GetPortTypes = async()=> {
+  const GetPortTypes = async () => {
     const response = await axios
-    .get("Ports/PortType")
-    .catch((err) => console.log("Error", err)); //handle errors
+      .get("Ports/PortType")
+      .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setPortType(response.data);
     }
-  }
+  };
 
   const GovHandleChanges = (event) => {
     setSelectedGovernorate(event.target.value);
@@ -112,83 +113,88 @@ const PortList = (props) => {
 
   useEffect(() => {
     getPorts();
-  }, [SelectedGovernorate,SelectedPortEntity,SelectedPortType]);
+  }, [SelectedGovernorate, SelectedPortEntity, SelectedPortType]);
 
   let { url } = useRouteMatch();
+  const crumbs = [
+    { text: "الرئيسية", path: "/" },
+    { text: "المنافذ", path: `/Ports` },
+  ];
 
   return (
-     <Container>
-       <div className="row mt-4">
-         <div className="col-md-12">
-          <h3 style={{ color:"#4A9559"}}>المنافذ</h3>
-         </div>
-       </div>
-       <div className="row mt-4">
-         <div className="col-md-4">
-           <TextField
-              style={{ width: "100%" }}
-              className="px-2 my-2"
-              variant="outlined"
-              name="GovernorateId"
-              select
-              label="المحافظة"
-              value={SelectedGovernorate}
-              onChange={GovHandleChanges}
-            >
-              <MenuItem value={0}>المحافظة</MenuItem>
-              {Governorate.map((item, idx) => {
-                return (
-                  <MenuItem key={idx} value={item.id}>
-                    {item.nameA}
-                  </MenuItem>
-                );
-              })}
-              </TextField>
-         </div>
-         <div className="col-md-4">
-           <TextField
-              style={{ width: "100%" }}
-              className="px-2 my-2"
-              variant="outlined"
-              name="GovernorateId"
-              select
-              label="نوع المنفذ"
-              value={SelectedPortType}
-              onChange={PortTypeHandleChanges}
-            >
-              <MenuItem value={0}>نوع المنفذ</MenuItem>
-              {PortType.map((item, idx) => {
-                return (
-                  <MenuItem key={idx} value={item.id}>
-                    {item.nameA}
-                  </MenuItem>
-                );
-              })}
-              </TextField>
-         </div>
-         <div className="col-md-4">
-           <TextField
-              style={{ width: "100%" }}
-              className="px-2 my-2"
-              variant="outlined"
-              name="GovernorateId"
-              select
-              label="أختار المنفذ"
-              value={SelectedPortEntity}
-              onChange={PortEntityHandleChanges}
-            >
-              <MenuItem value={0}>المنفذ</MenuItem>
-              {PortEntity.map((item, idx) => {
-                return (
-                  <MenuItem key={idx} value={item.id}>
-                    {item.nameA}
-                  </MenuItem>
-                );
-              })}
-              </TextField>
-         </div>
-       </div>
-       {/* <div className="row">
+    <Container>
+      <Breadcrumb crumbs={crumbs} />
+      <div className="row mt-4">
+        <div className="col-md-12">
+          <h3 style={{ color: "#4A9559" }}>المنافذ</h3>
+        </div>
+      </div>
+      <div className="row mt-4">
+        <div className="col-md-4">
+          <TextField
+            style={{ width: "100%" }}
+            className="px-2 my-2"
+            variant="outlined"
+            name="GovernorateId"
+            select
+            label="المحافظة"
+            value={SelectedGovernorate}
+            onChange={GovHandleChanges}
+          >
+            <MenuItem value={0}>المحافظة</MenuItem>
+            {Governorate.map((item, idx) => {
+              return (
+                <MenuItem key={idx} value={item.id}>
+                  {item.nameA}
+                </MenuItem>
+              );
+            })}
+          </TextField>
+        </div>
+        <div className="col-md-4">
+          <TextField
+            style={{ width: "100%" }}
+            className="px-2 my-2"
+            variant="outlined"
+            name="GovernorateId"
+            select
+            label="نوع المنفذ"
+            value={SelectedPortType}
+            onChange={PortTypeHandleChanges}
+          >
+            <MenuItem value={0}>نوع المنفذ</MenuItem>
+            {PortType.map((item, idx) => {
+              return (
+                <MenuItem key={idx} value={item.id}>
+                  {item.nameA}
+                </MenuItem>
+              );
+            })}
+          </TextField>
+        </div>
+        <div className="col-md-4">
+          <TextField
+            style={{ width: "100%" }}
+            className="px-2 my-2"
+            variant="outlined"
+            name="GovernorateId"
+            select
+            label="أختار المنفذ"
+            value={SelectedPortEntity}
+            onChange={PortEntityHandleChanges}
+          >
+            <MenuItem value={0}>المنفذ</MenuItem>
+            {PortEntity.map((item, idx) => {
+              return (
+                <MenuItem key={idx} value={item.id}>
+                  {item.nameA}
+                </MenuItem>
+              );
+            })}
+          </TextField>
+        </div>
+      </div>
+      {/* <div className="row">
         <div className="col-md-12 text-left">
             <Button
               className="px-4 "
@@ -200,10 +206,11 @@ const PortList = (props) => {
             </Button>
           </div>
        </div> */}
-       <hr/>
-       <div className="row">
-         {Ports.length > 0 && Ports.slice(offset, offset + PER_PAGE).map((PortItem, idx) =>{
-           return (
+      <hr />
+      <div className="row">
+        {Ports.length > 0 &&
+          Ports.slice(offset, offset + PER_PAGE).map((PortItem, idx) => {
+            return (
               <div className="col-md-4 mb-2">
                 <Link
                   to={{
@@ -212,53 +219,61 @@ const PortList = (props) => {
                       PortItem,
                     },
                   }}
-                  key={idx}>
-                    <div className="PortCard">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <img src={PortItem.portTypeId == 3 ? Const: Move}
-                          />
-                          <h5 style={{ fontWeight:"bold"}}>{PortItem.portEntityName}</h5>
+                  key={idx}
+                >
+                  <div className="PortCard">
+                    <div className="row">
+                      <div className="col-md-12 d-flex">
+                        <img
+                          style={{ height: "40px", width: "40px" }}
+                          src={PortItem.portTypeId == 3 ? Const : Move}
+                        />
+                        <div className="mr-2">
+                          <h5 style={{ fontWeight: "bold" }}>
+                            {PortItem.portEntityName}
+                          </h5>
                           <p>{PortItem.portTypeName}</p>
                         </div>
-                        <div className="col-md-6 d-flex">
-                          <div className="d-flex">
-                            <LocationOnIcon style={{ fontSize: 30, color:"#7BB185" }} />
-                            <span>{PortItem.nameA}</span>
-                          </div>
+                      </div>
+                      <div className="col-md-12 d-flex mt-2">
+                        <div className="d-flex">
+                          <LocationOnIcon
+                            style={{ fontSize: 30, color: "#7BB185" }}
+                          />
+                          <span>{PortItem.nameA}</span>
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
+                </Link>
               </div>
-           )
-         })}
-         {Ports.length > 0 && (
-            <Col xs={12}>
-              <ReactPaginate
-                previousLabel={"→ السابق"}
-                nextLabel={"التالى ←"}
-                pageCount={pageCount}
-                onPageChange={handlePageClick}
-                containerClassName={"pagination"}
-                previousLinkClassName={"pagination__link"}
-                nextLinkClassName={"pagination__link"}
-                disabledClassName={"pagination__link--disabled"}
-                activeClassName={"pagination__link--active"}
-              />
-            </Col>
-          )}
-          {loading === true && Ports.length <= 0 && (
-            <div className="w-100 d-flex justify-content-center m-5">
-              <PulseLoader loading={loading} color="#0D924C" margin="5" />
-            </div>
-          )}
-          {loading === false && Ports.length <= 0 && (
-            <h2 className="w-100 text-center p-4"> لا توجد منافذ</h2>
-          )}
-       </div>
-
-     </Container>
+            );
+          })}
+        {Ports.length > 0 && (
+          <Col xs={12}>
+            <ReactPaginate
+              previousLabel={"→ السابق"}
+              nextLabel={"التالى ←"}
+              pageCount={pageCount}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              previousLinkClassName={"pagination__link"}
+              nextLinkClassName={"pagination__link"}
+              disabledClassName={"pagination__link--disabled"}
+              activeClassName={"pagination__link--active"}
+            />
+          </Col>
+        )}
+        {loading === true && Ports.length <= 0 && (
+          <div className="w-100 d-flex justify-content-center m-5">
+            <PulseLoader loading={loading} color="#0D924C" margin="5" />
+          </div>
+        )}
+        {loading === false && Ports.length <= 0 && (
+          <h2 className="w-100 text-center p-4"> لا توجد منافذ</h2>
+        )}
+      </div>
+    </Container>
   );
 };
 

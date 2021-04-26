@@ -12,7 +12,7 @@ import "moment/locale/ar";
 
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
-import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
+import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
 
 const Currency = () => {
   const [curr, setcurr] = useState([]);
@@ -24,7 +24,7 @@ const Currency = () => {
       .get("/PricesData/GetCurrencyExchange")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
-        setcurr(response.data); // set metals data to state
+      setcurr(response.data); // set metals data to state
     }
   };
 
@@ -51,24 +51,30 @@ const Currency = () => {
         style={{
           backgroundColor: "#fff",
           borderRadius: "10px",
+          boxShadow: "rgb(179 179 179 / 36%) 4px 4px 4px 0px",
         }}
       >
-        {!noCurr &&<div className="border-bottom px-3 py-1 d-flex justify-content-between">
-          <span> من </span>
-          <span>  إلى </span>
-          <span> السعر</span>
-        </div>}
+        {!noCurr && (
+          <div className="border-bottom px-3 py-1 d-flex justify-content-between">
+            <span> من </span>
+            <span> إلى </span>
+            <span> السعر</span>
+          </div>
+        )}
         {!noCurr &&
-         curr.map((Item, idx) => {
+          curr.map((Item, idx) => {
             return (
-              <div key={idx} className="px-3 py-1 d-flex justify-content-between">
+              <div
+                key={idx}
+                className="px-3 py-1 d-flex justify-content-between"
+              >
                 <span>{Item.from}</span>
                 <span>{Item.to}</span>
                 <span>{Item.value}</span>
               </div>
             );
           })}
-        {noCurr && <OnePieaceSkeleton/>}
+        {noCurr && <OnePieaceSkeleton />}
       </div>
     </div>
   );

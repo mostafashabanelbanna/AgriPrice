@@ -22,6 +22,8 @@ import LocalPrices from "./components/Local-prices/Local-prices";
 import GlobalPrices from "./components/Global-prices/GlobalPrices";
 import SubIndicatorInfo from "./components/Local-prices/SubIndicatorInfo";
 import MainIndicatorDetails from "./components/Local-prices/MainIndicatorDetails/MainIndicatorDetails";
+import ConatctUs from "./components/Pages/Home/Contact-us/ContactUs";
+import SuggestionsContact from "./components/Pages/Suggestions_Contact/Suggestions_Contact";
 
 function App() {
   return (
@@ -48,11 +50,7 @@ function App() {
               exact
               component={DocumentLibraryItem}
             />
-            <Route
-              path="/Ports/:PortId"
-              exact
-              component={portItem}
-            />
+            <Route path="/Ports/:PortId" exact component={portItem} />
             <Route path="/events-list/:EventId" exact component={eventItem} />
             <Route path="/news-list/:NewsId" exact component={newsItem} />
             <Route
@@ -66,7 +64,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/Ports" exact component={Ports} />
             {/* <Route path="/Ports" exact component={Outlets} /> */}
-            <Route path="/suggestions" exact component={Suggestions} />
+            <Route path="/suggestions" exact component={SuggestionsContact} />
           </Switch>
         </>
         <Footer />

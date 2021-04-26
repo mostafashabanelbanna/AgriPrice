@@ -7,7 +7,7 @@ import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
 
 import "./Partner.css";
-import OnePieaceSkeleton from '../../../LoadingSkeleton/OnePieace'
+import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
 
 const Partner = () => {
   const settings = {
@@ -55,7 +55,7 @@ const Partner = () => {
       className="justify-content-center pt-3 px-3 mb-3"
       style={{
         backgroundColor: "var(--secondary-gray)",
-        maxHeight:320,
+        maxHeight: 320,
       }}
     >
       <div>
@@ -79,7 +79,12 @@ const Partner = () => {
                     to="/"
                     className="d-flex flex-column justify-content-center align-items-center "
                   >
-                    <div className="carrousel_image">
+                    <div
+                      className="carrousel_image"
+                      style={{
+                        boxShadow: "rgb(179 179 179 / 36%) 4px 4px 4px 0px",
+                      }}
+                    >
                       <img
                         src={`${paths.PartnerPhotos}${partnerItem.id}/${partnerItem.logo}`}
                         className="img-fluid"
@@ -93,7 +98,7 @@ const Partner = () => {
                 </div>
               );
             })}
-            {noPartners && <OnePieaceSkeleton/>}
+          {noPartners && <OnePieaceSkeleton />}
         </Slider>
       </div>
     </div>
