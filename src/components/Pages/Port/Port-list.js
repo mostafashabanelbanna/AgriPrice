@@ -20,16 +20,18 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Button from "@material-ui/core/Button";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import './Port.css'
+import {savePortSearch} from '../../../store/actions/PortSearch';
+import {connect} from "react-redux";
 
 
-const PortList = (Props) => {
+const PortList = (props) => {
   const [Ports, setPorts] = useState([]);
   const [Governorate, setGovernorate] = useState([]);
   const [PortType, setPortType] = useState([]);
   const [PortEntity, setPortEntity] = useState([]);
-  const [SelectedGovernorate,setSelectedGovernorate]= useState(0);
-  const [SelectedPortType,setSelectedPortType]= useState(0);
-  const [SelectedPortEntity,setSelectedPortEntity]= useState(0);
+  const [SelectedGovernorate,setSelectedGovernorate]= useState(props.stateRes.PortSearch.CurPortSearch && props.stateRes.PortSearch.CurPortSearch.governorate ? props.stateRes.PortSearch.CurPortSearch.governorate: 0);
+  const [SelectedPortType,setSelectedPortType]= useState(props.stateRes.PortSearch.CurPortSearch && props.stateRes.PortSearch.CurPortSearch.portType ? props.stateRes.PortSearch.CurPortSearch.portType :  0);
+  const [SelectedPortEntity,setSelectedPortEntity]= useState(props.stateRes.PortSearch.CurPortSearch && props.stateRes.PortSearch.CurPortSearch.portEntity ? props.stateRes.PortSearch.CurPortSearch.portEntity : 0);
 
   let [loading, setLoading] = useState(true);
 
@@ -49,14 +51,12 @@ const PortList = (Props) => {
     var portsURL = `Ports/Port?PortEntityId=${SelectedPortEntity}&GovId=${SelectedGovernorate}&PortTypeId=${SelectedPortType}`;
     setLoading(true);
     //fetch Ports data
-    console.log(portsURL);
     const response = await axios
       .get(portsURL)
       .catch((err) => console.log("Error", err)); //handle errors
 
     setLoading(false);
     if (response && response.data) {
-      console.log(response.data);
       setPorts(response.data);
     }
   };
@@ -89,17 +89,21 @@ const PortList = (Props) => {
 
   const GovHandleChanges = (event) => {
     setSelectedGovernorate(event.target.value);
+    props.savePortSearch({...props.stateRes.PortSearch.CurPortSearch,governorate:event.target.value})
   };
 
   const PortTypeHandleChanges = (event) => {
     setSelectedPortType(event.target.value);
+    props.savePortSearch({...props.stateRes.PortSearch.CurPortSearch,portType:event.target.value})
   };
 
   const PortEntityHandleChanges = (event) => {
     setSelectedPortEntity(event.target.value);
+    props.savePortSearch({...props.stateRes.PortSearch.CurPortSearch,portEntity:event.target.value})
   };
 
   useEffect(() => {
+    console.log(props.stateRes);
     GetGovernorates();
     GetPortEntities();
     GetPortTypes();
@@ -258,4 +262,18 @@ const PortList = (Props) => {
   );
 };
 
-export default PortList;
+const mapStateToProps = (state) => {
+  return {
+    stateRes: state
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    savePortSearch: (res) => {
+      dispatch(savePortSearch(res));
+    },
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PortList);

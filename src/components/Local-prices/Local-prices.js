@@ -6,6 +6,8 @@ import { axios } from "../Axios/Axios";
 import "./LocalPrices.css";
 import { SampleNextArrow, SamplePrevArrow } from "../slick-carousel/Arrows";
 import GeneralIndicatorTabs from "./General-indicator-tabs";
+import {saveCurrentGeneralIndicator} from "../../store/actions/CurrentGeneralIndicator";
+import { connect } from "react-redux";
 
 const LocalPrices = (props) => {
   const [generalIndicators, setGeneralIndicators] = useState([]);
@@ -26,8 +28,16 @@ const LocalPrices = (props) => {
     if (response && response.data) {
       setGeneralIndicators(response.data); // set generalIndicators data to state
       if(props.location.state == null){
-        getGeneralIndicatorData(response.data[0].id); // set GeneralIndicatorData on component mount
-        setCurrentGeneralIndicator(response.data[0].id);
+        if(props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator)
+        {
+          getGeneralIndicatorData(props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator); // set GeneralIndicatorData on component mount
+          setCurrentGeneralIndicator(props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator);
+        }
+        else{
+          getGeneralIndicatorData(response.data[0].id); // set GeneralIndicatorData on component mount
+          setCurrentGeneralIndicator(response.data[0].id);
+        }
+        
       }
       else{
         getGeneralIndicatorData(parseInt(props.location.state.indicatorId)); // set GeneralIndicatorData on component mount
@@ -48,11 +58,13 @@ const LocalPrices = (props) => {
   const handleGeneralIndicatorSelect = (id) => {
     getGeneralIndicatorData(id); // set GeneralIndicatorData on select lable
     setCurrentGeneralIndicator(id);
+    props.saveCurrentGeneralIndicator(id);
   };
 
   useEffect(() => {
     getGeneralIndicators();
   }, []);
+
 
   // Slider Settings
   const settings = {
@@ -118,4 +130,19 @@ const LocalPrices = (props) => {
   );
 };
 
-export default LocalPrices;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    StateRes: state,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveCurrentGeneralIndicator: (res) => {
+      dispatch(saveCurrentGeneralIndicator(res));
+    },
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps) (LocalPrices);
