@@ -321,7 +321,10 @@ const GeneralIndicatorContent = (props) => {
               count={props.generalIndicatorDataItem.length}
               rowsPerPage={rowsPerPage}
               page={page}
-              labelRowsPerPage="عدد السلع فى الصفحة"
+              labelRowsPerPage={({ from, to, count }) =>
+                `${from}-${to} من ${count !== -1 ? count : `أكثر من  ${to}`}`
+              }
+              // labelRowsPerPage="عدد السلع فى الصفحة"
               onChangePage={handleChangePage}
               onChangeRowsPerPage={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}

@@ -59,12 +59,13 @@ const GeneralIndicatorContent = (props) => {
                       </span>
                     </Link>
                   </td>
-                  <td className="text-center d-flex justify-content-center align-items-center">
+                  {/* Add d-flex */}
+                  <td className="text-center  justify-content-center align-items-center">
                     <span>
                       {item.avgPrice} {item.currency}
                     </span>
                     <div className="p-2">
-                      <OverlayTrigger
+                      {/* <OverlayTrigger
                         placement={"top"}
                         overlay={
                           <Tooltip>
@@ -99,6 +100,7 @@ const GeneralIndicatorContent = (props) => {
                           </span>
                         </div>
                       </OverlayTrigger>
+                     */}
                     </div>
                   </td>
                   <td className="text-center">

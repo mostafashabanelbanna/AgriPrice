@@ -55,10 +55,7 @@ const NewsItem = (props) => {
           <Breadcrumb crumbs={crumbs} />
           <Row>
             <Col>
-              <h4 className="my-4" style={{ color: "var(--main-green)" }}>
-                {newsItemLinkState.titleA}
-              </h4>
-              <h3 className="my-4">{newsItemLinkState.titleE}</h3>
+              {/* <h3 className="my-4">{newsItemLinkState.titleE}</h3> */}
               <div className="carrousel_wrapper news-item-slider px-0">
                 <CustomSlider
                   objectname={"News"}
@@ -69,22 +66,33 @@ const NewsItem = (props) => {
             </Col>
           </Row>
           <Row>
-            <Col className="d-flex justify-content-between my-3">
-              <div>
-                <TodayIcon />
-                <strong className="mx-2" style={{ color: "var(--main-green)" }}>
-                  {moment(newsItemLinkState.publishDate)
-                    .locale("ar")
-                    .format("LL")}
-                </strong>
-              </div>
-              <div>
-                <ShareIcon />
+            <Col className="mb-3">
+              <div
+                style={{
+                  backgroundColor: "#f7f7f7",
+                  borderRight: "12px solid var(--main-green)",
+                }}
+                className="p-4"
+              >
+                <h4 className="my-4" style={{ color: "var(--main-green)" }}>
+                  {newsItemLinkState.titleA}
+                </h4>
+                <div>
+                  <TodayIcon />
+                  <strong
+                    className="mx-2"
+                    style={{ color: "var(--main-green)" }}
+                  >
+                    {moment(newsItemLinkState.publishDate)
+                      .locale("ar")
+                      .format("LL")}
+                  </strong>
+                </div>
+                <div className="p-4 news_content" style={{ fontSize: "2rem" }}>
+                  {parse(newsItemLinkState.contentA)}
+                </div>
               </div>
             </Col>
-          </Row>
-          <Row>
-            <Col className="my-3">{parse(newsItemLinkState.contentA)}</Col>
           </Row>
         </Container>
       ) : (
@@ -119,9 +127,33 @@ const NewsItem = (props) => {
               </div>
             </Col>
           </Row>
+
           <Row>
-            <Col className="my-3">
-              <p>{newsItem.contentA}</p>
+            <Col className="mb-3">
+              <div
+                style={{
+                  backgroundColor: "#f7f7f7",
+                  borderRight: "12px solid var(--main-green)",
+                }}
+                className="p-4"
+              >
+                <h4 className="my-4" style={{ color: "var(--main-green)" }}>
+                  {newsItem.titleA}
+                </h4>
+                <div>
+                  <TodayIcon />
+                  <strong
+                    className="mx-2"
+                    style={{ color: "var(--main-green)" }}
+                  >
+                    {moment(newsItem.publishDate).locale("ar").format("LL")}
+                  </strong>
+                </div>
+                <div className="p-4 news_content" style={{ fontSize: "2rem" }}>
+                  {console.log(newsItem.contentA)}
+                  {parse(String(newsItem.contentA))}
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>

@@ -1,6 +1,6 @@
-const MainPath = "http://www.admin.prices.idsc.gov.eg/Upload/"; //https://localhost:44346/Upload/
-//const MainPath = "http://41.128.217.182:10081/Upload/"; //https://localhost:44346/Upload/
-//const MainPath = "https://localhost:44346/Upload/"; //http://41.128.217.182:10081/Upload/
+// const MainPath = "http://www.admin.prices.idsc.gov.eg/Upload/"; //https://localhost:44346/Upload/
+const MainPath = "http://41.128.217.182:10081/Upload/"; //https://localhost:44346/Upload/
+// const MainPath = "https://localhost:44346/Upload/"; //http://41.128.217.182:10081/Upload/
 
 export const paths = {
   PhotoLibraryAlbumPhoto: `${MainPath}PhotoLibraryAlbum/PhotoA/`,
@@ -12,5 +12,5 @@ export const paths = {
   DocumentLibraryPhotos: `${MainPath}DocumentLibrary/PhotoA/`,
   DocumentLibrarAttachment: `${MainPath}DocumentLibrary/AttachmentA/`,
   AboutUs: `${MainPath}StaticContent/PhotoA/`,
-  MainIndicatorPhot :  `${MainPath}MainIndicator/Image/`,
+  MainIndicatorPhot: `${MainPath}MainIndicator/Image/`,
 };

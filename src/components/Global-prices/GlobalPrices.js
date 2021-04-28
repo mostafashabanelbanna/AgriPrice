@@ -6,6 +6,8 @@ import defualtPro from "../../assets/images/product.png";
 import PulseLoader from "react-spinners/PulseLoader";
 import { paths } from "../Paths/Pathes";
 import Breadcrumb from "../UI/Bread-crumb/Breadcrumb";
+import * as moment from "moment";
+import "moment/locale/ar";
 
 const GlobalPrices = () => {
   const [globalPrices, setGlobalPrices] = useState([]);
@@ -76,6 +78,7 @@ const GlobalPrices = () => {
                       <div style={{ width: "120px" }}>
                         <img
                           className="img-fluid"
+                          style={{ height: "120px" }}
                           src={
                             innerItem.photo == ""
                               ? defualtPro
@@ -88,6 +91,11 @@ const GlobalPrices = () => {
                       </div>
                       <div className="py-2 text-center">
                         {innerItem.indicatorName}
+                      </div>
+                      <div class="align-self-lg-end text-left text-muted">
+                        {moment(innerItem.insertionDate)
+                          .locale("ar")
+                          .format("LL")}
                       </div>
                     </div>
                   </Col>

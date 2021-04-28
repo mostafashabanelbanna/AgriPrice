@@ -1,7 +1,9 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import defualtPro from "../../../assets/images/product.png";
-import {paths} from '../../Paths/Pathes'
+import { paths } from "../../Paths/Pathes";
+import * as moment from "moment";
+import "moment/locale/ar";
 
 const MainIndicatorBox = (props) => {
   return (
@@ -14,16 +16,17 @@ const MainIndicatorBox = (props) => {
                 className="img-fluid"
                 src={
                   props.mainIndicatorItem.photo !== ""
-                    ? paths.MainIndicatorPhot + props.mainIndicatorItemId + "/" + props.mainIndicatorItem.photo 
+                    ? paths.MainIndicatorPhot +
+                      props.mainIndicatorItemId +
+                      "/" +
+                      props.mainIndicatorItem.photo
                     : defualtPro
                 }
               />
             </div>
           </div>
           <div className="pb-2 text-center">
-            <span style={{ color: "var(--main-green)" }}>
-              المجموعة السلعية :
-            </span>
+            <span style={{ color: "var(--main-green)" }}>المجموعة السلعية</span>
             <span className="pr-1">
               {props.mainIndicatorItem.generalIndicator}
             </span>
@@ -36,14 +39,19 @@ const MainIndicatorBox = (props) => {
               </span>
             </div>
           </div>
-          {props.mainIndicatorItem.unit !="" && 
-          <div className="pb-2">
-            <div className="d-flex justify-content-around">
-              <span style={{ color: "var(--main-green)" }}>الوحدة</span>
-              <span className="pr-1">{props.mainIndicatorItem.unit}</span>
+          {props.mainIndicatorItem.unit != "" && (
+            <div className="pb-2">
+              <div className="d-flex justify-content-around">
+                <span style={{ color: "var(--main-green)" }}>الوحدة</span>
+                <span className="pr-1">{props.mainIndicatorItem.unit}</span>
+              </div>
             </div>
-          </div>
-          }
+          )}
+        </div>
+        <div class="align-self-lg-end text-center text-muted">
+          {moment(props.mainIndicatorItem.insertionDate)
+            .locale("ar")
+            .format("LL")}
         </div>
       </Col>
       <Col
@@ -91,7 +99,8 @@ const MainIndicatorBox = (props) => {
               <span style={{ color: "var(--main-green)" }}>
                 {props.mainIndicatorItem.minSubInicatorPrice}{" "}
               </span>
-              {props.mainIndicatorItem.currency} {props.mainIndicatorItem.unit !="" && <span>/</span>} {" "}
+              {props.mainIndicatorItem.currency}{" "}
+              {props.mainIndicatorItem.unit != "" && <span>/</span>}{" "}
               {props.mainIndicatorItem.unit}
             </span>
           </div>
@@ -111,7 +120,8 @@ const MainIndicatorBox = (props) => {
                 {" "}
                 {props.mainIndicatorItem.maxSubInicatorPrice}{" "}
               </span>
-              {props.mainIndicatorItem.currency} {props.mainIndicatorItem.unit !="" && <span>/</span>} {" "}
+              {props.mainIndicatorItem.currency}{" "}
+              {props.mainIndicatorItem.unit != "" && <span>/</span>}{" "}
               {props.mainIndicatorItem.unit}
             </span>
           </div>

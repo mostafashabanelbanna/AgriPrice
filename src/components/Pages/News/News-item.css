@@ -5,3 +5,8 @@
   background-size: contain !important;
   background-color: #000 !important;
 }
+
+.news_content p,
+.news_content p span {
+  font-size: 1.1rem;
+}

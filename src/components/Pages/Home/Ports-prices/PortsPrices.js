@@ -3,8 +3,10 @@ import { Col, Row } from "react-bootstrap";
 import { useRouteMatch } from "react-router-dom";
 import { axios } from "../../../Axios/Axios";
 import defualtPro from "../../../../assets/images//product.png";
-import {paths} from '../../../Paths/Pathes'
-import FourPieacesHorizontalSkeleton from '../../../LoadingSkeleton/FourPieacesHorizontal'
+import { paths } from "../../../Paths/Pathes";
+import FourPieacesHorizontalSkeleton from "../../../LoadingSkeleton/FourPieacesHorizontal";
+import * as moment from "moment";
+import "moment/locale/ar";
 
 const PortsPrices = () => {
   const [portsPrices, setPortsPrices] = useState([]);
@@ -57,24 +59,45 @@ const PortsPrices = () => {
                   <div style={{ width: "120px" }}>
                     <img
                       className="img-fluid"
-                      src={!portsPricesItem.photo ? defualtPro : paths.MainIndicatorPhot + portsPricesItem.mainIndicatorId + "/" + portsPricesItem.photo }
+                      style={{ height: "120px" }}
+                      src={
+                        !portsPricesItem.photo
+                          ? defualtPro
+                          : paths.MainIndicatorPhot +
+                            portsPricesItem.mainIndicatorId +
+                            "/" +
+                            portsPricesItem.photo
+                      }
                     />
                   </div>
-                  <div className="py-2">{portsPricesItem.indicatorName}</div>
-                  <div className="py-2">
+                  <div className="py-2 text-center">
+                    {portsPricesItem.indicatorName}
+                  </div>
+                  <div className="py-2 text-center">
                     أقل سعر
                     <span
-                      className="mr-2"
+                      className="mr-2  text-center"
                       style={{ color: "var(--main-green)" }}
                     >
                       {portsPricesItem.minPrice}
                     </span>
                   </div>
-                  <div className="py-2">{portsPricesItem.portEntityName}</div>
+                  <div className="py-2  text-center">
+                    {portsPricesItem.portEntityName}
+                  </div>
+                  <div class="align-self-lg-end text-left text-muted">
+                    {moment(portsPricesItem.insertionDate)
+                      .locale("ar")
+                      .format("LL")}
+                  </div>
                 </Col>
               );
             })}
-            {noPortsPrices && <Col md={12}><FourPieacesHorizontalSkeleton/></Col> }
+          {noPortsPrices && (
+            <Col md={12}>
+              <FourPieacesHorizontalSkeleton />
+            </Col>
+          )}
         </Row>
       </Col>
     </Row>
