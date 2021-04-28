@@ -317,14 +317,14 @@ const GeneralIndicatorContent = (props) => {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "الكل", value: -1 }]}
               count={props.generalIndicatorDataItem.length}
               rowsPerPage={rowsPerPage}
               page={page}
-              labelRowsPerPage={({ from, to, count }) =>
-                `${from}-${to} من ${count !== -1 ? count : `أكثر من  ${to}`}`
+              labelDisplayedRows={({ from, to, count }) =>
+                `${to}-${from} من ${count !== -1 ? count : `أكثر من  ${to}`}`
               }
-              // labelRowsPerPage="عدد السلع فى الصفحة"
+              labelRowsPerPage="عدد السلع فى الصفحة"
               onChangePage={handleChangePage}
               onChangeRowsPerPage={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
