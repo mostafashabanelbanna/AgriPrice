@@ -25,19 +25,19 @@ const ConatctUs = () => {
       ) : null}
       <div>
         <div className="p-3 d-flex jusify-content-center">
-          <RoomIcon fontSize="large" className="mx-3" />
+          <RoomIcon fontSize="meduim" className="mx-3" />
           <span>1 ش مجلس الشعب - قصر العينى - القاهرة - مصر</span>
         </div>
         <div className="p-3 d-flex jusify-content-center align-items-center">
-          <PhoneEnabledIcon fontSize="large" className="mx-3" />
+          <PhoneEnabledIcon fontSize="meduim" className="mx-3" />
           <span>202-2792-9292+</span>
         </div>
         <div className="p-3 d-flex jusify-content-center align-items-center">
-          <LocalPrintshopIcon fontSize="large" className="mx-3" />
+          <LocalPrintshopIcon fontSize="meduim" className="mx-3" />
           <span>202-2792-9222+</span>
         </div>
         <div className="p-3 d-flex jusify-content-center align-items-center">
-          <MailIcon fontSize="large" className="mx-3" />
+          <MailIcon fontSize="meduim" className="mx-3" />
           <span>prices@idsc.net.eg</span>
         </div>
       </div>
