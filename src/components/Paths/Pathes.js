@@ -1,5 +1,5 @@
-// const MainPath = "http://www.admin.prices.idsc.gov.eg/Upload/"; //https://localhost:44346/Upload/
-const MainPath = "http://41.128.217.182:10081/Upload/"; //https://localhost:44346/Upload/
+const MainPath = "http://www.admin.prices.idsc.gov.eg/Upload/"; //https://localhost:44346/Upload/
+//const MainPath = "http://41.128.217.182:10081/Upload/"; //https://localhost:44346/Upload/
 // const MainPath = "https://localhost:44346/Upload/"; //http://41.128.217.182:10081/Upload/
 
 export const paths = {
