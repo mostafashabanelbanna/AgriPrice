@@ -31,7 +31,7 @@ const MainIndicatorData = (props) => {
                 </div>
               </div>
               <div className="d-flex justify-content-between ">
-                <span>مقارنة باليوم السابق</span>
+                <span>مقارنة بأخر قيمة</span>
                 <div>
                   {props.mainIndicatorData.fieldComYest > 0 ? (
                     <span style={{ color: "#FF3232" }}>
@@ -136,7 +136,7 @@ const MainIndicatorData = (props) => {
                 </div>
               </div>
               <div className="d-flex justify-content-between ">
-                <span>مقارنة باليوم السابق</span>
+                <span>مقارنة بأخر قيمة</span>
                 <div>
                   {props.mainIndicatorData.wholeComYest > 0 ? (
                     <span className="ml-1" style={{ color: "#FF3232" }}>
@@ -221,7 +221,7 @@ const MainIndicatorData = (props) => {
                 </div>
               </div>
               <div className="d-flex justify-content-between ">
-                <span>مقارنة باليوم السابق</span>
+                <span>مقارنة بأخر قيمة</span>
                 <div>
                   {props.mainIndicatorData.portComYest > 0 ? (
                     <span className="ml-1" style={{ color: "#FF3232" }}>
@@ -281,7 +281,7 @@ const MainIndicatorData = (props) => {
         </Col>
       ) : null}
       {/* Retail Prices */}
-      {props.mainIndicatorData.retailAvgPrice !== 0 ? (
+      {props.mainIndicatorData.retailAvgPrice !== 0 && !props.DetailsPage ? (
         <Col md={url === "/" ? 4 : 6} sm={6} className="p-1">
           <div className="border " style={{ borderRadius: "10px" }}>
             <div
@@ -306,7 +306,7 @@ const MainIndicatorData = (props) => {
                 </div>
               </div>
               <div className="d-flex justify-content-between ">
-                <span>مقارنة باليوم السابق</span>
+                <span>مقارنة بأخر قيمة</span>
                 <div>
                   {props.mainIndicatorData.retailComYest > 0 ? (
                     <span className="ml-1" style={{ color: "#FF3232" }}>
@@ -391,7 +391,7 @@ const MainIndicatorData = (props) => {
                 </div>
               </div>
               <div className="d-flex justify-content-between ">
-                <span>مقارنة باليوم السابق</span>
+                <span>مقارنة بأخر قيمة</span>
                 <div>
                   {props.mainIndicatorData.intComYest > 0 ? (
                     <span className="ml-1" style={{ color: "#FF3232" }}>

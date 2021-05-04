@@ -79,7 +79,7 @@ const PortsPrices = () => {
                       className="mr-2  text-center"
                       style={{ color: "var(--main-green)" }}
                     >
-                      {portsPricesItem.minPrice}
+                      {portsPricesItem.minPrice} {portsPricesItem.currency !="" && portsPricesItem.unit != "" && <span>{portsPricesItem.currency} / {portsPricesItem.unit}</span>}
                     </span>
                   </div>
                   <div className="py-2  text-center">

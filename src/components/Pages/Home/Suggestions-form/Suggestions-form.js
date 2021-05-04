@@ -50,13 +50,11 @@ const SuggestionsForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      alert(JSON.stringify(values, null, 2));
-      const response = await axios
+        const response = await axios
         .post("/ContactUs", values)
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
-        alert("sucess!");
-        console.log(response);
+        alert("لقد تم الأرسال بنجاح");
       }
     },
   });
