@@ -124,10 +124,10 @@ const DocumentLibraryList = () => {
                         <Col className="d-flex flex-column justify-content-between  h-100">
                           <div>
                             <h3 style={{ color: "var(--main-green)" }}>
-                              {documentLibraryItem.titleA}
+                              {parse(String(documentLibraryItem.titleA))}
                             </h3>
                             <h4>{documentLibraryItem.titleE}</h4>
-                            <p>{parse(documentLibraryItem.contentA)}</p>
+                            <p>{parse(String(documentLibraryItem.contentA))}</p>
                           </div>
                           <div className="border-top d-flex justify-content-between py-3">
                             <div>
