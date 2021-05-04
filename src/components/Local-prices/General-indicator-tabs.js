@@ -50,6 +50,7 @@ const GeneralIndicatorTabs = (props) => {
                       Object.keys(generalIndicatorDataItem)[0]
                     ]
                   }
+                  classification ={Object.keys(generalIndicatorDataItem)[0]}
                 />
               </Tab>
             );

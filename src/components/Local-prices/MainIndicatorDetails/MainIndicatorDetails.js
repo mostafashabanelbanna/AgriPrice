@@ -31,7 +31,7 @@ const MainIndicatorDetails = (props) => {
   const getMainIndicator = async () => {
     //fetch MainIndicator data
     const response = await axios
-      .get(`/PricesData/GetMainIndicatorDetails/${mainIndicatorItemId}`)
+      .get(`/PricesData/GetMainIndicatorDetails?MainIndicatorId=${mainIndicatorItemId}&classification=${props.location.state.classification}`)
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setMainIndicatorItem(response.data); // set MainIndicator data to state
@@ -199,7 +199,7 @@ const MainIndicatorDetails = (props) => {
         <Col lg={9}>
           <PricesChangesRatio mainIndicatorItem={mainIndicatorItem} />
           {mainIndicatorData.AvgPrice !== 0 ? (
-            <MainIndicatorData mainIndicatorData={mainIndicatorData} />
+            <MainIndicatorData DetailsPage={true} mainIndicatorData={mainIndicatorData} />
           ) : null}
 
           <Chart mainIndicatorChart={mainIndicatorChart} />

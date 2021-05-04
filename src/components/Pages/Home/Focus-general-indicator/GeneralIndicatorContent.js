@@ -46,6 +46,7 @@ const GeneralIndicatorContent = (props) => {
                         pathname: `/local-prices/${item.indicatorId}`,
                         state: {
                           item: item,
+                          classification:"retail"
                         },
                       }}
                     >
