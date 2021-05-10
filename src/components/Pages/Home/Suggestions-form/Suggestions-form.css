@@ -19,3 +19,15 @@ label {
   position: absolute;
   font-size: 0.8em;
 }
+
+.swal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.swal-button {
+  background-color: #fff;
+  color: var(--main-green);
+  border: 1px solid var(--main-green);
+  padding: 4px 24px;
+}

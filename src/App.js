@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import Header from "./components/Header_Footer/Header";
 import Footer from "./components/Header_Footer/Footer";
@@ -24,11 +25,12 @@ import SubIndicatorInfo from "./components/Local-prices/SubIndicatorInfo";
 import MainIndicatorDetails from "./components/Local-prices/MainIndicatorDetails/MainIndicatorDetails";
 import ConatctUs from "./components/Pages/Home/Contact-us/ContactUs";
 import SuggestionsContact from "./components/Pages/Suggestions_Contact/Suggestions_Contact";
+import ScrollButton from "./components/UI/ScrollButton/ScrollButton";
 
 function App() {
   return (
     <>
-      <Router>
+      <HashRouter>
         <Header />
 
         <>
@@ -50,7 +52,11 @@ function App() {
               exact
               component={DocumentLibraryItem}
             />
-            <Route path="/Ports/:PortId" exact component={portItem} />
+            <Route
+              path="/Ports/:PortId/:GovId/:PortEntityId/:PortTypeId"
+              exact
+              component={portItem}
+            />
             <Route path="/events-list/:EventId" exact component={eventItem} />
             <Route path="/news-list/:NewsId" exact component={newsItem} />
             <Route
@@ -65,10 +71,12 @@ function App() {
             <Route path="/Ports" exact component={Ports} />
             {/* <Route path="/Ports" exact component={Outlets} /> */}
             <Route path="/suggestions" exact component={SuggestionsContact} />
+            <Route />
           </Switch>
         </>
         <Footer />
-      </Router>
+        <ScrollButton />
+      </HashRouter>
     </>
   );
 }
