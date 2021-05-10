@@ -269,10 +269,13 @@ const PortsIndicatorContent = (props) => {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "الكل", value: -1 }]}
               count={props.PortsIndicatorData.items.length}
               rowsPerPage={rowsPerPage}
               page={page}
+              labelDisplayedRows={({ from, to, count }) =>
+                `${to}-${from} من ${count !== -1 ? count : `أكثر من  ${to}`}`
+              }
               labelRowsPerPage="عدد السلع فى الصفحة"
               onChangePage={handleChangePage}
               onChangeRowsPerPage={handleChangeRowsPerPage}

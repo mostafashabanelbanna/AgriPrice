@@ -29,7 +29,7 @@ const Footer = () => {
               />
             </Link>
           </Col>
-          <Col lg={6}>
+          <Col lg={7}>
             <Row>
               <Col xs={2} className="d-flex flex-column  align-items-center">
                 <div>
@@ -42,7 +42,7 @@ const Footer = () => {
                   إتصل بنا
                 </Link>
               </Col>
-              <Col xs={4} className="d-flex flex-column  align-items-center">
+              <Col xs={3} className="d-flex flex-column  align-items-center">
                 <div>
                   <strong>الأسعار المحلية</strong>
                 </div>
@@ -61,14 +61,23 @@ const Footer = () => {
                   بحث السلعة
                 </Link>
               </Col>
-              <Col xs={3} className="d-flex flex-column  align-items-center">
+              <Col xs={2} className="d-flex flex-column  align-items-center">
                 <Link className="my-2 text-center" to="/Global-prices">
                   الأسعار العالمية
                 </Link>
+              </Col>
+              <Col xs={2} className="d-flex flex-column  align-items-center">
+                <div>
+                  <strong>المنافذ</strong>
+                </div>
                 <Link className="my-2 text-center" to="/Ports">
-                  المنافذ
+                  بحث المنافذ
+                </Link>
+                <Link className="my-2 text-center" to="/Ports/2/0/0/0">
+                  بحث سلع المنافذ
                 </Link>
               </Col>
+
               <Col xs={3} className="d-flex flex-column  align-items-center">
                 <div>
                   <strong> المركز الإعلامي</strong>
@@ -83,7 +92,7 @@ const Footer = () => {
             </Row>
           </Col>
           <Col
-            lg={2}
+            lg={1}
             className="d-flex flex-column align-items-center justify-content-center"
           >
             <a href="#" className="my-2">
