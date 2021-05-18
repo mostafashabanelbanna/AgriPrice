@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components"
+    "\\src\\components",
+    "\\src\\components\\Axios",
+    "\\src\\components\\Paths"
   ],
-  "SelectedNode": "\\src\\components\\UI",
+  "SelectedNode": "\\src\\components\\Paths\\Pathes.js",
   "PreviewInSolutionExplorer": false
 }
