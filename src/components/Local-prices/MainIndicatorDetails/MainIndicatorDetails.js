@@ -31,7 +31,9 @@ const MainIndicatorDetails = (props) => {
   const getMainIndicator = async () => {
     //fetch MainIndicator data
     const response = await axios
-      .get(`/PricesData/GetMainIndicatorDetails?MainIndicatorId=${mainIndicatorItemId}&classification=${props.location.state.classification}`)
+      .get(
+        `/PricesData/GetMainIndicatorDetails?MainIndicatorId=${mainIndicatorItemId}&classification=${props.location.state.classification}`
+      )
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setMainIndicatorItem(response.data); // set MainIndicator data to state
@@ -112,35 +114,6 @@ const MainIndicatorDetails = (props) => {
     </div>
   );
 
-  //
-
-  const groupedOptions = [
-    {
-      label: "Colours",
-      options: [
-        { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
-        { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
-        { value: "purple", label: "Purple", color: "#5243AA" },
-        { value: "red", label: "Red", color: "#FF5630", isFixed: true },
-        { value: "orange", label: "Orange", color: "#FF8B00" },
-        { value: "yellow", label: "Yellow", color: "#FFC400" },
-        { value: "green", label: "Green", color: "#36B37E" },
-        { value: "forest", label: "Forest", color: "#00875A" },
-        { value: "slate", label: "Slate", color: "#253858" },
-        { value: "silver", label: "Silver", color: "#666666" },
-      ],
-    },
-    {
-      label: "Flavours",
-      options: [
-        { value: "vanilla", label: "Vanilla", rating: "safe" },
-        { value: "chocolate", label: "Chocolate", rating: "good" },
-        { value: "strawberry", label: "Strawberry", rating: "wild" },
-        { value: "salted-caramel", label: "Salted Caramel", rating: "crazy" },
-      ],
-    },
-  ];
-
   const getMainIndicatorOptions = async () => {
     const response = await axios
       .get(`/PricesData/GetMainIndicatorsPerGeneralIndicator`)
@@ -164,10 +137,15 @@ const MainIndicatorDetails = (props) => {
       });
     }
   };
+  // props.location.state.source
+  // let path = props.location.state.source
+  //   ? { text: "", path: "" }
+  //   : { text: "المجموعات السلعية", path: "/local-prices" };
   const crumbs = [
     { text: "الرئيسية", path: "/" },
     { text: "الأسعار المحلية", path: `/local-prices/${mainIndicatorItemId}` },
-    { text: "المجموعة السلعية", path: "/local-prices" },
+    { text: "المجموعات السلعية", path: "/local-prices" },
+    // path,
     { text: "بحث السلع", path: `/local-prices/${mainIndicatorItemId}` },
   ];
 
@@ -199,7 +177,10 @@ const MainIndicatorDetails = (props) => {
         <Col lg={9}>
           <PricesChangesRatio mainIndicatorItem={mainIndicatorItem} />
           {mainIndicatorData.AvgPrice !== 0 ? (
-            <MainIndicatorData DetailsPage={true} mainIndicatorData={mainIndicatorData} />
+            <MainIndicatorData
+              DetailsPage={true}
+              mainIndicatorData={mainIndicatorData}
+            />
           ) : null}
 
           <Chart mainIndicatorChart={mainIndicatorChart} />

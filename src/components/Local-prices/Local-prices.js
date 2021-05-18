@@ -7,7 +7,7 @@ import "./LocalPrices.css";
 import { SampleNextArrow, SamplePrevArrow } from "../slick-carousel/Arrows";
 import GeneralIndicatorTabs from "./General-indicator-tabs";
 import Breadcrumb from "../UI/Bread-crumb/Breadcrumb";
-import {saveCurrentGeneralIndicator} from "../../store/actions/CurrentGeneralIndicator";
+import { saveCurrentGeneralIndicator } from "../../store/actions/CurrentGeneralIndicator";
 import { connect } from "react-redux";
 
 const LocalPrices = (props) => {
@@ -28,19 +28,19 @@ const LocalPrices = (props) => {
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGeneralIndicators(response.data); // set generalIndicators data to state
-      if(props.location.state == null){
-        if(props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator)
-        {
-          getGeneralIndicatorData(props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator); // set GeneralIndicatorData on component mount
-          setCurrentGeneralIndicator(props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator);
-        }
-        else{
+      if (props.location.state == null) {
+        if (props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator) {
+          getGeneralIndicatorData(
+            props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator
+          ); // set GeneralIndicatorData on component mount
+          setCurrentGeneralIndicator(
+            props.StateRes.LocGeneralIndicator.CuurentGeneralIndicator
+          );
+        } else {
           getGeneralIndicatorData(response.data[0].id); // set GeneralIndicatorData on component mount
           setCurrentGeneralIndicator(response.data[0].id);
         }
-        
-      }
-      else{
+      } else {
         getGeneralIndicatorData(parseInt(props.location.state.indicatorId)); // set GeneralIndicatorData on component mount
         setCurrentGeneralIndicator(props.location.state.indicatorId);
       }
@@ -65,7 +65,6 @@ const LocalPrices = (props) => {
   useEffect(() => {
     getGeneralIndicators();
   }, []);
-
 
   // Slider Settings
   const settings = {
@@ -100,7 +99,7 @@ const LocalPrices = (props) => {
   const crumbs = [
     { text: "الرئيسية", path: "/" },
     { text: "الأسعار المحلية", path: "/local-prices" },
-    { text: "المجموعة السلعية", path: "/local-prices" },
+    { text: "المجموعات السلعية", path: "/local-prices" },
   ];
 
   return (
@@ -115,24 +114,26 @@ const LocalPrices = (props) => {
       </Container>
       <Container fluid className="my-2 local-prices">
         <Row>
-          <Col xs={12} className="my-4">
-            <Slider {...settings}>
+          <Col xs={12} className="my-4 d-flex">
+            <Row className="justify-content-center">
+              {/* <Slider {...settings}> */}
               {!noGeneralIndicators &&
                 generalIndicators.map((Item, idx) => {
                   return (
-                    <div key={Item.id}>
+                    <Col className="my-1" lg={2} sm={3} key={Item.id}>
                       <div
-                        className={`p-2 mx-2 lable ${
+                        className={`p-2 lable ${
                           Item.id === currentGeneralIndicator ? "active" : ""
                         }`}
                         onClick={() => handleGeneralIndicatorSelect(Item.id)}
                       >
                         <h6 className="text-center my-1">{Item.nameA}</h6>
                       </div>
-                    </div>
+                    </Col>
                   );
                 })}
-            </Slider>
+              {/* </Slider> */}
+            </Row>
           </Col>
           <Col xs={12}>
             <GeneralIndicatorTabs generalIndicatorData={generalIndicatorData} />
@@ -158,4 +159,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps) (LocalPrices);
+export default connect(mapStateToProps, mapDispatchToProps)(LocalPrices);

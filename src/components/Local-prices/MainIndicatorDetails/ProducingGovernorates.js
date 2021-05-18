@@ -12,7 +12,7 @@ const ProducingGovernorates = (props) => {
         <Row className="justify-content-center mb-4 px-5">
           <Col xs={12} className="p-1">
             <div
-              className="border "
+              className="border"
               style={{
                 borderRadius: "10px",
                 boxShadow: "4px 4px 4px 0px rgb(179 179 179 / 36%)",
@@ -46,7 +46,11 @@ const ProducingGovernorates = (props) => {
                           {governoratesLogos.map((logo, idx) => {
                             return logo.text ===
                               item.governorate_E.toLowerCase() ? (
-                              <img className="img-fluid" src={logo.image} />
+                              <img
+                                className="img-fluid"
+                                key={idx}
+                                src={logo.image}
+                              />
                             ) : null;
                           })}
 

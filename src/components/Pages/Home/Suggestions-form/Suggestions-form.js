@@ -7,11 +7,10 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { axios } from "../../../Axios/Axios";
 
-const SuggestionsForm = () => {
-  // RegEx for phone number validation
-  // const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+import swal from "sweetalert";
+import "./Suggestions-form.css";
 
-  // Schema for yup
+const SuggestionsForm = () => {
   const validationSchema = yup.object({
     Name: yup.string("أدخل الأسم").required("أدخل الأسم"),
     Email: yup
@@ -40,6 +39,11 @@ const SuggestionsForm = () => {
   useEffect(() => {
     getContactType();
   }, []);
+  let contactForm;
+  const resetContactForm = () => {
+    contactForm.reset();
+    console.log("here");
+  };
   const formik = useFormik({
     initialValues: {
       Name: "",
@@ -50,18 +54,33 @@ const SuggestionsForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-        const response = await axios
+      const response = await axios
         .post("/ContactUs", values)
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
-        alert("لقد تم الأرسال بنجاح");
+        // alert("لقد تم الأرسال بنجاح");
+        swal({
+          title: "",
+          text: "تم الإرسال بنجاح, شكرًا لتواصلكم معنا",
+          icon: "success",
+          button: "موافق",
+        });
+        formik.values.Name = "";
+        formik.values.Email = "";
+        formik.values.PhoneNumber = "";
+        formik.values.Subject = "";
+        formik.values.ContactTypeId = "";
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       }
     },
   });
 
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
+      <form ref={(el) => (contactForm = el)} onSubmit={formik.handleSubmit}>
         <TextField
           style={{ width: "100%" }}
           className="px-2 my-2"
@@ -149,7 +168,6 @@ const SuggestionsForm = () => {
             variant="outlined"
             color="secondary"
             type="submit"
-            // style={{ color: "#fff", backgroundColor: "var(--main-green)" }}
           >
             إرسال
           </Button>

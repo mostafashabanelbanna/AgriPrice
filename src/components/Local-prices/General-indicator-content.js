@@ -146,7 +146,7 @@ const GeneralIndicatorContent = (props) => {
   return (
     <TableContainer component={Paper}>
       <Table
-        className={(classes.table, "table  table-responsive")}
+        className={(classes.table, "table table-responsive")}
         aria-label="custom pagination table"
       >
         <TableHead
@@ -181,7 +181,8 @@ const GeneralIndicatorContent = (props) => {
                     pathname: `/local-prices/${item.indicatorId}`,
                     state: {
                       item: item,
-                      classification: props.classification
+                      classification: props.classification,
+                      source: true,
                     },
                   }}
                 >

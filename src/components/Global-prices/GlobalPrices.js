@@ -77,8 +77,8 @@ const GlobalPrices = () => {
 
                       <div style={{ width: "120px" }}>
                         <img
-                          className="img-fluid"
-                          style={{ height: "120px" }}
+                          // className="img-fluid"
+                          style={{ height: "120px", width: "100%" }}
                           src={
                             innerItem.photo == ""
                               ? defualtPro

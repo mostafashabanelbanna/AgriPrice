@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as moment from "moment";
 
 import PropTypes from "prop-types";
@@ -180,7 +180,7 @@ const PortsIndicatorContent = (props) => {
               </TableCell>
               <TableCell className="text-center d-flex justify-content-center align-items-center border-bottom-0">
                 <span>
-                  {item.avgPrice} /  {item.unit}
+                  {item.avgPrice} / {item.unit}
                 </span>
               </TableCell>
               <TableCell className="text-center" style={{ lineHeight: "2" }}>
@@ -239,7 +239,9 @@ const PortsIndicatorContent = (props) => {
                       {item.minPriceWithinYear}
                     </div>
                     <div style={{ color: "#909090" }}>
-                      {moment(item.minPriceWithInYearDate).locale("ar").format("LL")}
+                      {moment(item.minPriceWithInYearDate)
+                        .locale("ar")
+                        .format("LL")}
                     </div>
                     {/* {item.minWithinYearDate} */}
                   </div>
@@ -248,7 +250,9 @@ const PortsIndicatorContent = (props) => {
                       {item.maxPriceWithinYear}
                     </div>
                     <div style={{ color: "#909090" }}>
-                      {moment(item.maxPriceWithInYearDate).locale("ar").format("LL")}
+                      {moment(item.maxPriceWithInYearDate)
+                        .locale("ar")
+                        .format("LL")}
                     </div>
                   </div>
                 </div>
@@ -265,10 +269,13 @@ const PortsIndicatorContent = (props) => {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "الكل", value: -1 }]}
               count={props.PortsIndicatorData.items.length}
               rowsPerPage={rowsPerPage}
               page={page}
+              labelDisplayedRows={({ from, to, count }) =>
+                `${to}-${from} من ${count !== -1 ? count : `أكثر من  ${to}`}`
+              }
               labelRowsPerPage="عدد السلع فى الصفحة"
               onChangePage={handleChangePage}
               onChangeRowsPerPage={handleChangeRowsPerPage}
@@ -282,4 +289,3 @@ const PortsIndicatorContent = (props) => {
 };
 
 export default PortsIndicatorContent;
-

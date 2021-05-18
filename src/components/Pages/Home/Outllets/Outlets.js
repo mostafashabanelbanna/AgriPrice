@@ -90,7 +90,7 @@ const Outlets = () => {
           <div className="carrousel_wrapper outlet px-0">
             <Slider {...settings}>
               {!noOutlets &&
-                outlets.map((outletItem, idx) => {
+                outlets.slice(0, 6).map((outletItem, idx) => {
                   return (
                     <div
                       key={idx}

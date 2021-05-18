@@ -19,7 +19,7 @@ const Footer = () => {
               alt="siteLogo"
             />
           </Col> */}
-          <Col lg={5} className="d-flex">
+          <Col lg={4} className="d-flex">
             <Link to="/" className="navbar-logo">
               <img
                 className="img-fluid"
@@ -29,45 +29,70 @@ const Footer = () => {
               />
             </Link>
           </Col>
-          <Col lg={5}>
+          <Col lg={7}>
             <Row>
-              <Col xs={4} className="d-flex flex-column  align-items-center">
-                <Link className="my-2" to="/about-us">
+              <Col xs={2} className="d-flex flex-column  align-items-center">
+                <div>
+                  <strong>من نحن</strong>
+                </div>
+                <Link className="my-2 text-center" to="/about-us">
                   عن الموقع
                 </Link>
-                <Link className="my-2" to="/">
-                  خريطة الأسعار
-                </Link>
-                <Link className="my-2" to="/suggestions">
-                  تواصل معنا
+                <Link className="my-2 text-center" to="/suggestions">
+                  إتصل بنا
                 </Link>
               </Col>
-              <Col xs={4} className="d-flex flex-column  align-items-center">
-                <Link className="my-2" to="/news-list">
-                  الاخبار
+              <Col xs={3} className="d-flex flex-column  align-items-center">
+                <div>
+                  <strong>الأسعار المحلية</strong>
+                </div>
+                <Link className="my-2 text-center" to="/local-prices">
+                  المجموعات السلعية
                 </Link>
-                <Link className="my-2" to="/events-list">
-                  الفاعليات
-                </Link>
-                <Link className="my-2" to="/document-library-list">
-                  اصدارات بحثية
+                <Link
+                  className="my-2 text-center"
+                  to={{
+                    pathname: `/local-prices/1`,
+                    state: {
+                      classification: "retail",
+                    },
+                  }}
+                >
+                  بحث السلعة
                 </Link>
               </Col>
-              <Col xs={4} className="d-flex flex-column  align-items-center">
-                <Link className="my-2" to="/Ports">
-                  المنافذ
+              <Col xs={2} className="d-flex flex-column  align-items-center">
+                <Link className="my-2 text-center" to="/Global-prices">
+                  الأسعار العالمية
                 </Link>
-                <Link className="my-2" to="/">
-                  مواقع ذات صلة
+              </Col>
+              <Col xs={2} className="d-flex flex-column  align-items-center">
+                <div>
+                  <strong>المنافذ</strong>
+                </div>
+                <Link className="my-2 text-center" to="/Ports">
+                  بحث المنافذ
                 </Link>
-                <Link className="my-2" to="/">
-                  الشركاء
+                <Link className="my-2 text-center" to="/Ports/2/0/0/0">
+                  بحث سلع المنافذ
+                </Link>
+              </Col>
+
+              <Col xs={3} className="d-flex flex-column  align-items-center">
+                <div>
+                  <strong> المركز الإعلامي</strong>
+                </div>
+                <Link className="my-2 text-center" to="/news-list">
+                  الأخبار
+                </Link>
+                <Link className="my-2 text-center" to="/document-library-list">
+                  الإصدارات
                 </Link>
               </Col>
             </Row>
           </Col>
           <Col
-            lg={2}
+            lg={1}
             className="d-flex flex-column align-items-center justify-content-center"
           >
             <a href="#" className="my-2">

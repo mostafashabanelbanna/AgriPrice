@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import { Col, Container, Row } from "react-bootstrap";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
-
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
 
@@ -75,8 +72,9 @@ const Partner = () => {
                   key={idx}
                   className="px-2 d-flex flex-column align-items-center"
                 >
-                  <Link
-                    to="/"
+                  <a
+                    href={`${partnerItem.url}`}
+                    target="_blank"
                     className="d-flex flex-column justify-content-center align-items-center "
                   >
                     <div
@@ -94,7 +92,7 @@ const Partner = () => {
                     <div className="carrousel_caption zoom_on_hover">
                       <div className="text-center">{partnerItem.nameA}</div>
                     </div>
-                  </Link>
+                  </a>
                 </div>
               );
             })}

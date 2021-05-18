@@ -19,20 +19,34 @@ import Move from "../../../assets/images/Move.png";
 import PulseLoader from "react-spinners/PulseLoader";
 import Button from "@material-ui/core/Button";
 import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import './Port.css'
-import {savePortSearch} from '../../../store/actions/PortSearch';
-import {connect} from "react-redux";
-
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import "./Port.css";
+import { savePortSearch } from "../../../store/actions/PortSearch";
+import { connect } from "react-redux";
 
 const PortList = (props) => {
   const [Ports, setPorts] = useState([]);
   const [Governorate, setGovernorate] = useState([]);
   const [PortType, setPortType] = useState([]);
   const [PortEntity, setPortEntity] = useState([]);
-  const [SelectedGovernorate,setSelectedGovernorate]= useState(props.stateRes.PortSearch.CurPortSearch && props.stateRes.PortSearch.CurPortSearch.governorate ? props.stateRes.PortSearch.CurPortSearch.governorate: 0);
-  const [SelectedPortType,setSelectedPortType]= useState(props.stateRes.PortSearch.CurPortSearch && props.stateRes.PortSearch.CurPortSearch.portType ? props.stateRes.PortSearch.CurPortSearch.portType :  0);
-  const [SelectedPortEntity,setSelectedPortEntity]= useState(props.stateRes.PortSearch.CurPortSearch && props.stateRes.PortSearch.CurPortSearch.portEntity ? props.stateRes.PortSearch.CurPortSearch.portEntity : 0);
+  const [SelectedGovernorate, setSelectedGovernorate] = useState(
+    props.stateRes.PortSearch.CurPortSearch &&
+      props.stateRes.PortSearch.CurPortSearch.governorate
+      ? props.stateRes.PortSearch.CurPortSearch.governorate
+      : 0
+  );
+  const [SelectedPortType, setSelectedPortType] = useState(
+    props.stateRes.PortSearch.CurPortSearch &&
+      props.stateRes.PortSearch.CurPortSearch.portType
+      ? props.stateRes.PortSearch.CurPortSearch.portType
+      : 0
+  );
+  const [SelectedPortEntity, setSelectedPortEntity] = useState(
+    props.stateRes.PortSearch.CurPortSearch &&
+      props.stateRes.PortSearch.CurPortSearch.portEntity
+      ? props.stateRes.PortSearch.CurPortSearch.portEntity
+      : 0
+  );
 
   let [loading, setLoading] = useState(true);
 
@@ -90,17 +104,26 @@ const PortList = (props) => {
 
   const GovHandleChanges = (event) => {
     setSelectedGovernorate(event.target.value);
-    props.savePortSearch({...props.stateRes.PortSearch.CurPortSearch,governorate:event.target.value})
+    props.savePortSearch({
+      ...props.stateRes.PortSearch.CurPortSearch,
+      governorate: event.target.value,
+    });
   };
 
   const PortTypeHandleChanges = (event) => {
     setSelectedPortType(event.target.value);
-    props.savePortSearch({...props.stateRes.PortSearch.CurPortSearch,portType:event.target.value})
+    props.savePortSearch({
+      ...props.stateRes.PortSearch.CurPortSearch,
+      portType: event.target.value,
+    });
   };
 
   const PortEntityHandleChanges = (event) => {
     setSelectedPortEntity(event.target.value);
-    props.savePortSearch({...props.stateRes.PortSearch.CurPortSearch,portEntity:event.target.value})
+    props.savePortSearch({
+      ...props.stateRes.PortSearch.CurPortSearch,
+      portEntity: event.target.value,
+    });
   };
 
   useEffect(() => {
@@ -119,6 +142,7 @@ const PortList = (props) => {
   const crumbs = [
     { text: "الرئيسية", path: "/" },
     { text: "المنافذ", path: `/Ports` },
+    { text: "بحث المنافذ", path: `/Ports` },
   ];
 
   return (
@@ -126,7 +150,7 @@ const PortList = (props) => {
       <Breadcrumb crumbs={crumbs} />
       <div className="row mt-4">
         <div className="col-md-12">
-          <h3 style={{ color: "#4A9559" }}>المنافذ</h3>
+          <h3 style={{ color: "#4A9559" }}>بحث المنافذ</h3>
         </div>
       </div>
       <div className="row mt-4">
@@ -214,9 +238,9 @@ const PortList = (props) => {
               <div className="col-md-4 mb-2">
                 <Link
                   to={{
-                    pathname: `${url}/${PortItem.id}`,
+                    pathname: `${url}/${PortItem.id}/${SelectedGovernorate}/${SelectedPortEntity}/${SelectedPortType}`,
                     state: {
-                      PortItem,
+                      PortItem: PortItem,
                     },
                   }}
                   key={idx}
@@ -279,9 +303,9 @@ const PortList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    stateRes: state
-  }
-}
+    stateRes: state,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -289,6 +313,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(savePortSearch(res));
     },
   };
-}
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(PortList);
+export default connect(mapStateToProps, mapDispatchToProps)(PortList);
