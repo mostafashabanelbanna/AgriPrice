@@ -71,7 +71,7 @@ const GlobalPrices = () => {
                         متوسط السعر
                         <div className="py-2 text-center">
                           <span className="ml-1 ">{innerItem.avgPrice}</span>
-                          دولار
+                          {innerItem.currency} / {innerItem.unit}
                         </div>
                       </div>
 

@@ -4,6 +4,8 @@ import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
 import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 // import parse from "html-react-parser";
 // import striptags from "striptags";
@@ -21,7 +23,7 @@ const Metals = () => {
   const getMetals = async () => {
     //fetch metals data
     const response = await axios
-      .get("/PricesData/Get_PreciousMetals")
+      .get("/PricesData/GetGoldsExchange")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setMetals(response.data); // set metals data to state
@@ -42,7 +44,7 @@ const Metals = () => {
       <div>
         <h6 style={{ color: "var(--main-green)" }}>
           <span style={{ borderBottom: "2px solid var(--main-green)" }}>
-            أسعار المعادن
+            أسعار الذهب
           </span>
         </h6>
       </div>
@@ -55,22 +57,35 @@ const Metals = () => {
         }}
       >
         {!noMetals && (
-          <div className="border-bottom px-3 py-1 d-flex justify-content-between">
-            <span>المعدن</span>
-            <span>عيار</span>
-            <span>السعر</span>
-          </div>
-        )}
-        {!noMetals &&
-          metals.map((Item, idx) => {
+          <table className="w-100">
+            <thead>
+              <tr>
+                <th className="text-center p-1">السلعة</th>
+                <th className="text-center p-1">شراء</th>
+                <th className="text-center p-1">بيع</th>
+                <th className="text-center p-1">الاتجاه</th>
+              </tr>
+            </thead>
+
+          {metals.map((Item, idx) => {
             return (
-              <div className="px-3 py-1 d-flex justify-content-between">
-                <span>{Item.mainIndicatorName}</span>
-                <span>{Item.unit}</span>
-                <span>{Item.avgPrice}</span>
-              </div>
+                <tr key={idx}>
+                  <td>
+                   <span className="p-1">{Item.name}</span>
+                  </td>
+                  <td >
+                   <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.buyRate}  </span>
+                  </td>
+                  <td>
+                  <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.sellRate}  </span>
+                  </td>
+                  <td>
+                  {Item.buyRateDially >= 0 ? <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon> : <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>} <span>{Item.buyRateDially}</span>
+                  </td>
+                </tr>
             );
           })}
+        </table>)}
         {noMetals && <OnePieaceSkeleton />}
       </div>
     </div>

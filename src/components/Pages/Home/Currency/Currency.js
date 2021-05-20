@@ -13,6 +13,11 @@ import "moment/locale/ar";
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
 import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
+import redArrow from "../../../../assets/images/redArrow.png"
+import GreenArrow from "../../../../assets/images/GreenArrow.png"
+
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 const Currency = () => {
   const [curr, setcurr] = useState([]);
@@ -42,7 +47,7 @@ const Currency = () => {
       <div>
         <h6 style={{ color: "var(--main-green)" }}>
           <span style={{ borderBottom: "2px solid var(--main-green)" }}>
-            أسعار العملات
+            أسعار الصرف
           </span>
         </h6>
       </div>
@@ -54,26 +59,33 @@ const Currency = () => {
           boxShadow: "rgb(179 179 179 / 36%) 4px 4px 4px 0px",
         }}
       >
-        {!noCurr && (
-          <div className="border-bottom px-3 py-1 d-flex justify-content-between">
-            <span> من </span>
-            <span> إلى </span>
-            <span> السعر</span>
-          </div>
-        )}
         {!noCurr &&
-          curr.map((Item, idx) => {
+        (
+          <table className="w-100">
+            <thead>
+              <tr>
+                <th className="text-center p-1">العملة</th>
+                <th className="text-center p-1">شراء</th>
+                <th className="text-center p-1">بيع</th>
+              </tr>
+            </thead>
+
+          {curr.map((Item, idx) => {
             return (
-              <div
-                key={idx}
-                className="px-3 py-1 d-flex justify-content-between"
-              >
-                <span>{Item.from}</span>
-                <span>{Item.to}</span>
-                <span>{Item.value}</span>
-              </div>
+                <tr key={idx}>
+                  <td>
+                   <span className="p-1">{Item.name}</span>
+                  </td>
+                  <td >
+                   <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.buyRate} {Item.buyRateDially >= 0 ? <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon> : <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>}  <span>{Item.buyRateDially}</span>  </span>
+                  </td>
+                  <td>
+                  <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.sellRate}  {Item.sellRateDially >= 0 ? <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon> : <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>}  <span>{Item.sellRateDially}</span> </span>
+                  </td>
+                </tr>
             );
           })}
+        </table>)}
         {noCurr && <OnePieaceSkeleton />}
       </div>
     </div>

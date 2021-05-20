@@ -34,13 +34,13 @@ const Home = () => {
           </Col>
           <Col lg={3}>
             <Container fluid className="pr-0">
-              <div className="mt-5 mb-3">
+              {/* <div className="mt-5 mb-3">
                 <img src={testImage} className="img-fluid" />
               </div>
-              <Partner />
+              <Partner /> */}
               <Metals />
-              <Outlets />
               <Currency/>
+              <Outlets />
               <RelatedWebsite />
               <ConatctUs />
             </Container>

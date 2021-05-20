@@ -51,7 +51,7 @@ const GeneralIndicatorContent = (props) => {
                       }}
                     >
                       <span>
-                        {item.indictorName} / {item.unit}
+                        {item.indictorName}
                       </span>
                       <br />
                       <span style={{ color: "#909090" }}>
@@ -63,7 +63,7 @@ const GeneralIndicatorContent = (props) => {
                   {/* Add d-flex */}
                   <td className="text-center  justify-content-center align-items-center">
                     <span>
-                      {item.avgPrice} {item.currency}
+                      {item.avgPrice} {item.currency} / {item.unit}
                     </span>
                     <div className="p-2">
                       {/* <OverlayTrigger
