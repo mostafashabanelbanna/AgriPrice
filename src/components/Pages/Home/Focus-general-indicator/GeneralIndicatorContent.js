@@ -28,7 +28,9 @@ const GeneralIndicatorContent = (props) => {
         <Table className="text-center bg-white" responsive>
           <thead>
             <tr>
-              <th style={{ color: "black !important" }}>البيان</th>
+              <th className="text-center" style={{ color: "black !important" }}>
+                البيان
+              </th>
               <th className="text-center">متوسط السعر</th>
               <th className="text-center">قيمة التغير</th>
               <th className="text-center">التغير على مدار عام</th>
@@ -46,13 +48,11 @@ const GeneralIndicatorContent = (props) => {
                         pathname: `/local-prices/${item.indicatorId}`,
                         state: {
                           item: item,
-                          classification:"retail"
+                          classification: "retail",
                         },
                       }}
                     >
-                      <span>
-                        {item.indictorName}
-                      </span>
+                      <span>{item.indictorName}</span>
                       <br />
                       <span style={{ color: "#909090" }}>
                         {moment(item.insertionDate).locale("ar").format("LL")}

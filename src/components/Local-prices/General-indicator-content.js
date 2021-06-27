@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as moment from "moment";
 
 import { Link, useRouteMatch } from "react-router-dom";
@@ -23,6 +23,8 @@ import { TableHead } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+
+import TextField from "@material-ui/core/TextField";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -111,13 +113,11 @@ const GeneralIndicatorContent = (props) => {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [filterValue, setFilterValue] = useState("");
+  const [filterData, setFilterData] = useState(props.generalIndicatorDataItem);
 
   const emptyRows =
-    rowsPerPage -
-    Math.min(
-      rowsPerPage,
-      props.generalIndicatorDataItem.length - page * rowsPerPage
-    );
+    rowsPerPage - Math.min(rowsPerPage, filterData.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -128,9 +128,7 @@ const GeneralIndicatorContent = (props) => {
     setPage(0);
   };
 
-  useEffect(() => {
-    //console.log(props.GovId)
-  }, []);
+  useEffect(() => {}, []);
   const pricePercentageNow = (
     minPriceWithinYear,
     maxPriceWithinYear,
@@ -143,8 +141,48 @@ const GeneralIndicatorContent = (props) => {
     );
   };
   let { url } = useRouteMatch();
+
+  // Search
+  const handleSearch = (event) => {
+    setFilterValue(event.target.value);
+
+    const data = props.generalIndicatorDataItem;
+    let filteredData = [];
+    filteredData = data.filter((e) => {
+      let mathesItems = Object.values(e);
+      let retVal = true;
+      mathesItems.forEach((e) => {
+        const regex = new RegExp(event.target.value, "gi");
+        if (typeof e == "string") retVal = e.match(regex);
+      });
+      return retVal;
+    });
+    setFilterData(filteredData);
+    // this.setState({filterData: filteredDatas, searchValue: event.target.value})
+  };
+  useEffect(() => {
+    setFilterValue("");
+    setFilterData(props.generalIndicatorDataItem);
+  }, props.generalIndicatorDataItem);
+  // Search
+
   return (
     <TableContainer component={Paper}>
+      {console.log(filterData)}
+      <form
+        className="d-flex justify-content-end px-3 my-2"
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          value={filterValue}
+          style={{ width: "300px" }}
+          onChange={handleSearch}
+          id="outlined-basic"
+          label="بحث"
+          variant="outlined"
+        />
+      </form>
       <Table
         className={(classes.table, "table table-responsive")}
         aria-label="custom pagination table"
@@ -165,15 +203,14 @@ const GeneralIndicatorContent = (props) => {
         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? props.generalIndicatorDataItem.slice(
+            ? filterData.slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage
               )
-            : props.generalIndicatorDataItem
+            : filterData
           ).map((item, idx) => (
             <TableRow key={idx}>
               <TableCell className="text-center" style={{ lineHeight: "2" }}>
-                {/* {console.log(item)} */}
                 <Link
                   className="h-100 d-flex flex-column align-items-center justify-content-center"
                   // pass news item data throw props
@@ -320,7 +357,7 @@ const GeneralIndicatorContent = (props) => {
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: "الكل", value: -1 }]}
-              count={props.generalIndicatorDataItem.length}
+              count={filterData.length}
               rowsPerPage={rowsPerPage}
               page={page}
               labelDisplayedRows={({ from, to, count }) =>

@@ -4,7 +4,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import "./Footer.css";
 
-import siteLogo from "../../assets/images/header_footer/logo_footer.png";
+import siteLogo from "../../assets/images/header_footer/logo_banner.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
@@ -24,7 +24,7 @@ const Footer = () => {
               <img
                 className="img-fluid"
                 src={siteLogo}
-                style={{ height: "120px" }}
+                style={{ height: "100px" }}
                 alt="siteLogo"
               />
             </Link>

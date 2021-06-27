@@ -127,7 +127,11 @@ const DocumentLibraryList = () => {
                               {parse(String(documentLibraryItem.titleA))}
                             </h3>
                             <h4>{documentLibraryItem.titleE}</h4>
-                            <p>{parse(String(documentLibraryItem.contentA))}</p>
+                            {documentLibraryItem.contentA ? (
+                              <p>
+                                {parse(String(documentLibraryItem.contentA))}
+                              </p>
+                            ) : null}
                           </div>
                           <div className="border-top d-flex justify-content-between py-3">
                             <div>

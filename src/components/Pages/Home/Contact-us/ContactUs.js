@@ -38,7 +38,9 @@ const ConatctUs = () => {
         </div>
         <div className="p-3 d-flex jusify-content-center align-items-center">
           <MailIcon fontSize="meduim" className="mx-3" />
-          <span>prices@idsc.net.eg</span>
+          <span>
+            <a href="mailto:prices@idsc.net.eg">prices@idsc.net.eg</a>
+          </span>
         </div>
       </div>
     </div>

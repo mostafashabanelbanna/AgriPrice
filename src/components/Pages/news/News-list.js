@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import * as moment from "moment";
 import "moment/locale/ar";
 
+import parse from "html-react-parser";
+
 import ReactPaginate from "react-paginate";
 
 import { Container } from "react-bootstrap";
@@ -98,7 +100,7 @@ const NewsList = () => {
                     },
                   }}
                 >
-                  <div className="mt-3 h-100 d-flex flex-column justify-content-between">
+                  <div className="h-100 d-flex flex-column justify-content-between">
                     <div
                       style={{
                         height: "300px",
@@ -116,8 +118,8 @@ const NewsList = () => {
                         }}
                       ></div>
                     </div>
-                    <div className="h-100 d-flex flex-column justify-content-between">
-                      <div>
+                    <div className="d-flex flex-column justify-content-between">
+                      <div className="mt-1 d-flex flex-column justify-content-center">
                         <h4>{newsItem.titleA}</h4>
                       </div>
                       <div className="d-flex  justify-content-between">
@@ -269,7 +271,7 @@ const NewsList = () => {
                 ) : counter > 2 || currentPage > 0 || news.length < 3 ? (
                   <Col lg={6} className="my-3">
                     <Link
-                      className="h-100 p-2 zoom_image_on_hover"
+                      className=" p-2 zoom_image_on_hover"
                       // pass news item data throw props
                       to={{
                         pathname: `${url}/${newsItem.id}`,
@@ -281,7 +283,7 @@ const NewsList = () => {
                       <div className="h-100 d-flex flex-column justify-content-between">
                         <div
                           style={{
-                            height: "200px",
+                            height: "150px",
                           }}
                         >
                           <div
@@ -296,7 +298,7 @@ const NewsList = () => {
                             }}
                           ></div>
                         </div>
-                        <div className="mt-3 h-100 d-flex flex-column justify-content-between">
+                        <div className="mt-3 h-50 d-flex flex-column justify-content-between">
                           <div>
                             <h4>{newsItem.titleA}</h4>
                           </div>

@@ -13,11 +13,11 @@ import "moment/locale/ar";
 import { axios } from "../../../Axios/Axios";
 import { paths } from "../../../Paths/Pathes";
 import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
-import redArrow from "../../../../assets/images/redArrow.png"
-import GreenArrow from "../../../../assets/images/GreenArrow.png"
+import redArrow from "../../../../assets/images/redArrow.png";
+import GreenArrow from "../../../../assets/images/GreenArrow.png";
 
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
 const Currency = () => {
   const [curr, setcurr] = useState([]);
@@ -44,12 +44,17 @@ const Currency = () => {
         backgroundColor: "var(--secondary-gray)",
       }}
     >
-      <div>
+      <div className="d-flex justify-content-between align-items-end">
         <h6 style={{ color: "var(--main-green)" }}>
           <span style={{ borderBottom: "2px solid var(--main-green)" }}>
             أسعار الصرف
           </span>
         </h6>
+        {!noCurr && (
+          <span style={{ color: "rgb(144, 144, 144)" }}>
+            {moment(curr[0].insertionDate).locale("ar").format("LL")}
+          </span>
+        )}
       </div>
       <div
         className="m-2 "
@@ -59,8 +64,7 @@ const Currency = () => {
           boxShadow: "rgb(179 179 179 / 36%) 4px 4px 4px 0px",
         }}
       >
-        {!noCurr &&
-        (
+        {!noCurr && (
           <table className="w-100">
             <thead>
               <tr>
@@ -70,22 +74,39 @@ const Currency = () => {
               </tr>
             </thead>
 
-          {curr.map((Item, idx) => {
-            return (
+            {curr.map((Item, idx) => {
+              return (
                 <tr key={idx}>
                   <td>
-                   <span className="p-1">{Item.name}</span>
-                  </td>
-                  <td >
-                   <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.buyRate} {Item.buyRateDially >= 0 ? <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon> : <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>}  <span>{Item.buyRateDially}</span>  </span>
+                    <span className="p-1">{Item.name}</span>
                   </td>
                   <td>
-                  <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.sellRate}  {Item.sellRateDially >= 0 ? <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon> : <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>}  <span>{Item.sellRateDially}</span> </span>
+                    <span className="p-1 d-flex flex-column jusify-content-center align-items-center">
+                      {Item.buyRate}{" "}
+                      {Item.buyRateDially >= 0 ? (
+                        <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon>
+                      ) : (
+                        <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>
+                      )}{" "}
+                      <span>{Item.buyRateDially}</span>{" "}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="p-1 d-flex flex-column jusify-content-center align-items-center">
+                      {Item.sellRate}{" "}
+                      {Item.sellRateDially >= 0 ? (
+                        <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon>
+                      ) : (
+                        <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>
+                      )}{" "}
+                      <span>{Item.sellRateDially}</span>{" "}
+                    </span>
                   </td>
                 </tr>
-            );
-          })}
-        </table>)}
+              );
+            })}
+          </table>
+        )}
         {noCurr && <OnePieaceSkeleton />}
       </div>
     </div>

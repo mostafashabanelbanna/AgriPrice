@@ -53,7 +53,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar panner justify-content-between px-md-5 px-2">
+      <nav className="navbar panner justify-content-between px-2">
         <NavLink
           to="/"
           exact
@@ -61,7 +61,7 @@ const Header = () => {
           className="nav-links py-1"
           onClick={() => closeMobileMenu("")}
         >
-          <img src={siteLogo} style={{ height: "60px" }} alt="siteLogo" />
+          <img src={siteLogo} style={{ height: "80px" }} alt="siteLogo" />
         </NavLink>
         <div className="navbar-container">
           <div className="menu-icon" onClick={handleClick}>
@@ -238,6 +238,18 @@ const Header = () => {
               </NavDropdown>
             </li>
           </ul>
+          <div
+            style={{
+              backgroundColor: "#dc3545",
+              color: "#fff",
+              padding: "10px",
+              position: "absolute",
+              left: "0",
+              top: "0",
+            }}
+          >
+            بث تجريبي
+          </div>
         </div>
         {/* login */}
         <div></div>

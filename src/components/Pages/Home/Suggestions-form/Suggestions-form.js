@@ -10,6 +10,9 @@ import { axios } from "../../../Axios/Axios";
 import swal from "sweetalert";
 import "./Suggestions-form.css";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const SuggestionsForm = () => {
   const validationSchema = yup.object({
     Name: yup.string("أدخل الأسم").required("أدخل الأسم"),
@@ -17,7 +20,10 @@ const SuggestionsForm = () => {
       .string("أدخل البريد الإلكتروني")
       .email("بريد إلكتروني غير صالح")
       .required("أدخل البريد الإلكتروني"),
-    PhoneNumber: yup.string("أدخل رقم الهاتف").required("أدخل رقم الهاتف"),
+    PhoneNumber: yup
+      .string("أدخل رقم الهاتف")
+      .required("أدخل رقم الهاتف")
+      .matches(phoneRegExp, "رقم الهاتف صحيح"),
     Subject: yup
       .string("أدخل الموضوع")
       .min(8, "الموضوع يجب ان يتكون من 8 حروف على الأقل")

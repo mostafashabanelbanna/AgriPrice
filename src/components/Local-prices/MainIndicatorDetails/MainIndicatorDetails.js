@@ -146,7 +146,7 @@ const MainIndicatorDetails = (props) => {
     { text: "الأسعار المحلية", path: `/local-prices/${mainIndicatorItemId}` },
     { text: "المجموعات السلعية", path: "/local-prices" },
     // path,
-    { text: "بحث السلع", path: `/local-prices/${mainIndicatorItemId}` },
+    { text: "السلعة", path: `/local-prices/${mainIndicatorItemId}` },
   ];
 
   return (
@@ -155,7 +155,7 @@ const MainIndicatorDetails = (props) => {
       <Row className="my-4">
         <Row className="mt-4">
           <Col xs={12}>
-            <h5 style={{ color: "var(--main-green)" }}>المجموعات السلعية</h5>
+            <h5 style={{ color: "var(--main-green)" }}> السلعة</h5>
           </Col>
         </Row>
         <Col xs={12}>

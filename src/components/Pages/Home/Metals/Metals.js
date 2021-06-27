@@ -4,8 +4,8 @@ import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
 import OnePieaceSkeleton from "../../../LoadingSkeleton/OnePieace";
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
 // import parse from "html-react-parser";
 // import striptags from "striptags";
@@ -34,6 +34,8 @@ const Metals = () => {
     getMetals();
   }, []);
 
+  console.log(metals);
+
   return (
     <div
       className="justify-content-center p-3 mb-2"
@@ -41,12 +43,17 @@ const Metals = () => {
         backgroundColor: "var(--secondary-gray)",
       }}
     >
-      <div>
+      <div className="d-flex justify-content-between align-items-end">
         <h6 style={{ color: "var(--main-green)" }}>
           <span style={{ borderBottom: "2px solid var(--main-green)" }}>
             أسعار الذهب
           </span>
         </h6>
+        {!noMetals && (
+          <span style={{ color: "rgb(144, 144, 144)" }}>
+            {moment(metals[0].insertionDate).locale("ar").format("LL")}
+          </span>
+        )}
       </div>
       <div
         className="m-2 "
@@ -67,25 +74,35 @@ const Metals = () => {
               </tr>
             </thead>
 
-          {metals.map((Item, idx) => {
-            return (
+            {metals.map((Item, idx) => {
+              return (
                 <tr key={idx}>
                   <td>
-                   <span className="p-1">{Item.name}</span>
-                  </td>
-                  <td >
-                   <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.buyRate}  </span>
+                    <span className="p-1">{Item.name}</span>
                   </td>
                   <td>
-                  <span className="p-1 d-flex flex-column jusify-content-center align-items-center">{Item.sellRate}  </span>
+                    <span className="p-1 d-flex flex-column jusify-content-center align-items-center">
+                      {Item.buyRate}{" "}
+                    </span>
                   </td>
                   <td>
-                  {Item.buyRateDially >= 0 ? <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon> : <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>} <span>{Item.buyRateDially}</span>
+                    <span className="p-1 d-flex flex-column jusify-content-center align-items-center">
+                      {Item.sellRate}{" "}
+                    </span>
+                  </td>
+                  <td>
+                    {Item.buyRateDially >= 0 ? (
+                      <ArrowUpwardIcon className="text-success"></ArrowUpwardIcon>
+                    ) : (
+                      <ArrowDownwardIcon className="text-danger"></ArrowDownwardIcon>
+                    )}{" "}
+                    <span>{Item.buyRateDially}</span>
                   </td>
                 </tr>
-            );
-          })}
-        </table>)}
+              );
+            })}
+          </table>
+        )}
         {noMetals && <OnePieaceSkeleton />}
       </div>
     </div>

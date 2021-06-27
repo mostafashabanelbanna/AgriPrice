@@ -1,5 +1,10 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+// import { HashRouter } from "react-router-dom";
 
 import Header from "./components/Header_Footer/Header";
 import Footer from "./components/Header_Footer/Footer";
@@ -30,11 +35,13 @@ import ScrollButton from "./components/UI/ScrollButton/ScrollButton";
 function App() {
   return (
     <>
-      <HashRouter>
+      <Router>
         <Header />
-
         <>
           <Switch>
+            <Route exact path="/*.aspx">
+              <Redirect to="/" />
+            </Route>
             <Route path="/global-prices" exact component={GlobalPrices} />
             <Route
               path="/local-prices/:indicatorId"
@@ -76,7 +83,7 @@ function App() {
         </>
         <Footer />
         <ScrollButton />
-      </HashRouter>
+      </Router>
     </>
   );
 }
