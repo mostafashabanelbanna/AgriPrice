@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { Col, Container, Row } from "react-bootstrap";
 import { axios } from "../Axios/Axios";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
 
 import "./LocalPrices.css";
 import { SampleNextArrow, SamplePrevArrow } from "../slick-carousel/Arrows";
@@ -11,6 +13,9 @@ import { saveCurrentGeneralIndicator } from "../../store/actions/CurrentGeneralI
 import { connect } from "react-redux";
 
 const LocalPrices = (props) => {
+  const [Governorate, setGovernorate] = useState([]);
+  const [SelectedGovernorate, setSelectedGovernorate] = useState();
+
   const [generalIndicators, setGeneralIndicators] = useState([]);
   const [generalIndicatorData, setGeneralIndicatorData] = useState();
   const [currentGeneralIndicator, setCurrentGeneralIndicator] = useState();
@@ -20,11 +25,23 @@ const LocalPrices = (props) => {
 
   //get indicatorId from show more btn in home page
   //let indicatorId = parseInt(props.location.state.indicatorId);
+  const GetGovernorates = async () => {
+    const response = await axios
+      .get("Home/Governorate")
+      .catch((err) => console.log("Error", err)); //handle errors
+    if (response && response.data) {
+      setGovernorate(response.data);
+      console.log(response);
+    }
+  };
+  const GovHandleChanges = (event) => {
+    setSelectedGovernorate(event.target.value);
+  };
 
   const getGeneralIndicators = async () => {
     //fetch generalIndicators data
     const response = await axios
-      .get("/PricesData/GetGeneralIndicators")
+      .get("/PricesData/GetLocalGeneralIndicators")
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGeneralIndicators(response.data); // set generalIndicators data to state
@@ -56,15 +73,38 @@ const LocalPrices = (props) => {
       setCurrentGeneralIndicator(id);
     }
   };
+  const getGeneralIndicatorGovernorateData = async (id) => {
+    var generalIndicatorURL = `pricesdata/GetGovernorateAllData?GeneralIndicatorId=${id}&GovernorateID=${SelectedGovernorate}`;
+    console.log("getGeneralIndicatorGovernorateData", id);
+    const response = await axios
+      .get(generalIndicatorURL)
+      .catch((err) => console.log("Error", err)); //handle errors;
+    if (response && response.data) {
+      console.log(response.data);
+      setGeneralIndicatorData(response.data); // set FocusedGeneralIndicator data to state
+      setCurrentGeneralIndicator(id);
+    }
+  };
   const handleGeneralIndicatorSelect = (id) => {
     getGeneralIndicatorData(id); // set GeneralIndicatorData on select lable
+    getGeneralIndicatorGovernorateData(id);
     setCurrentGeneralIndicator(id);
     props.saveCurrentGeneralIndicator(id);
   };
-
   useEffect(() => {
     getGeneralIndicators();
+    GetGovernorates();
   }, []);
+
+  useEffect(() => {
+    if (SelectedGovernorate !== 0) {
+      getGeneralIndicatorGovernorateData(currentGeneralIndicator);
+    } else {
+      //
+      getGeneralIndicators();
+      //
+    }
+  }, [SelectedGovernorate]);
 
   // Slider Settings
   const settings = {
@@ -104,16 +144,38 @@ const LocalPrices = (props) => {
 
   return (
     <>
+      {console.log(generalIndicatorData)}
       <Container>
         <Breadcrumb crumbs={crumbs} />
         <Row className="mt-4">
           <Col xs={12}>
             <h5 style={{ color: "var(--main-green)" }}>المجموعات السلعية</h5>
           </Col>
+          <Col xs={12}>
+            <TextField
+              style={{ width: "100%" }}
+              className="px-2 my-2"
+              variant="outlined"
+              name="GovernorateId"
+              select
+              label="المحافظة"
+              value={SelectedGovernorate}
+              onChange={GovHandleChanges}
+            >
+              <MenuItem value={0}>المحافظة</MenuItem>
+              {Governorate.map((item, idx) => {
+                return (
+                  <MenuItem key={idx} value={item.id}>
+                    {item.nameA}
+                  </MenuItem>
+                );
+              })}
+            </TextField>
+          </Col>
         </Row>
       </Container>
-      <Container fluid className="my-2 local-prices">
-        <Row>
+      <Container className="my-2 local-prices">
+        <Row className="justify-content-center">
           <Col xs={12} className="my-4 d-flex">
             <Row className="justify-content-center">
               {/* <Slider {...settings}> */}

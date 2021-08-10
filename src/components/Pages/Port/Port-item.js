@@ -17,6 +17,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Tab, Tabs } from "react-bootstrap";
 import Breadcrumb from "../../UI/Bread-crumb/Breadcrumb";
 
+import { paths } from "../../Paths/Pathes";
+
 const PortItem = (props) => {
   const [PricesResult, setPricesResult] = useState([]);
   let [loading, setLoading] = useState(true);
@@ -242,7 +244,10 @@ const PortItem = (props) => {
 
       <div className="row mt-4">
         <div className="col-md-6 d-flex">
-          <img src={Port.portTypeId == 3 ? Const : Move} />
+          <img
+            style={{ height: "80px", borderRadius: "4px" }}
+            src={`${paths.OutletPhotos}${Port.portEntityId}/${Port.portEntityLogo}`}
+          />
           <div style={{ marginRight: 20 }}>
             <h5 style={{ fontWeight: "bold" }}>{Port.portEntityName}</h5>
             <p style={{ color: "#818181" }}>{Port.portTypeName}</p>

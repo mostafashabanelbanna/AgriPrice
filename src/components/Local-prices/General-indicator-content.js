@@ -168,7 +168,6 @@ const GeneralIndicatorContent = (props) => {
 
   return (
     <TableContainer component={Paper}>
-      {console.log(filterData)}
       <form
         className="d-flex justify-content-end px-3 my-2"
         noValidate

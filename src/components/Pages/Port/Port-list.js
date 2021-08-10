@@ -24,6 +24,8 @@ import "./Port.css";
 import { savePortSearch } from "../../../store/actions/PortSearch";
 import { connect } from "react-redux";
 
+import { paths } from "../../Paths/Pathes";
+
 const PortList = (props) => {
   const [Ports, setPorts] = useState([]);
   const [Governorate, setGovernorate] = useState([]);
@@ -72,6 +74,7 @@ const PortList = (props) => {
 
     setLoading(false);
     if (response && response.data) {
+      console.log(response);
       setPorts(response.data);
     }
   };
@@ -249,8 +252,8 @@ const PortList = (props) => {
                     <div className="row">
                       <div className="col-md-12 d-flex">
                         <img
-                          style={{ height: "40px", width: "40px" }}
-                          src={PortItem.portTypeId == 3 ? Const : Move}
+                          style={{ height: "40px", borderRadius: "4px" }}
+                          src={`${paths.OutletPhotos}${PortItem.portEntityId}/${PortItem.portEntityLogo}`}
                         />
                         <div className="mr-2">
                           <h5 style={{ fontWeight: "bold" }}>

@@ -31,6 +31,7 @@ import MainIndicatorDetails from "./components/Local-prices/MainIndicatorDetails
 import ConatctUs from "./components/Pages/Home/Contact-us/ContactUs";
 import SuggestionsContact from "./components/Pages/Suggestions_Contact/Suggestions_Contact";
 import ScrollButton from "./components/UI/ScrollButton/ScrollButton";
+import Auth from "./components/Pages/Auth/Auth";
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
             <Route path="/Ports" exact component={Ports} />
             {/* <Route path="/Ports" exact component={Outlets} /> */}
             <Route path="/suggestions" exact component={SuggestionsContact} />
+            <Route path="/auth" exact component={Auth} />
             <Route />
           </Switch>
         </>

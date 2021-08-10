@@ -251,8 +251,24 @@ const Header = () => {
             بث تجريبي
           </div>
         </div>
-        {/* login */}
-        <div></div>
+        <div>
+          <ul
+            style={{ marginBottom: 0, marginTop: "2rem" }}
+            className={click ? "nav-menu active" : "nav-menu"}
+          >
+            <li className="nav-item">
+              <NavLink
+                to="/auth"
+                exact
+                activeClassName="active"
+                className="nav-links"
+                onClick={() => closeMobileMenu("")}
+              >
+                إنشاء حساب جديد
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </nav>
     </>
   );

@@ -8,9 +8,8 @@ import MainIndicatorData from "./MainIndicatorData";
 import { Col } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
-import FocusedGeneralIndicatorSkeleton from '../../../LoadingSkeleton/FocusedGeneralIndicator'
-import ThreePieacesHorizontalSkeleton from '../../../LoadingSkeleton/ThreePieacesHorizontal'
-
+import FocusedGeneralIndicatorSkeleton from "../../../LoadingSkeleton/FocusedGeneralIndicator";
+import ThreePieacesHorizontalSkeleton from "../../../LoadingSkeleton/ThreePieacesHorizontal";
 
 const GeneralIndicatorTabs = () => {
   const [focusedGeneralIndicator, setFocusedGeneralIndicator] = useState([]);
@@ -152,35 +151,35 @@ const GeneralIndicatorTabs = () => {
         </>
       );
     } else {
-      return (
-             <FocusedGeneralIndicatorSkeleton/>
-            );
+      return <FocusedGeneralIndicatorSkeleton />;
     }
   };
 
   return (
     <>
       {tabs()}
-      {!noFocusedGeneralIndicator && <div className="d-flex justify-content-center">
-        <Select
-          className="selectMainIndicatorsOption my-4"
-          classNamePrefix="select"
-          defaultValue={selectedValue.value}
-          value={selectedValue.value}
-          isDisabled={false}
-          isLoading={false}
-          isClearable={true}
-          isRtl={false}
-          isSearchable={true}
-          options={mainIndicatorsOptions}
-          placeholder={selectedValue.label}
-          onChange={(event) => getMainIndicatorData(event)}
-        />
-      </div> }
+      {!noFocusedGeneralIndicator && (
+        <div className="d-flex justify-content-center">
+          <Select
+            className="selectMainIndicatorsOption my-4"
+            classNamePrefix="select"
+            defaultValue={selectedValue.value}
+            value={selectedValue.value}
+            isDisabled={false}
+            isLoading={false}
+            isClearable={true}
+            isRtl={false}
+            isSearchable={true}
+            options={mainIndicatorsOptions}
+            placeholder={selectedValue.label}
+            onChange={(event) => getMainIndicatorData(event)}
+          />
+        </div>
+      )}
       {!noFocusedGeneralIndicator && mainIndicatorData.AvgPrice !== 0 ? (
         <MainIndicatorData mainIndicatorData={mainIndicatorData} />
       ) : null}
-      {noFocusedGeneralIndicator && <ThreePieacesHorizontalSkeleton/>}
+      {noFocusedGeneralIndicator && <ThreePieacesHorizontalSkeleton />}
     </>
   );
 };

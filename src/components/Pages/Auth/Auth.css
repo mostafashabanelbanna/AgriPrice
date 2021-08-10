@@ -1,0 +1,16 @@
+.auth_tabs.nav-tabs {
+  border-bottom: none !important;
+}
+
+.auth_tabs.nav-tabs .nav-link {
+  padding: 0.5rem 2rem;
+  border: 0;
+  margin-left: 6px;
+  background-color: #fff;
+}
+
+.auth_tabs.nav-tabs .nav-link.active {
+  background-color: #fff !important;
+  color: var(--main-green) !important;
+  border-bottom: 6px solid var(--main-green) !important;
+}
