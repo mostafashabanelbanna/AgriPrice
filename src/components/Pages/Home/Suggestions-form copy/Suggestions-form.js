@@ -20,6 +20,9 @@ const SuggestionsForm = () => {
       .email("بريد إلكتروني غير صالح")
       .required("أدخل البريد الإلكتروني"),
     PhoneNumber: yup.string("أدخل رقم الهاتف").required("أدخل رقم الهاتف"),
+    SubjectTitle: up
+      .string("أدخل عنوان الموضوع")
+      .required("أدخل عنوان الموضوع"),
     Subject: yup
       .string("أدخل الموضوع")
       .min(8, "الموضوع يجب ان يتكون من 8 حروف على الأقل")

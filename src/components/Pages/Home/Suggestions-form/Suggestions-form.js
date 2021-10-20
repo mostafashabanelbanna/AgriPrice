@@ -24,6 +24,9 @@ const SuggestionsForm = () => {
       .string("أدخل رقم الهاتف")
       .required("أدخل رقم الهاتف")
       .matches(phoneRegExp, "رقم الهاتف صحيح"),
+    SubjectTitle: yup
+      .string("أدخل عنوان الموضوع")
+      .required("أدخل عنوان الموضوع"),
     Subject: yup
       .string("أدخل الموضوع")
       .min(8, "الموضوع يجب ان يتكون من 8 حروف على الأقل")
@@ -56,6 +59,7 @@ const SuggestionsForm = () => {
       Email: "",
       PhoneNumber: "",
       Subject: "",
+      SubjectTitle: "",
       ContactTypeId: "",
     },
     validationSchema: validationSchema,
@@ -75,6 +79,7 @@ const SuggestionsForm = () => {
         formik.values.Email = "";
         formik.values.PhoneNumber = "";
         formik.values.Subject = "";
+        formik.values.SubjectTitle = "";
         formik.values.ContactTypeId = "";
         window.scrollTo({
           top: 0,
@@ -136,7 +141,7 @@ const SuggestionsForm = () => {
           name="ContactTypeId"
           id="ContactTypeId"
           select
-          label="الموضوع"
+          label="تصنيف الرسالة"
           value={formik.values.ContactTypeId}
           onChange={formik.handleChange}
           error={
@@ -152,6 +157,22 @@ const SuggestionsForm = () => {
             </MenuItem>
           ))}
         </TextField>
+
+        <TextField
+          style={{ width: "100%" }}
+          className="px-2 my-2"
+          variant="outlined"
+          id="SubjectTitle"
+          name="SubjectTitle"
+          label="عنوان الرسالة"
+          type="name"
+          value={formik.values.SubjectTitle}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.SubjectTitle && Boolean(formik.errors.SubjectTitle)
+          }
+          helperText={formik.touched.SubjectTitle && formik.errors.SubjectTitle}
+        />
 
         <TextField
           className="px-2 my-2"
