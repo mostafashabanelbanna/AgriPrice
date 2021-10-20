@@ -172,7 +172,7 @@ const Registeration = () => {
           color="secondary"
           type="submit"
         >
-          إرسال
+          تسجيل
         </Button>
       </div>
     </form>

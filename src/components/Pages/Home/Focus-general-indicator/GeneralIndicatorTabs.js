@@ -30,7 +30,8 @@ const GeneralIndicatorTabs = () => {
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setFocusedGeneralIndicator(response.data); // set FocusedGeneralIndicator data to state
-      getMainIndicators(response.data[0].generalIndicatorId);
+      if (response.data.length > 0)
+        getMainIndicators(response.data[0].generalIndicatorId);
     }
   };
   const getMainIndicators = async (id) => {

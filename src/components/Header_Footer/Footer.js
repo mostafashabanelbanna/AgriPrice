@@ -8,7 +8,7 @@ import siteLogo from "../../assets/images/header_footer/logo_banner.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "var(--main-gray)" }}>
+    <footer style={{ backgroundColor: "#dddcdc" }}>
       <Container>
         <Row className="p-4">
           {/* <Col lg={2}>
@@ -91,7 +91,7 @@ const Footer = () => {
               </Col>
             </Row>
           </Col>
-          <Col
+          {/* <Col
             lg={1}
             className="d-flex flex-column align-items-center justify-content-center"
           >
@@ -101,7 +101,7 @@ const Footer = () => {
             <a href="#" className="my-2">
               <InstagramIcon fontSize="large" style={{ color: "#707070" }} />
             </a>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
       <Container fluid style={{ backgroundColor: "#d6d6d6" }}>

@@ -5,6 +5,7 @@ import authLogo from "../../../assets/images/auth.png";
 import Registeration from "./Registeration";
 
 import "./Auth.css";
+import Login from "./Login";
 
 const Auth = () => {
   return (
@@ -20,7 +21,7 @@ const Auth = () => {
           <div className="p-4 border m-3" style={{ borderRadius: "8px" }}>
             <Tabs className="mt-4 justify-content-around auth_tabs">
               <Tab defaultValue eventKey={0} title="تسجيل دخول" className="p-5">
-                تسجيل دخول
+                <Login />
               </Tab>
               <Tab
                 defaultValue

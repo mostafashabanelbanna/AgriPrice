@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import NavDropdown from "react-bootstrap/NavDropdown";
-
-// import MenuIcon from "@material-ui/icons/Menu";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import CloseIcon from "@material-ui/icons/Close";
+import { connect } from "react-redux";
+
+import { saveLoginData } from "../../store/actions/Auth";
 
 import siteLogo from "../../assets/images/header_footer/logo_banner.png";
 
+import { useHistory } from "react-router";
+
 import "./Header.css";
 
-const Header = () => {
+const Header = (props) => {
+  const history = useHistory();
   const [click, setClick] = useState(false);
   const [showAboutUs, setAboutUs] = useState(false);
   const [showMediaCorner, setMediaCorner] = useState(false);
@@ -49,6 +53,12 @@ const Header = () => {
   const closeMobileMenu = (parent) => {
     setParent(parent);
     setClick(false);
+  };
+
+  const logOut = () => {
+    props.saveLoginDataObj({});
+    localStorage.removeItem("token");
+    history.push("/auth");
   };
 
   return (
@@ -238,7 +248,8 @@ const Header = () => {
               </NavDropdown>
             </li>
           </ul>
-          <div
+
+          {/* <div
             style={{
               backgroundColor: "#dc3545",
               color: "#fff",
@@ -249,29 +260,73 @@ const Header = () => {
             }}
           >
             بث تجريبي
-          </div>
+          </div> */}
         </div>
         <div>
-          <ul
-            style={{ marginBottom: 0, marginTop: "2rem" }}
-            className={click ? "nav-menu active" : "nav-menu"}
-          >
-            <li className="nav-item">
-              <NavLink
-                to="/auth"
-                exact
-                activeClassName="active"
-                className="nav-links"
-                onClick={() => closeMobileMenu("")}
-              >
-                إنشاء حساب جديد
-              </NavLink>
-            </li>
-          </ul>
+          {/* {console.log(props.loggedInUser.username)} */}
+          {props.loggedInUser && "username" in props.loggedInUser ? (
+            <ul
+              style={{ marginBottom: 0, marginTop: "2rem" }}
+              className={click ? "nav-menu active" : "nav-menu"}
+            >
+              <li className="nav-item">
+                <span
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ padding: "0.5rem 1rem" }}
+                >
+                  مرحباً {props.loggedInUser.username}
+                </span>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName=""
+                  className="nav-links"
+                  onClick={() => {
+                    logOut();
+                  }}
+                >
+                  تسجيل خروج
+                </NavLink>
+              </li>
+            </ul>
+          ) : (
+            <ul
+              style={{ marginBottom: 0, marginTop: "2rem" }}
+              className={click ? "nav-menu active" : "nav-menu"}
+            >
+              <li className="nav-item">
+                <NavLink
+                  to="/auth"
+                  exact
+                  activeClassName="active"
+                  className="nav-links"
+                  onClick={() => closeMobileMenu("")}
+                >
+                  تسجيل دخول
+                </NavLink>
+              </li>
+            </ul>
+          )}
         </div>
       </nav>
     </>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    loggedInUser: state.login.CuurentLoginData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveLoginDataObj: (res) => {
+      dispatch(saveLoginData(res));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
