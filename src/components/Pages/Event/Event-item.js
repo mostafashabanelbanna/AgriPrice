@@ -13,7 +13,7 @@ import { axios } from "../../Axios/Axios";
 import CustomSlider from "../../UI/Custom-slider";
 import { paths } from "../../Paths/Pathes";
 
-import "../News/News-item.css";
+import "../news/News-item.css";
 const EventItem = (props) => {
   // const eventItem = props.location.state.eventItem;
 

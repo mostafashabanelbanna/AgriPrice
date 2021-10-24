@@ -51,7 +51,7 @@ const SuggestionsForm = () => {
   let contactForm;
   const resetContactForm = () => {
     contactForm.reset();
-    console.log("here");
+    // console.log("here");
   };
   const formik = useFormik({
     initialValues: {

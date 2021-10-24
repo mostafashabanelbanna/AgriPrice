@@ -33,9 +33,8 @@ const RetailPrices = (props) => {
   const noSearchResult = !searchData || (searchData && searchData.length === 0); //check if no searchResult
 
   const getPopulate = async () => {
-    const response = await axios
-      .get("/home/PopulateDropDowns")
-      .catch((err) => console.log("Error", err)); //handle errors
+    const response = await axios.get("/home/PopulateDropDowns");
+    // .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGenralIndicators(response.data.genralIndicators);
       setGovernorate(response.data.governorates);
@@ -43,9 +42,8 @@ const RetailPrices = (props) => {
   };
 
   const getSubindicator = async (id) => {
-    const response = await axios
-      .get(`/home/SubIndicator/${id}`)
-      .catch((err) => console.log("Error", err)); //handle errors
+    const response = await axios.get(`/home/SubIndicator/${id}`);
+    // .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setSubIndicator(response.data);
     }
@@ -58,7 +56,7 @@ const RetailPrices = (props) => {
 
   useEffect(() => {
     getPopulate();
-    console.log(props.savedSearchRes.LocSearchRes.searchData);
+    // console.log(props.savedSearchRes.LocSearchRes.searchData);
     setSearchResult(props.savedSearchRes.LocSearchRes.searchData);
   }, []);
 
@@ -86,9 +84,11 @@ const RetailPrices = (props) => {
       setSearchResult([]);
       props.saveRes(searchResult);
 
-      const response = await axios
-        .post("/Prices/Retail", JSON.stringify(values, null, 2))
-        .catch((err) => console.log("Error", err)); //handle errors;
+      const response = await axios.post(
+        "/Prices/Retail",
+        JSON.stringify(values, null, 2)
+      );
+      // .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
         //alert("sucess!");
         setLoading(false);
@@ -105,7 +105,7 @@ const RetailPrices = (props) => {
 
   return (
     <div style={{ paddingRight: 30 }}>
-      {console.log(props)}
+      {/* {console.log(props)} */}
       <form onSubmit={formik.handleSubmit}>
         <Row>
           <Col className="px-0">

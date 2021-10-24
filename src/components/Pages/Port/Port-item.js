@@ -55,7 +55,7 @@ const PortItem = (props) => {
       .get(`Ports/${SelectedPort}`)
       .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
-      console.log(response.data);
+      // console.log(response.data);
       setPort(response.data[0]);
     }
   };

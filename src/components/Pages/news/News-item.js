@@ -150,7 +150,7 @@ const NewsItem = (props) => {
                   </strong>
                 </div>
                 <div className="p-4 news_content" style={{ fontSize: "2rem" }}>
-                  {console.log(newsItem.contentA)}
+                  {/* {console.log(newsItem.contentA)} */}
                   {parse(String(newsItem.contentA))}
                 </div>
               </div>

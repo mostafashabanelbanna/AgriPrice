@@ -11,10 +11,10 @@ import Footer from "./components/Header_Footer/Footer";
 
 import Home from "./components/Pages/Home/Home";
 import AboutUs from "./components/Pages/About-us/About-us";
-import NewsList from "./components/Pages/News/News-list";
+import NewsList from "./components/Pages/news/News-list";
 import EventsList from "./components/Pages/Event/Event-list";
 import DocumentLibraryList from "./components/Pages/Document-library/Document-library-list";
-import newsItem from "./components/Pages/News/News-item";
+import newsItem from "./components/Pages/news/News-item";
 import eventItem from "./components/Pages/Event/Event-item";
 import DocumentLibraryItem from "./components/Pages/Document-library/Document-library-item";
 import portItem from "./components/Pages/Port/Port-item";
@@ -50,6 +50,11 @@ function App() {
               component={MainIndicatorDetails}
             />
             <Route path="/local-prices" exact component={LocalPrices} />
+            <Route
+              path="/local-prices/:gov/:government"
+              exact
+              component={LocalPrices}
+            />
             <Route
               path="/local-prices/SubIndicatorInfo/:Id"
               exact

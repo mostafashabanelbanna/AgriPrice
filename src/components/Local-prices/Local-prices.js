@@ -14,24 +14,27 @@ import { connect } from "react-redux";
 
 const LocalPrices = (props) => {
   const [Governorate, setGovernorate] = useState([]);
-  const [SelectedGovernorate, setSelectedGovernorate] = useState();
 
   const [generalIndicators, setGeneralIndicators] = useState([]);
   const [generalIndicatorData, setGeneralIndicatorData] = useState();
   const [currentGeneralIndicator, setCurrentGeneralIndicator] = useState();
 
+  const [SelectedGovernorate, setSelectedGovernorate] = useState(
+    props.match.params.gov === "Aswan" &&
+      props.match.params.government === "Aswan"
+      ? 5
+      : 0
+  );
   const noGeneralIndicators =
     !generalIndicators || (generalIndicators && generalIndicators.length === 0); //check if no news
 
   //get indicatorId from show more btn in home page
   //let indicatorId = parseInt(props.location.state.indicatorId);
   const GetGovernorates = async () => {
-    const response = await axios
-      .get("Home/Governorate")
-      .catch((err) => console.log("Error", err)); //handle errors
+    const response = await axios.get("Home/Governorate");
+    // .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGovernorate(response.data);
-      console.log(response);
     }
   };
   const GovHandleChanges = (event) => {
@@ -40,9 +43,8 @@ const LocalPrices = (props) => {
 
   const getGeneralIndicators = async () => {
     //fetch generalIndicators data
-    const response = await axios
-      .get("/PricesData/GetLocalGeneralIndicators")
-      .catch((err) => console.log("Error", err)); //handle errors
+    const response = await axios.get("/PricesData/GetLocalGeneralIndicators");
+    // .catch((err) => console.log("Error", err)); //handle errors
     if (response && response.data) {
       setGeneralIndicators(response.data); // set generalIndicators data to state
       if (props.location.state == null) {
@@ -65,22 +67,28 @@ const LocalPrices = (props) => {
   };
 
   const getGeneralIndicatorData = async (id) => {
-    const response = await axios
-      .get(`/PricesData/GetGeneralIndicatorAllData/${id}`)
-      .catch((err) => console.log("Error", err)); //handle errors;
+    const response = await axios.get(
+      `/PricesData/GetGeneralIndicatorAllData/${id}`
+    );
+    // .catch((err) => console.log("Error", err)); //handle errors;
     if (response && response.data) {
       setGeneralIndicatorData(response.data); // set FocusedGeneralIndicator data to state
       setCurrentGeneralIndicator(id);
     }
   };
   const getGeneralIndicatorGovernorateData = async (id) => {
+    if (
+      props.match.params.gov === "Aswan" &&
+      props.match.params.government === "Aswan"
+    ) {
+      setSelectedGovernorate(5);
+    }
     var generalIndicatorURL = `pricesdata/GetGovernorateAllData?GeneralIndicatorId=${id}&GovernorateID=${SelectedGovernorate}`;
-    console.log("getGeneralIndicatorGovernorateData", id);
-    const response = await axios
-      .get(generalIndicatorURL)
-      .catch((err) => console.log("Error", err)); //handle errors;
+    // console.log("getGeneralIndicatorGovernorateData", id);
+    const response = await axios.get(generalIndicatorURL);
+    // .catch((err) => console.log("Error", err)); //handle errors;
     if (response && response.data) {
-      console.log(response.data);
+      // console.log(response.data);
       setGeneralIndicatorData(response.data); // set FocusedGeneralIndicator data to state
       setCurrentGeneralIndicator(id);
     }
@@ -100,9 +108,7 @@ const LocalPrices = (props) => {
     if (SelectedGovernorate !== 0) {
       getGeneralIndicatorGovernorateData(currentGeneralIndicator);
     } else {
-      //
       getGeneralIndicators();
-      //
     }
   }, [SelectedGovernorate]);
 
@@ -144,7 +150,7 @@ const LocalPrices = (props) => {
 
   return (
     <>
-      {console.log(generalIndicatorData)}
+      {/* {console.log(generalIndicatorData)} */}
       <Container>
         <Breadcrumb crumbs={crumbs} />
         <Row className="mt-4">
@@ -165,12 +171,13 @@ const LocalPrices = (props) => {
               <MenuItem value={0}>المحافظة</MenuItem>
               {Governorate.map((item, idx) => {
                 return (
-                  <MenuItem key={idx} value={item.id}>
+                  <MenuItem key={item.id} value={item.id}>
                     {item.nameA}
                   </MenuItem>
                 );
               })}
             </TextField>
+            {/* )} */}
           </Col>
         </Row>
       </Container>
@@ -207,7 +214,7 @@ const LocalPrices = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return {
     StateRes: state,
   };
