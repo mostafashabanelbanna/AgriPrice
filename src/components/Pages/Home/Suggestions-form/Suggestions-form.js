@@ -94,7 +94,7 @@ const SuggestionsForm = () => {
       <form ref={(el) => (contactForm = el)} onSubmit={formik.handleSubmit}>
         <TextField
           style={{ width: "100%" }}
-          className="px-2 my-2"
+          className="px-2 my-2 "
           variant="outlined"
           id="Name"
           name="Name"
@@ -106,7 +106,7 @@ const SuggestionsForm = () => {
         />
         <TextField
           style={{ width: "100%" }}
-          className="px-2 my-2"
+          className="px-2 my-2 col-md-6"
           variant="outlined"
           id="Email"
           name="Email"
@@ -120,7 +120,7 @@ const SuggestionsForm = () => {
 
         <TextField
           style={{ width: "100%" }}
-          className="px-2 my-2"
+          className="px-2 my-2 col-md-6"
           variant="outlined"
           id="PhoneNumber"
           name="PhoneNumber"
@@ -133,10 +133,25 @@ const SuggestionsForm = () => {
           }
           helperText={formik.touched.PhoneNumber && formik.errors.PhoneNumber}
         />
+        <TextField
+          style={{ width: "100%" }}
+          className="px-2 my-2 col-md-6"
+          variant="outlined"
+          id="SubjectTitle"
+          name="SubjectTitle"
+          label="عنوان الرسالة"
+          type="name"
+          value={formik.values.SubjectTitle}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.SubjectTitle && Boolean(formik.errors.SubjectTitle)
+          }
+          helperText={formik.touched.SubjectTitle && formik.errors.SubjectTitle}
+        />
 
         <TextField
           style={{ width: "100%" }}
-          className="px-2 my-2"
+          className="px-2 my-2 col-md-6"
           variant="outlined"
           name="ContactTypeId"
           id="ContactTypeId"
@@ -157,22 +172,6 @@ const SuggestionsForm = () => {
             </MenuItem>
           ))}
         </TextField>
-
-        <TextField
-          style={{ width: "100%" }}
-          className="px-2 my-2"
-          variant="outlined"
-          id="SubjectTitle"
-          name="SubjectTitle"
-          label="عنوان الرسالة"
-          type="name"
-          value={formik.values.SubjectTitle}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.SubjectTitle && Boolean(formik.errors.SubjectTitle)
-          }
-          helperText={formik.touched.SubjectTitle && formik.errors.SubjectTitle}
-        />
 
         <TextField
           className="px-2 my-2"
