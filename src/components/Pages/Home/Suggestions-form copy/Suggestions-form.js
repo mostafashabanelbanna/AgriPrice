@@ -60,7 +60,7 @@ const SuggestionsForm = () => {
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
         alert("sucess!");
-        console.log(response);
+        // console.log(response);
       }
     },
   });

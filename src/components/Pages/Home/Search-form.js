@@ -63,7 +63,7 @@ const SearchForm = () => {
         .catch((err) => console.log("Error", err)); //handle errors;
       if (response) {
         alert("sucess!");
-        console.log(response);
+        // console.log(response);
       }
     },
   });
@@ -78,7 +78,7 @@ const SearchForm = () => {
       className="justify-content-center border-bottom py-5"
       style={{ backgroundColor: "var(--main-gray)" }}
     >
-      {console.log(value)}
+      {/* {console.log(value)} */}
       <Container className="py-5">
         <Row>
           <Col>

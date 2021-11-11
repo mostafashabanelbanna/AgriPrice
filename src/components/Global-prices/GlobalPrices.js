@@ -19,9 +19,8 @@ const GlobalPrices = () => {
   const getGlobalPrices = async () => {
     //fetch news data
     setLoading(true);
-    const response = await axios
-      .get("/PricesData/GetInnerInternationalData")
-      .catch((err) => console.log("Error", err)); //handle errors
+    const response = await axios.get("/PricesData/GetInnerInternationalData");
+    // .catch((err) => console.log("Error", err)); //handle errors
     setLoading(false);
     if (response && response.data) {
       setGlobalPrices(response.data); // set GlobalPrices data to state

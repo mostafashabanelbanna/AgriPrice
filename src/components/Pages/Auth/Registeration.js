@@ -49,7 +49,7 @@ const Registeration = () => {
   let contactForm;
   const resetContactForm = () => {
     contactForm.reset();
-    console.log("here");
+    // console.log("here");
   };
   const formik = useFormik({
     initialValues: {
@@ -77,7 +77,7 @@ const Registeration = () => {
         formik.values.Email = "";
         formik.values.Password = "";
         formik.values.PhoneNumber = "";
-        console.log("registeration done!");
+        // console.log("registeration done!");
         window.scrollTo({
           top: 0,
           behavior: "smooth",

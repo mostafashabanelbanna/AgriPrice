@@ -19,7 +19,7 @@ const ImageGallery = (Props) => {
       .catch((err) => console.log("Error", err)); //handle errors
 
     if (response && response.data) {
-      console.log(response.data);
+      // console.log(response.data);
       response.data.forEach((element) => {
         var obj = {
           src:
@@ -38,7 +38,7 @@ const ImageGallery = (Props) => {
         };
         IMAGES.push(obj);
       });
-      console.log(IMAGES);
+      // console.log(IMAGES);
       setImgaes(IMAGES); // set Images data to state
       setNoImgaes(false);
     } else {

@@ -74,7 +74,7 @@ const PortList = (props) => {
 
     setLoading(false);
     if (response && response.data) {
-      console.log(response);
+      // console.log(response);
       setPorts(response.data);
     }
   };
@@ -130,7 +130,7 @@ const PortList = (props) => {
   };
 
   useEffect(() => {
-    console.log(props.stateRes);
+    // console.log(props.stateRes);
     GetGovernorates();
     GetPortEntities();
     GetPortTypes();
