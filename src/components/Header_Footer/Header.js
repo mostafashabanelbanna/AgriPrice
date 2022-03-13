@@ -262,8 +262,8 @@ const Header = (props) => {
             بث تجريبي
           </div> */}
         </div>
-        <div>
-          {/* {console.log(props.loggedInUser.username)} */}
+        <div></div>
+        {/* <div>
           {props.loggedInUser && "username" in props.loggedInUser ? (
             <ul
               style={{ marginBottom: 0, marginTop: "2rem" }}
@@ -309,7 +309,7 @@ const Header = (props) => {
               </li>
             </ul>
           )}
-        </div>
+        </div> */}
       </nav>
     </>
   );

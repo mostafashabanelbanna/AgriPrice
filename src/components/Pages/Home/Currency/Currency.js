@@ -28,6 +28,7 @@ const Currency = () => {
     const response = await axios
       .get("/PricesData/GetCurrencyExchange")
       .catch((err) => console.log("Error", err)); //handle errors
+      console.log(response)
     if (response && response.data) {
       setcurr(response.data); // set metals data to state
     }
